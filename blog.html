@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colibrí Soul Compass</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-color: #F5F2EC;
+  --text-primary: #3A332E;
+  --accent-color: #8C8A74;
+  --light-section: #EFEAE2;
+  --max-width: 1100px;
+}
+
+* {margin:0;padding:0;box-sizing:border-box;}
+body {
+  font-family:'Montserrat',sans-serif;
+  background:var(--bg-color);
+  color:var(--text-primary);
+  line-height:1.6;
+}
+
+.container {
+  max-width:var(--max-width);
+  margin:auto;
+  padding:60px 30px;
+}
+
+h1,h2,h3,h4 {
+  font-family:'Playfair Display',serif;
+}
+
+nav {
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:white;
+  padding:12px 40px;
+  border-radius:50px;
+  display:flex;
+  gap:30px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  z-index:1000;
+}
+
+nav a {
+  text-decoration:none;
+  color:var(--text-primary);
+}
+
+.hero {
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1 {
+  font-size:clamp(32px,5vw,58px);
+  margin-bottom:20px;
+}
+
+.subtitle {
+  margin-bottom:40px;
+  font-weight:300;
+}
+
+.btn {
+  background:var(--accent-color);
+  color:white;
+  padding:10px 22px;
+  text-decoration:none;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  border-radius:4px;
+  display:inline-block;
+  margin-top:15px;
+}
+
+.section-light {
+  background:var(--light-section);
+}
+
+.session-item {
+  display:flex;
+  justify-content:space-between;
+  padding:25px 0;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+}
+
+.review-box {
+  background:white;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:6px;
+}
+
+footer {
+  text-align:center;
+  padding:60px 20px;
+  font-size:12px;
+  opacity:.6;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#sessies">Sessies</a>
+<a href="#faq">FAQ</a>
+<a href="blog.html">Blog</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section id="home" class="hero">
+<div class="container">
+<h1>Rust in je lichaam. Helderheid in je hoofd.</h1>
+<p class="subtitle">Lichaamsgerichte begeleiding voor wie spanning en patronen wil doorbreken.</p>
+<a href="https://wa.me/34722675011" class="btn">Plan een sessie</a>
+</div>
+</section>
+
+<section id="sessies">
+<div class="container">
+<h2>Het aanbod</h2>
+
+<div class="session-item">
+<div>
+<h4>Individuele Sessie</h4>
+<p>Gerichte begeleiding bij spanning en blokkades.</p>
+</div>
+<span>€75 · 90 min</span>
+</div>
+
+<div class="session-item">
+<div>
+<h4>Reset Traject</h4>
+<p>3 sessies binnen 6 weken.</p>
+</div>
+<span>€210</span>
+</div>
+
+<div class="session-item">
+<div>
+<h4>Deep Reset Traject</h4>
+<p>5 sessies voor structurele verandering.</p>
+</div>
+<span>€345</span>
+</div>
+
+<div class="session-item">
+<div>
+<h4>Online Persoonlijk Inzicht</h4>
+<p>Bodyscan en energetische analyse op afstand.</p>
+</div>
+<span>Vanaf €35</span>
+</div>
+
+</div>
+</section>
+
+<section id="faq" class="section-light">
+<div class="container">
+<h2>FAQ</h2>
+
+<h4>Moet ik me voorbereiden?</h4>
+<p>Nee. Kom zoals je bent. Comfortabele kleding is voldoende.</p>
+
+<h4>Is dit medisch?</h4>
+<p>Nee. Het is aanvullend en vervangt geen medische behandeling.</p>
+
+<h4>Kan ik online werken?</h4>
+<p>Ja. De online sessies zijn ideaal als je niet in de buurt woont.</p>
+
+</div>
+</section>
+
+<section class="container">
+<h2>Wat cliënten zeggen</h2>
+
+<div class="review-box">
+<p>"Ik voel me eindelijk weer rustig in mijn lijf."</p>
+<strong>- Marieke</strong>
+</div>
+
+<div class="review-box">
+<p>"Online werkte verrassend krachtig."</p>
+<strong>- Sandra</strong>
+</div>
+
+<a href="reviews.html" class="btn">Lees alle reviews</a>
+
+</section>
+
+<section id="contact" class="section-light">
+<div class="container">
+<h2>Klaar om te beginnen?</h2>
+<p>Je lichaam geeft signalen. De vraag is wat je ermee doet.</p>
+<a href="https://wa.me/34722675011" class="btn">Stuur een WhatsApp</a>
+</div>
+</section>
+
+<footer>
+Colibrí Soul Compass — San Fulgencio — © 2026
+</footer>
+
+</body>
+</html>
