@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over Michaëla | Colibrí Soul Compass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F6F3ED;
+            --section-bg: #D8D2C8;
+            --accent-color: #8F9779;
+            --text-primary: #2E2A26;
+            --text-black: #1C1C1C;
+            --nav-bg: rgba(246, 243, 237, 0.9);
+            --max-width: 1200px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--text-black); }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
+
+        /* NAVIGATIE (Hetzelfde als index) */
+        nav {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); backdrop-filter: blur(10px);
+            padding: 10px 30px; border-radius: 50px;
+            display: flex; align-items: center; justify-content: space-between;
+            width: 90%; max-width: 1100px; z-index: 1000;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-black); font-family: 'Playfair Display'; font-size: 18px; }
+        .nav-logo img { height: 30px; }
+        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-left: 20px; }
+
+        /* CONTENT */
+        .intro-section { padding: 150px 0 80px; }
+        .grid-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: flex-start; }
+        .profile-img { width: 100%; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+        .expertise-list { list-style: none; margin-top: 30px; }
+        .expertise-list li { margin-bottom: 15px; padding-left: 30px; position: relative; font-weight: 300; }
+        .expertise-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent-color); }
+
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 100px; }
+
+        @media (max-width: 800px) {
+            .grid-split { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="branding/logo-colibri.jpg" alt="Logo">
+            Colibrí Soul Compass
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aanbod.html">Aanbod</a>
+            <a href="over-mij.html" style="font-weight: 600;">Over mij</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="intro-section">
+    <div class="container">
+        <div class="grid-split">
+            <div>
+                <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
+            </div>
+            <div>
+                <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color);">Ontmoet Michaëla</span>
+                <h1 style="font-size: 38px; margin: 20px 0; line-height: 1.2;">Van de Politieacademie tot Holistisch Expert</h1>
+                
+                <p style="font-weight: 400; margin-bottom: 20px; font-style: italic;">"Ik help je landen in je lijf, met beide benen op de grond."</p>
+                
+                <p style="font-weight: 300; margin-bottom: 20px;">
+                    Mijn pad naar lichaamsgerichte begeleiding was allesbehalve standaard. Van de Politieacademie in Amsterdam tot jarenlange ervaring in de commerciële sector — ik weet uit eigen ervaring wat het is om te overleven in een wereld waar 'altijd aanstaan' de norm is. 
+                </p>
+                
+                <p style="font-weight: 300; margin-bottom: 20px;">
+                    In 2015 besloot ik het roer om te gooien. Na jarenlang een succesvolle praktijk te hebben gerund in Nederland (Mi-Wellness), heb ik mijn vleugels uitgeslagen naar San Fulgencio aan de Costa Blanca. Hier combineer ik nuchterheid met diepe intuïtie.
+                </p>
+
+                <p style="font-weight: 300; margin-bottom: 20px;">
+                    Met meer dan 9 jaar ervaring kijk ik verder dan alleen de klacht. Of ik nu werk met cupping, fascia-release of energetische afstemming: ik combineer anatomische kennis met intuïtief weten om jouw stress-systeem weer in balans te brengen.
+                </p>
+                
+                <h3 style="margin-top: 40px; font-size: 22px;">Mijn Expertise</h3>
+                <ul class="expertise-list">
+                    <li>Gediplomeerd NGS Sportmasseur</li>
+                    <li>Gespecialiseerd in het kalmeren van het stress-systeem</li>
+                    <li>Expert in Energetische Therapie & Reiki</li>
+                    <li>Kennis van Mycotherapie & Kruidenwijsheid</li>
+                    <li>Ervaring in Fascia-release & Bellabaci Cupping</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <footer>
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 Colibrí Soul Compass | San Fulgencio, Spanje</p>
+    </footer>
+
+</body>
+</html>
