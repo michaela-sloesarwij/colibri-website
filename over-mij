@@ -73,35 +73,43 @@
     </nav>
 
     <section class="intro-section">
-        <div class="container">
-            <div class="grid-split">
-                <div>
-                    <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
-                </div>
-                <div>
-                    <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color);">De vrouw achter Colibrí</span>
-                    <h1 style="font-size: 48px; margin: 20px 0;">Ik ben Michaëla</h1>
-                    <p style="font-weight: 300; margin-bottom: 20px;">
-                        Mijn passie voor het menselijk lichaam en de energetische stroming begon ruim 12 jaar geleden. Ik had altijd een intresse in het menselijk lichaam, energetische werk en hoe de mind werkt.  Wat begon met massagetherapie, ontwikkelde zich tot een diepgaande zoektocht naar hoe we als vrouwen echt kunnen 'landen' in onszelf.
-                    </p>
-                    <p style="font-weight: 300; margin-bottom: 20px;">
-                        In mijn praktijk in San Fulgencio combineer ik nuchterheid met intuïtie. Ik geloof in tastbare resultaten: een zenuwstelsel dat tot rust komt en een lichaam dat weer vrij aanvoelt.
-                    </p>
-                    
-                    <h3 style="margin-top: 40px; font-size: 24px;">Expertise & Achtergrond</h3>
-                    <ul class="expertise-list">
-                        <li>meer dan 12 jaar ervaring in Massagetherapie & Lichaamswerk</li>
-                        <li>Gespecialiseerd in Fysieke rust bij innerlijke onrust</li>
-                        <li>Expertise in Energetische Therapie & Aura Reading & Healing</li>
-                        <li>Aromatherapie & etherise oliën</li>
-                        <li>Kennis van Kruiden & </li>
-                        <li>Gecertificeerd in Cupping & Fascia-release</li>
+    <div class="container">
+        <div class="grid-split">
+            <div>
+                <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
+            </div>
+            <div>
+                <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color);">Ontmoet Michaëla</span>
+                <h1 style="font-size: 38px; margin: 20px 0; line-height: 1.2;">Van de Politieacademie tot Holistisch Expert</h1>
+                
+                <p style="font-weight: 400; margin-bottom: 20px; font-style: italic;">"Ik help je landen in je lijf, met beide benen op de grond."</p>
+                
+                <p style="font-weight: 300; margin-bottom: 20px;">
+                    Mijn pad naar lichaamsgerichte begeleiding was allesbehalve standaard. Van de Politieacademie in Amsterdam tot jarenlange ervaring in de commerciële sector — ik weet uit eigen ervaring wat het is om te overleven in een wereld waar 'altijd aanstaan' de norm is. 
+                </p>
+                
+                <p style="font-weight: 300; margin-bottom: 20px;">
+                    In 2015 besloot ik het roer om te gooien. Na jarenlang een succesvolle praktijk te hebben gerund in Nederland (Mi-Wellness), heb ik mijn vleugels uitgeslagen naar San Fulgencio aan de Costa Blanca. Hier combineer ik nuchterheid met diepe intuïtie.
+                </p>
 
-                    </ul>
-                </div>
+                <p style="font-weight: 300; margin-bottom: 20px;">
+                    Met meer dan 9 jaar ervaring kijk ik verder dan alleen de klacht. Of ik nu werk met cupping, fascia-release of energetische afstemming: ik combineer anatomische kennis met intuïtief weten om jouw stress-systeem weer in balans te brengen.
+                </p>
+                
+                <h3 style="margin-top: 40px; font-size: 22px;">Mijn Expertise</h3>
+                <ul class="expertise-list">
+                    <li>Gediplomeerd NGS Sportmasseur</li>
+                    <li>Gespecialiseerd in het kalmeren van het stress-systeem</li>
+                    <li>Expert in Energetische Therapie & Reiki</li>
+                    <li>Kennis van Mycotherapie & Kruidenwijsheid</li>
+                    <li>Ervaring in Fascia-release & Bellabaci Cupping</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
 
     <footer>
         <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 Colibrí Soul Compass | San Fulgencio, Spanje</p>
