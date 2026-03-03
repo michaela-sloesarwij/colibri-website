@@ -7,67 +7,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #F6F3ED;
-            --section-bg: #D8D2C8;
-            --accent-color: #8F9779;
-            --text-primary: #2E2A26;
-            --text-black: #1C1C1C;
-            --nav-bg: rgba(246, 243, 237, 0.9);
-            --max-width: 1200px;
+            --bg-color: #F6F3ED; --section-bg: #D8D2C8; --accent-color: #8F9779;
+            --text-primary: #2E2A26; --text-black: #1C1C1C;
+            --nav-bg: rgba(246, 243, 237, 0.8); --max-width: 1200px;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.8; }
+        body { background-color: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--text-black); }
         .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
+        .top-banner { width: 100%; height: 35vh; overflow: hidden; position: relative; }
+        .top-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .top-banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(transparent, var(--bg-color)); }
+
         nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            position: fixed; top: 40px; left: 50%; transform: translateX(-50%);
             background: var(--nav-bg); backdrop-filter: blur(10px);
-            padding: 10px 30px; border-radius: 50px;
+            padding: 12px 40px; border-radius: 50px;
             display: flex; align-items: center; justify-content: space-between;
-            width: 90%; max-width: 1100px; z-index: 1000;
-            border: 1px solid rgba(0,0,0,0.05);
+            width: 90%; max-width: var(--max-width); z-index: 1000;
+            border: 1px solid rgba(46, 42, 38, 0.1);
         }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-black); font-family: 'Playfair Display'; font-size: 18px; }
-        .nav-logo img { height: 30px; }
-        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-left: 20px; }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-family: 'Playfair Display', serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--text-black); }
+        .img-logo { height: 32px; width: auto; }
+        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 25px; }
 
-        .contact-section { padding: 150px 0 100px; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+        .contact-section { padding: 60px 0 100px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         
-        .contact-info h2 { font-size: 32px; margin-bottom: 20px; }
-        .contact-method { margin-bottom: 40px; }
-        .contact-method h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 10px; }
+        .contact-info h1 { font-size: clamp(32px, 5vw, 48px); margin: 20px 0; }
+        .contact-item { margin-bottom: 30px; }
+        .contact-item h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 5px; }
         
-        .whatsapp-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 2px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            transition: opacity 0.3s;
-        }
-        .whatsapp-button:hover { opacity: 0.8; }
+        .whatsapp-box { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 15px 35px rgba(0,0,0,0.03); border-bottom: 3px solid #25D366; }
+        .cta-button { display: inline-block; background: var(--accent-color); color: white; text-decoration: none; padding: 15px 30px; border-radius: 2px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px; transition: opacity 0.3s; }
+        .cta-button:hover { opacity: 0.8; }
 
-        footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(0,0,0,0.05); }
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--section-bg); }
 
-        @media (max-width: 800px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
-            .nav-links { display: none; }
-        }
+        @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
+    <div class="top-banner">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1500" alt="Zee">
+    </div>
 
     <nav>
         <a href="index.html" class="nav-logo">
-            <img src="branding/logo-colibri.jpg" alt="Logo">
+            <img src="branding/logo-colibri.jpg" alt="Logo" class="img-logo">
             Colibrí Soul Compass
         </a>
         <div class="nav-links">
@@ -82,45 +70,29 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Laten we verbinden</h2>
-                    <p style="font-weight: 300; margin-bottom: 40px;">
-                        Heb je een vraag, wil je een afspraak maken of twijfel je of mijn aanpak bij je past? Voel je vrij om contact op te nemen. Ik reageer doorgaans binnen 24 uur.
-                    </p>
-
-                    <div class="contact-method">
+                    <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color); font-weight: 600;">Contact & Afspraak</span>
+                    <h1>Laten we verbinden</h1>
+                    <p style="font-weight: 300; margin-bottom: 40px;">Heb je een vraag of wil je voelen of mijn begeleiding bij je past? Je bent van harte welkom in mijn praktijk of voor een online sessie.</p>
+                    
+                    <div class="contact-item">
                         <h3>Locatie</h3>
-                        <p style="font-weight: 300;">San Fulgencio & La Marina<br>Regio Alicante, Spanje</p>
+                        <p style="font-weight: 300;">San Fulgencio / La Marina<br>Alicante, Spanje</p>
                     </div>
-
-                    <div class="contact-method">
-                        <h3>Online Sessies</h3>
-                        <p style="font-weight: 300;">Beschikbaar voor cliënten in Nederland en daarbuiten via Zoom/Teams/Google Meet.</p>
-                    </div>
-
-                    <div class="contact-method">
-                        <h3>Talen</h3>
-                        <p style="font-weight: 300;">Nederlands | English | Deutsch | un poco de Español</p>
+                    <div class="contact-item">
+                        <h3>E-mail</h3>
+                        <p style="font-weight: 300;">colibrisoulcompass@gmail.com</p>
                     </div>
                 </div>
 
-                <div style="background-color: white; padding: 60px; border-radius: 2px; box-shadow: 0 10px 40px rgba(0,0,0,0.03);">
-                    <h3 style="font-family: 'Playfair Display'; font-size: 24px; margin-bottom: 20px;">Direct contact</h3>
-                    <p style="font-size: 14px; font-weight: 300; margin-bottom: 30px;">De snelste manier om een sessie te boeken of een vraag te stellen is via WhatsApp of e-mail.</p>
-                    
-                    <a href="https://wa.me/YOUR_PHONE_NUMBER" class="whatsapp-button">Bericht via WhatsApp</a>
-                    
-                   <div style="margin-top: 40px;">
-    <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-color);">E-mail</p>
-    <a href="mailto:colibrisoulcompass@gmail.com" style="text-decoration: none; color: var(--text-primary); font-weight: 300;">colibrisoulcompass@gmail.com</a>
-</div>
+                <div class="whatsapp-box">
+                    <h2 style="font-size: 24px; margin-bottom: 15px;">Snel contact?</h2>
+                    <p style="font-weight: 300; font-size: 15px;">De makkelijkste manier om een afspraak te maken of een vraag te stellen is via WhatsApp.</p>
+                    <a href="https://wa.me/34722675011" class="cta-button">Stuur een bericht</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 Colibrí Soul Compass | San Fulgencio, Spanje</p>
-    </footer>
-
+    <footer><p style="font-size: 11px; opacity: 0.5;">© 2026 COLIBRÍ SOUL COMPASS</p></footer>
 </body>
 </html>
