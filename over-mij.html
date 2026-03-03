@@ -12,46 +12,99 @@
             --accent-color: #8F9779;
             --text-primary: #2E2A26;
             --text-black: #1C1C1C;
-            --nav-bg: rgba(246, 243, 237, 0.9);
+            --nav-bg: rgba(246, 243, 237, 0.8);
             --max-width: 1200px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.8; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--text-black); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--text-black); }
         .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
-        nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--nav-bg); backdrop-filter: blur(10px);
-            padding: 10px 30px; border-radius: 50px;
-            display: flex; align-items: center; justify-content: space-between;
-            width: 90%; max-width: 1100px; z-index: 1000;
-            border: 1px solid rgba(0,0,0,0.05);
+        /* --- TOP BANNER (Exact zoals index) --- */
+        .top-banner { width: 100%; height: 35vh; overflow: hidden; position: relative; }
+        .top-banner img { width: 100%; height: 100%; object-fit: cover; background-color: #e0ddd5; }
+        .top-banner::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(transparent, var(--bg-color));
         }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-black); font-family: 'Playfair Display'; font-size: 18px; }
-        .nav-logo img { height: 30px; }
-        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-left: 20px; }
 
-        .intro-section { padding: 150px 0 80px; }
+        /* --- NAVIGATIE (Exact zoals index) --- */
+        nav {
+            position: fixed; top: 40px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); backdrop-filter: blur(10px);
+            padding: 12px 40px; border-radius: 50px;
+            display: flex; align-items: center; justify-content: space-between;
+            width: 90%; max-width: var(--max-width); z-index: 1000;
+            border: 1px solid rgba(46, 42, 38, 0.1);
+        }
+
+        .nav-logo { 
+            display: flex; align-items: center; gap: 12px;
+            font-family: 'Playfair Display', serif; font-size: 16px; 
+            letter-spacing: 0.15em; text-transform: uppercase; 
+            text-decoration: none; color: var(--text-black); 
+        }
+        .img-logo { height: 32px; width: auto; object-fit: contain; }
+
+        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 25px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* --- CONTENT SECTION --- */
+        .intro-section { padding: 60px 0 100px; }
         .grid-split { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: flex-start; }
-        .profile-img { width: 100%; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        .profile-img-wrapper { width: 100%; border-radius: 4px; overflow: hidden; box-shadow: 0 20px 40px rgba(46, 42, 38, 0.08); }
+        .profile-img { width: 100%; display: block; }
 
-        .colibri-box { background-color: #fff; padding: 40px; border-radius: 2px; margin-top: 40px; border-left: 4px solid var(--accent-color); }
-        .expertise-list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .expertise-list li { padding-left: 20px; position: relative; font-weight: 300; font-size: 14px; }
-        .expertise-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent-color); }
+        .colibri-box { 
+            background-color: #fff; 
+            padding: 40px; 
+            border-radius: 4px; 
+            margin-top: 40px; 
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+        }
 
-        footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 50px; }
+        .expertise-list { list-style: none; margin-top: 20px; }
+        .expertise-list li { padding: 8px 0 8px 25px; position: relative; font-weight: 300; font-size: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .expertise-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent-color); }
 
-        @media (max-width: 800px) { .grid-split { grid-template-columns: 1fr; } .nav-links { display: none; } .expertise-list { grid-template-columns: 1fr; } }
+        .location-tag { 
+            margin-top: 40px; 
+            padding: 25px; 
+            border: 1px dashed var(--accent-color); 
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid var(--section-bg); }
+
+        @media (max-width: 900px) {
+            nav { width: 95%; padding: 10px 20px; top: 20px; }
+            .nav-links { display: none; }
+            .grid-split { grid-template-columns: 1fr; }
+            .intro-section { padding-top: 40px; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="top-banner">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1500" alt="Horizont van de zee">
+    </div>
+
     <nav>
         <a href="index.html" class="nav-logo">
-            <img src="branding/logo-colibri.jpg" alt="Logo">
+            <img src="branding/logo-colibri.jpg" alt="Colibrí Logo" class="img-logo" onerror="this.style.display='none'">
             Colibrí Soul Compass
         </a>
         <div class="nav-links">
@@ -66,41 +119,45 @@
         <div class="container">
             <div class="grid-split">
                 <div>
-                    <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
-                    <div style="margin-top: 30px;">
-                        <h3>Mijn aanpak is eenvoudig en authentiek:</h3>
-                        <ul class="expertise-list" style="grid-template-columns: 1fr;">
+                    <div class="profile-img-wrapper">
+                        <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
+                    </div>
+                    <div style="margin-top: 40px;">
+                        <h3 style="font-size: 20px; margin-bottom: 10px;">Mijn aanpak is eenvoudig en authentiek:</h3>
+                        <ul class="expertise-list">
                             <li>Lichaamsgericht en kalm</li>
                             <li>Eerlijk en intuïtief</li>
                             <li>Praktisch en gegrond</li>
                         </ul>
                     </div>
                 </div>
+
                 <div>
-                    <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color);">Het hart achter de praktijk</span>
-                    <h1 style="font-size: 42px; margin: 20px 0; line-height: 1.2;">Ik ben Michaëla</h1>
+                    <span style="text-transform: uppercase; letter-spacing: 4px; font-size: 11px; color: var(--accent-color); font-weight: 600;">Het hart achter de praktijk</span>
+                    <h1 style="font-size: clamp(32px, 5vw, 48px); margin: 20px 0 30px; line-height: 1.2;">Ik ben Michaëla</h1>
                     
-                    <p style="font-weight: 300; margin-bottom: 20px;">
+                    <p style="font-weight: 300; margin-bottom: 25px;">
                         Wat begon met massages bij <strong>Mi-Wellness</strong> – mensen helpen om gemakkelijker in hun lichaam te voelen – groeide uit tot iets diepers: een zachte brug tussen lichaam, geest en ziel.
                     </p>
                     
-                    <p style="font-weight: 300; margin-bottom: 20px;">
+                    <p style="font-weight: 300; margin-bottom: 25px;">
                         Ik werk met mensen die zich gespannen, overweldigd, losgekoppeld of gewoon vastgelopen voelen – en die klaar zijn voor echte helderheid zonder druk, labels of spirituele franje. Het gaat er niet om je te 'repareren'. Het gaat erom te luisteren naar wat je lichaam en innerlijke systeem stilletjes vragen.
                     </p>
 
                     <div class="colibri-box">
-                        <h2 style="font-size: 24px; margin-bottom: 15px;">🕊️ Wat betekent Colibrí?</h2>
-                        <p style="font-weight: 300; font-size: 15px; font-style: italic;">
+                        <h2 style="font-size: 22px; margin-bottom: 15px; font-family: 'Playfair Display';">🕊️ Wat betekent Colibrí?</h2>
+                        <p style="font-weight: 300; font-size: 15px; font-style: italic; line-height: 1.7;">
                             "De kolibrie staat voor lichtheid, veerkracht en het herinneren wie je werkelijk bent. Mijn wortels liggen op Curaçao, het eiland van mijn moeder. De kolibrie voelt als een zachte gids die me vanaf daar is gevolgd – een herinnering om met het leven mee te bewegen, zelfs tijdens zwaardere momenten."
                         </p>
                     </div>
 
-                    <p style="font-weight: 300; margin-top: 30px;">
+                    <p style="font-weight: 300; margin-top: 35px;">
                         <strong>Colibrí Soul Compass</strong> gaat niet over ontsnappen, maar over terugkeren naar je lichaam, luisteren en je richting terugvinden. Klein, precies en vanuit het hart.
                     </p>
 
-                    <div style="margin-top: 40px; padding: 20px; border: 1px dashed var(--accent-color);">
-                        <p style="font-size: 14px;">📍 Gevestigd in <strong>San Fulgencio, La Marina</strong> (regio Alicante). <br>🌍 Ook beschikbaar voor <strong>online sessies</strong> en begeleiding in het <strong>Engels</strong>.</p>
+                    <div class="location-tag">
+                        <p style="font-weight: 300;">📍 Gevestigd in <strong>San Fulgencio, La Marina</strong> (regio Alicante).</p>
+                        <p style="font-weight: 300; margin-top: 5px;">🌍 Ook beschikbaar voor <strong>online sessies</strong> en begeleiding in het <strong>Engels</strong>.</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +165,7 @@
     </section>
 
     <footer>
-        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 Colibrí Soul Compass | Spanje</p>
+        <p style="font-size: 11px; opacity: 0.5; letter-spacing: 0.1em;">&copy; 2026 COLIBRÍ SOUL COMPASS | SPANJE</p>
     </footer>
 
 </body>
