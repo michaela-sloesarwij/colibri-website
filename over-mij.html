@@ -17,17 +17,10 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.8;
-        }
-
+        body { background-color: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.8; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--text-black); }
         .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
-        /* NAVIGATIE (Hetzelfde als index) */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
             background: var(--nav-bg); backdrop-filter: blur(10px);
@@ -40,21 +33,18 @@
         .nav-logo img { height: 30px; }
         .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-left: 20px; }
 
-        /* CONTENT */
         .intro-section { padding: 150px 0 80px; }
-        .grid-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: flex-start; }
+        .grid-split { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: flex-start; }
         .profile-img { width: 100%; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
-        .expertise-list { list-style: none; margin-top: 30px; }
-        .expertise-list li { margin-bottom: 15px; padding-left: 30px; position: relative; font-weight: 300; }
-        .expertise-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent-color); }
+        .colibri-box { background-color: #fff; padding: 40px; border-radius: 2px; margin-top: 40px; border-left: 4px solid var(--accent-color); }
+        .expertise-list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .expertise-list li { padding-left: 20px; position: relative; font-weight: 300; font-size: 14px; }
+        .expertise-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent-color); }
 
-        footer { text-align: center; padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 100px; }
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 50px; }
 
-        @media (max-width: 800px) {
-            .grid-split { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
+        @media (max-width: 800px) { .grid-split { grid-template-columns: 1fr; } .nav-links { display: none; } .expertise-list { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -73,46 +63,52 @@
     </nav>
 
     <section class="intro-section">
-    <div class="container">
-        <div class="grid-split">
-            <div>
-                <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
-            </div>
-            <div>
-                <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color);">Ontmoet Michaëla</span>
-                <h1 style="font-size: 38px; margin: 20px 0; line-height: 1.2;">Van de Politieacademie tot Holistisch Expert</h1>
-                
-                <p style="font-weight: 400; margin-bottom: 20px; font-style: italic;">"Ik help je landen in je lijf, met beide benen op de grond."</p>
-                
-                <p style="font-weight: 300; margin-bottom: 20px;">
-                    Mijn pad naar lichaamsgerichte begeleiding was allesbehalve standaard. Van de Politieacademie in Amsterdam tot jarenlange ervaring in de commerciële sector — ik weet uit eigen ervaring wat het is om te overleven in een wereld waar 'altijd aanstaan' de norm is. 
-                </p>
-                
-                <p style="font-weight: 300; margin-bottom: 20px;">
-                    In 2015 besloot ik het roer om te gooien. Na jarenlang een succesvolle praktijk te hebben gerund in Nederland (Mi-Wellness), heb ik mijn vleugels uitgeslagen naar San Fulgencio aan de Costa Blanca. Hier combineer ik nuchterheid met diepe intuïtie.
-                </p>
+        <div class="container">
+            <div class="grid-split">
+                <div>
+                    <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Michaëla" class="profile-img">
+                    <div style="margin-top: 30px;">
+                        <h3>Mijn aanpak is eenvoudig en authentiek:</h3>
+                        <ul class="expertise-list" style="grid-template-columns: 1fr;">
+                            <li>Lichaamsgericht en kalm</li>
+                            <li>Eerlijk en intuïtief</li>
+                            <li>Praktisch en gegrond</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--accent-color);">Het hart achter de praktijk</span>
+                    <h1 style="font-size: 42px; margin: 20px 0; line-height: 1.2;">Ik ben Michaëla</h1>
+                    
+                    <p style="font-weight: 300; margin-bottom: 20px;">
+                        Wat begon met massages bij <strong>Mi-Wellness</strong> – mensen helpen om gemakkelijker in hun lichaam te voelen – groeide uit tot iets diepers: een zachte brug tussen lichaam, geest en ziel.
+                    </p>
+                    
+                    <p style="font-weight: 300; margin-bottom: 20px;">
+                        Ik werk met mensen die zich gespannen, overweldigd, losgekoppeld of gewoon vastgelopen voelen – en die klaar zijn voor echte helderheid zonder druk, labels of spirituele franje. Het gaat er niet om je te 'repareren'. Het gaat erom te luisteren naar wat je lichaam en innerlijke systeem stilletjes vragen.
+                    </p>
 
-                <p style="font-weight: 300; margin-bottom: 20px;">
-                    Met meer dan 9 jaar ervaring kijk ik verder dan alleen de klacht. Of ik nu werk met cupping, fascia-release of energetische afstemming: ik combineer anatomische kennis met intuïtief weten om jouw stress-systeem weer in balans te brengen.
-                </p>
-                
-                <h3 style="margin-top: 40px; font-size: 22px;">Mijn Expertise</h3>
-                <ul class="expertise-list">
-                    <li>Gediplomeerd NGS Sportmasseur</li>
-                    <li>Gespecialiseerd in het kalmeren van het stress-systeem</li>
-                    <li>Expert in Energetische Therapie & Reiki</li>
-                    <li>Kennis van Mycotherapie & Kruidenwijsheid</li>
-                    <li>Ervaring in Fascia-release & Bellabaci Cupping</li>
-                </ul>
+                    <div class="colibri-box">
+                        <h2 style="font-size: 24px; margin-bottom: 15px;">🕊️ Wat betekent Colibrí?</h2>
+                        <p style="font-weight: 300; font-size: 15px; font-style: italic;">
+                            "De kolibrie staat voor lichtheid, veerkracht en het herinneren wie je werkelijk bent. Mijn wortels liggen op Curaçao, het eiland van mijn moeder. De kolibrie voelt als een zachte gids die me vanaf daar is gevolgd – een herinnering om met het leven mee te bewegen, zelfs tijdens zwaardere momenten."
+                        </p>
+                    </div>
+
+                    <p style="font-weight: 300; margin-top: 30px;">
+                        <strong>Colibrí Soul Compass</strong> gaat niet over ontsnappen, maar over terugkeren naar je lichaam, luisteren en je richting terugvinden. Klein, precies en vanuit het hart.
+                    </p>
+
+                    <div style="margin-top: 40px; padding: 20px; border: 1px dashed var(--accent-color);">
+                        <p style="font-size: 14px;">📍 Gevestigd in <strong>San Fulgencio, La Marina</strong> (regio Alicante). <br>🌍 Ook beschikbaar voor <strong>online sessies</strong> en begeleiding in het <strong>Engels</strong>.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
 
     <footer>
-        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 Colibrí Soul Compass | San Fulgencio, Spanje</p>
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 Colibrí Soul Compass | Spanje</p>
     </footer>
 
 </body>
