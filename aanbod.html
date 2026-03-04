@@ -1,103 +1,134 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanbod | Colibrí Soul Compass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F6F3ED; --section-bg: #D8D2C8; --accent-color: #8F9779;
+            --text-primary: #2E2A26; --text-black: #1C1C1C;
+            --nav-bg: rgba(246, 243, 237, 0.8); --max-width: 1200px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--text-black); }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
-    <!-- Intro -->
-    <section style="text-align: center; margin-bottom: 70px;">
-        <h1 style="font-size: 42px;">Werk met mij</h1>
-        <p style="font-weight: 300; max-width: 700px; margin: 20px auto;">
-            Je kunt beginnen met een kennismakingssessie. 
-            Voelt het kloppend? Dan bouwen we verder in een traject.
-        </p>
-    </section>
+        .top-banner { width: 100%; height: 30vh; overflow: hidden; position: relative; }
+        .top-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .top-banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(transparent, var(--bg-color)); }
 
+        nav {
+            position: fixed; top: 40px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); backdrop-filter: blur(10px);
+            padding: 12px 40px; border-radius: 50px;
+            display: flex; align-items: center; justify-content: space-between;
+            width: 90%; max-width: var(--max-width); z-index: 1000;
+            border: 1px solid rgba(46, 42, 38, 0.1);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-family: 'Playfair Display', serif; font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--text-black); }
+        .img-logo { height: 32px; width: auto; }
+        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 25px; }
 
-    <!-- VERDIEPINGSTRAJECT (Hoofdaanbod) -->
-    <section style="margin-bottom: 100px; text-align: center; background: white; padding: 60px 40px; border-radius: 4px; border: 1px solid var(--section-bg);">
-        <h2>Verdiepingstraject</h2>
-        <p style="max-width: 700px; margin: 20px auto; font-weight: 300;">
-            Voor wie merkt dat spanning geen toeval is. 
-            In vijf sessies van 75 minuten werken we stap voor stap aan bewustwording, inzicht en duurzame verandering.
-            We brengen patronen in kaart en zorgen dat je niet alleen begrijpt — maar ook daadwerkelijk verschuift.
-        </p>
+        /* --- FREEBIE SECTION --- */
+        .freebie-box { 
+            background: white; padding: 40px; border-radius: 4px; 
+            margin: -40px auto 60px; position: relative; z-index: 10;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); text-align: center;
+            max-width: 800px; border: 1px solid var(--section-bg);
+        }
+        .cta-small { display: inline-block; background: var(--accent-color); color: white; text-decoration: none; padding: 12px 25px; border-radius: 2px; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px; }
 
-        <p style="font-family: 'Playfair Display'; font-size: 22px; margin-top: 25px;">
-            5 x 75 minuten – €350
-        </p>
+        /* --- OFFERS --- */
+        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 100px; }
+        .offer-card { background: white; padding: 40px; border-radius: 4px; display: flex; flex-direction: column; transition: transform 0.3s; border-bottom: 2px solid var(--section-bg); }
+        .offer-card:hover { transform: translateY(-5px); }
+        .tag { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); font-weight: 600; margin-bottom: 10px; display: block; }
+        .offer-card h3 { font-size: 22px; margin-bottom: 15px; }
+        .offer-card p { font-size: 14px; font-weight: 300; margin-bottom: 20px; flex-grow: 1; }
+        
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        <a href="contact.html" class="cta-small" style="margin-top: 25px;">
-            Start jouw traject
-        </a>
-    </section>
+        @media (max-width: 800px) { .nav-links { display: none; } .freebie-box { margin-top: 20px; width: 90%; } }
+    </style>
+</head>
+<body>
 
-
-    <!-- LOSSE SESSIES GRID -->
-    <div class="offer-grid">
-
-        <!-- Kennismaking -->
-        <div class="offer-card">
-            <span class="tag">Instap</span>
-            <h3>Kennismakingssessie</h3>
-            <p>
-                Een eerste ontmoeting van 60 minuten waarin we onderzoeken waar jouw lichaam spanning vasthoudt.
-                Helder, concreet en zonder grote beloftes.
-                Geschikt als instap of korte gerichte sessie.
-            </p>
-            <div style="font-family: 'Playfair Display';">
-                60 minuten – €50
-            </div>
-            <a href="contact.html" class="cta-small" style="margin-top: 20px;">
-                Plan een kennismaking
-            </a>
-        </div>
-
-        <!-- Lichaamssessie -->
-        <div class="offer-card">
-            <span class="tag">Verdieping</span>
-            <h3>Lichaamssessie</h3>
-            <p>
-                Een verdiepende sessie van 75 minuten waarin we gericht werken aan spanning,
-                blokkades en onderliggende patronen.
-                Ook geschikt als vervolg na een traject.
-            </p>
-            <div style="font-family: 'Playfair Display';">
-                75 minuten – €75
-            </div>
-            <a href="contact.html" class="cta-small" style="margin-top: 20px;">
-                Plan een sessie
-            </a>
-        </div>
-
-        <!-- Online -->
-        <div class="offer-card">
-            <span class="tag">Online</span>
-            <h3>Online begeleiding</h3>
-            <p>
-                Voor wie niet in Spanje woont maar wel wil werken aan bewustwording via het lichaam.
-                We werken via een veilige online verbinding.
-            </p>
-            <div style="font-family: 'Playfair Display';">
-                75 minuten – €65
-            </div>
-            <a href="contact.html" class="cta-small" style="margin-top: 20px;">
-                Plan online sessie
-            </a>
-        </div>
-
+    <div class="top-banner">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1500" alt="Zee">
     </div>
 
-
-    <!-- NATUUR PILOT (optioneel onderaan) -->
-    <section style="margin-top: 100px; text-align: center; border-top: 1px solid var(--section-bg); padding-top: 70px;">
-        <h3>Pilot Natuurcoaching – 4 plekken</h3>
-        <p style="font-weight: 300; max-width: 700px; margin: 20px auto;">
-            Voor mijn opleiding tot natuurcoach zoek ik 4 vrouwen die in vijf sessies de verdieping willen aangaan
-            in de natuur rond La Marina. We werken met stilte, beweging en reflectie in de buitenlucht.
-        </p>
-        <p style="font-family: 'Playfair Display'; font-size: 18px;">
-            5 sessies – €150 pilotprijs
-        </p>
-        <a href="https://wa.me/34722675011" class="cta-small" style="margin-top: 20px;">
-            Meld je aan via WhatsApp
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="branding/logo-colibri.jpg" alt="Logo" class="img-logo">
+            Colibrí Soul Compass
         </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aanbod.html" style="font-weight: 600;">Aanbod</a>
+            <a href="over-mij.html">Over mij</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="freebie-box">
+            <span class="tag">Cadeau voor jou</span>
+            <h2>Gratis Bodyscan Meditatie</h2>
+            <p style="font-weight: 300; margin-top: 10px;">Breng in 10 minuten je aandacht terug van je hoofd naar je lichaam. Een zachte landing in het moment.</p>
+            <a href="contact.html" class="cta-small">Ontvang de Bodyscan</a>
+        </div>
+
+        <section style="text-align: center; margin-bottom: 60px;">
+            <h1 style="font-size: 42px;">Mijn Aanbod</h1>
+            <p style="font-weight: 300;">Begeleiding op locatie in Spanje of overal ter wereld via online sessies.</p>
+        </section>
+
+        <div class="offer-grid">
+            <div class="offer-card">
+                <span class="tag">Wereldwijd</span>
+                <h3>Online Soul Compass</h3>
+                <p>Via een veilige online verbinding begeleid ik je om weer contact te maken met je kern. We werken met energetische coaching en praktische oefeningen die je direct in je dagelijks leven kunt toepassen, waar je ook bent.</p>
+                <div style="font-family: 'Playfair Display';">€65 / sessie</div>
+            </div>
+
+          <div class="offer-card" style="border: 2px solid var(--accent-color); background-color: #fdfdfb; position: relative;">
+    <span class="tag" style="background: var(--accent-color); color: white; padding: 4px 10px; border-radius: 2px; position: absolute; top: -12px; left: 20px;">Gezocht: 4 Proefcliënten</span>
+    <h3 style="margin-top: 10px;">Natuurcoaching Traject</h3>
+    <p>
+        Voor mijn opleiding tot natuurcoach ben ik op zoek naar <strong>4 personen</strong> die kosteloos (of tegen een kleine vrijwillige bijdrage) een volledig traject van 5 sessies willen doorlopen in de natuur van La Marina/San Fulgencio. 
+        <br><br>
+        In ruil voor jouw tijd en inzet, help ik je om weer tot rust te komen en je innerlijke kompas te vinden. Dit is een tijdelijk aanbod zolang ik in mijn leerfase zit.
+    </p>
+    <div style="font-family: 'Playfair Display'; color: var(--accent-color); font-weight: 700; font-size: 18px;">
+        5 sessies: GRATIS / Vrijwillige bijdrage
+    </div>
+    <p style="font-size: 12px; font-style: italic; margin-top: 10px;">* Alleen nog 4 plekken beschikbaar voor dit cursustraject.</p>
+    <a href="https://wa.me/34722675011" class="cta-small" style="background: var(--text-black); text-align: center; width: 100%;">Meld je direct aan via WhatsApp</a>
+</div>
+
+            <div class="offer-card">
+                <span class="tag">Spanje - Praktijk</span>
+                <h3>Bodywork & Release</h3>
+                <p>Een diepe, fysieke sessie gericht op het ontladen van vastgezette spanning in je fascia en zenuwstelsel. Alleen beschikbaar in mijn praktijk in San Fulgencio.</p>
+                <div style="font-family: 'Playfair Display';">€75 / sessie</div>
+            </div>
+        </div>
+    </div>
+
+    <section style="background-color: white; padding: 80px 0; text-align: center; border-top: 1px solid var(--section-bg);">
+        <div class="container">
+            <h3>Op zoek naar verdieping?</h3>
+            <p style="font-weight: 300; max-width: 600px; margin: 20px auto;">Voor wie echt een stap wil maken, bied ik ook trajecten aan van 5 sessies voor €350,-. Zo creëren we de continuïteit die nodig is voor blijvende verandering.</p>
+            <a href="contact.html" style="text-decoration: none; color: var(--accent-color); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Vraag een traject aan →</a>
+        </div>
     </section>
 
-</div>
+    <footer>
+        <p style="font-size: 11px; opacity: 0.5;">© 2026 COLIBRÍ SOUL COMPASS</p>
+    </footer>
+
+</body>
+</html>
