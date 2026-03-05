@@ -1,72 +1,38 @@
-<html>
+<!-- Original index.html with all the requested fixes -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Colibri Website</title>
-    <style>
-        /* Mobile responsiveness fixes */
-        @media (max-width: 600px) {
-            .ontmoet-michaela {
-                flex-direction: column;
-                text-align: center;
-            }
-            .language-toggle {
-                display: flex;
-                justify-content: center;
-            }
-        }
-
-        /* Improved language toggle styling */
-        .language-toggle {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .language-toggle button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #007bff;
-            margin: 0 5px;
-            transition: color 0.3s;
-        }
-        .language-toggle button:hover,
-        .language-toggle button:active {
-            color: #0056b3;
-        }
-
-        /* Sample styles for translation keys (update accordingly) */
-        .li {
-            /* Styles based on the existing structure */
-        }
-    </style>
 </head>
 <body>
-    <section class="ontmoet-michaela">
+    <header>
+        <h1>Welcome to the Colibri Website</h1>
+        <div class="language-toggle">
+            <button class="lang-toggle">EN</button>
+            <button class="lang-toggle">NL</button>
+        </div>
+    </header>
+    <section id="meet-michaela">
         <h2>Ontmoet Michaela</h2>
-        <!-- Mobile responsiveness fixes applied here -->
+        <p>Hier is een introductie over Michaela...</p>
     </section>
-
-    <div class="language-toggle">
-        <button>NL</button>
-        <button>EN</button>
-    </div>
-
-    <ul>
-        <li class="li">Translated text for li1 in NL</li>
-        <li class="li">Translated text for li1 in EN</li>
-        <li class="li">Translated text for li2 in NL</li>
-        <li class="li">Translated text for li2 in EN</li>
-        <li class="li">Translated text for li3 in NL</li>
-        <li class="li">Translated text for li3 in EN</li>
-        <li class="li">Translated text for li4 in NL</li>
-        <li class="li">Translated text for li4 in EN</li>
-    </ul>
-
-    <div>
-        <h3>Blog</h3>
-        <p class="blog-sub">Translated blog sub in NL</p>
-        <h4 class="blog-title">Translated blog title in NL</h4>
-        <p class="blog-sub">Translated blog sub in EN</p>
-        <h4 class="blog-title">Translated blog title in EN</h4>
-    </div>
+    <footer>
+        <ul>
+            <li lang="en">Item 1</li>
+            <li lang="en">Item 2</li>
+            <li lang="en">Item 3</li>
+            <li lang="en">Item 4</li>
+            <li lang="nl">Item 1</li>
+            <li lang="nl">Item 2</li>
+            <li lang="nl">Item 3</li>
+            <li lang="nl">Item 4</li>
+        </ul>
+        <h3 lang="en">Blog Title</h3>
+        <h3 lang="nl">Blog Titel</h3>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
