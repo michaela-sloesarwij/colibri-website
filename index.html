@@ -77,8 +77,6 @@
         .whatsapp-btn { position:fixed; bottom:30px; right:30px; background:#25D366; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 15px rgba(0,0,0,0.1); z-index:2000; }
 
         
-/* Verbeterde mobiele fixes - einde van style */
-
 @media (max-width: 900px) {
     nav {
         padding: 10px 15px;
@@ -128,6 +126,39 @@
     h1 { font-size: 32px !important; }
     h2 { font-size: 28px !important; }
     .hero-image-wrapper { height: 40vh; }
+}
+/* Basis nav */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-black);
+    z-index: 1100;
+}
+
+/* Mobiel activeren */
+@media (max-width: 900px) {
+    .hamburger {
+        display: block !important;
+    }
+    .nav-links {
+        display: none !important;
+    }
+    nav {
+        padding: 10px 15px;
+        width: 95%;
+        top: 10px;
+        justify-content: space-between;
+        border-radius: 30px;
+    }
+    .mobile-menu {
+        font-size: 16px;
+        gap: 35px;
+        padding: 20px 0;
+    }
+    .mobile-menu a {
+        font-size: 18px;
+    }
 }
     </style>
 </head>
@@ -371,110 +402,114 @@
     </a>
 
     <script>
-        // HAMBURGER
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        hamburger.addEventListener('click', () => {
-            if (mobileMenu.style.display === 'flex') closeMobileMenu();
-            else { mobileMenu.style.display = 'flex'; hamburger.textContent = '✕'; }
-        });
-        function closeMobileMenu() {
-            mobileMenu.style.display = 'none';
-            hamburger.textContent = '☰';
-        }
-        mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMobileMenu(); });
+    // HAMBURGER MENU
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-        // TAAL
-        const translations = {
-            nl: {
-                "nav-home": "Home",
-                "nav-who": "Voor wie",
-                "nav-aanbod": "Aanbod",
-                "nav-about": "Over mij",
-                "nav-contact": "Contact",
-                "hero-sub": "Lichaamsgerichte Begeleiding",
-                "hero-title1": "Rust in je lichaam.",
-                "hero-title2": "Richting in je leven.",
-                "hero-p": "Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen. Spanning, blokkades en terugkerende patronen worden zichtbaar — zodat jij weer rust en richting ervaart.",
-                "hero-cta": "Maak een afspraak",
-                "who-sub": "Voor wie",
-                "who-title": "Is dit herkenbaar?",
-                "who-p": "Soms fluistert je lichaam wat je hoofd nog niet kan horen. Mijn begeleiding is er voor vrouwen die verlangen naar echte diepgang.",
-                "li1": "Je staat 'altijd aan' en verlangt naar een diepere staat van fysieke en mentale rust.",
-                "li2": "Je ervaart vage fysieke klachten die voortkomen uit opgeslagen stress of emoties.",
-                "li3": "Je zet jezelf vaak op de tweede plek en wilt weer leren voelen wat jij nodig hebt.",
-                "li4": "Je bent klaar om belemmerende patronen los te laten en je eigen pad te volgen.",
-                "aanbod-sub": "Aanbod",
-                "aanbod-title": "Begin met luisteren naar je lichaam",
-                "teaser-online": "Online sessies",
-                "teaser-verdieping": "Verdiepingstraject",
-                "about-sub": "Ontmoet Michaela",
-                "about-title": "Het gezicht achter Colibrí",
-                "about-p1": "Met bijna 10 jaar ervaring in massagetherapie en energiewerk, help ik je te landen in je lijf wanneer je vastloopt in spanning. Ik werk rustig, nuchter en met beide benen op de grond. Geen snelle oplossingen — wel echte aandacht.",
-                "about-p2": "In mijn praktijk in San Fulgencio creëer ik een veilige haven waar je even niets 'moet'. Samen kijken we naar wat je lichaam te vertellen heeft, zodat je weer met helderheid en bezieling verder kunt.",
-                "testi-sub": "Ervaringen",
-                "testi-title": "Wat vrouwen over mij zeggen",
-                "testi1": "“Ik voelde direct rust in mijn lichaam. Michaela werkt zacht maar diep.”",
-                "testi2": "“Ik kwam voor ontspanning en ging weg met inzicht.”",
-                "blog-sub": "Inspiratie",
-                "blog-title": "Artikelen & inzichten"
-            },
-            en: {
-                "nav-home": "Home",
-                "nav-who": "For whom",
-                "nav-aanbod": "Offerings",
-                "nav-about": "About me",
-                "nav-contact": "Contact",
-                "hero-sub": "Body-oriented Guidance",
-                "hero-title1": "Peace in your body.",
-                "hero-title2": "Direction in your life.",
-                "hero-p": "I guide you to listen to what your body has been trying to tell you for a long time. Tension, blockages and recurring patterns become visible — so you experience peace and direction again.",
-                "hero-cta": "Book an appointment",
-                "who-sub": "For whom",
-                "who-title": "Does this sound familiar?",
-                "who-p": "Sometimes your body whispers what your mind cannot yet hear. My guidance is for women who long for real depth.",
-                "li1": "You are always 'on' and long for a deeper state of physical and mental rest.",
-                "li2": "You experience vague physical complaints arising from stored stress or emotions.",
-                "li3": "You often put yourself second and want to learn to feel what you need again.",
-                "li4": "You are ready to release limiting patterns and follow your own path.",
-                "aanbod-sub": "Offerings",
-                "aanbod-title": "Start by listening to your body",
-                "teaser-online": "Online sessions",
-                "teaser-verdieping": "Deepening trajectory",
-                "about-sub": "Meet Michaela",
-                "about-title": "The face behind Colibrí",
-                "about-p1": "With nearly 10 years of experience in massage therapy and energy work, I help you land in your body when you get stuck in tension. I work calmly, down-to-earth and with both feet on the ground. No quick fixes — just real attention.",
-                "about-p2": "In my practice in San Fulgencio I create a safe haven where you don't have to 'do' anything for a while. Together we look at what your body has to tell, so you can move forward with clarity and inspiration again.",
-                "testi-sub": "Experiences",
-                "testi-title": "What women say about me",
-                "testi1": "“I immediately felt peace in my body. Michaela works gently but deeply.”",
-                "testi2": "“I came for relaxation and left with insight.”",
-                "blog-sub": "Inspiration",
-                "blog-title": "Articles & insights"
+    hamburger.addEventListener('click', () => {
+        if (mobileMenu.style.display === 'flex') {
+            closeMobileMenu();
+        } else {
+            mobileMenu.style.display = 'flex';
+            hamburger.textContent = '✕';
+        }
+    });
+
+    function closeMobileMenu() {
+        mobileMenu.style.display = 'none';
+        hamburger.textContent = '☰';
+    }
+
+    mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) closeMobileMenu();
+    });
+
+    // TAAL-SWITCH – volledige object, geen duplicaat!
+    const translations = {
+        nl: {
+            "nav-home": "Home",
+            "nav-who": "Voor wie",
+            "nav-aanbod": "Aanbod",
+            "nav-about": "Over mij",
+            "nav-contact": "Contact",
+            "hero-sub": "Lichaamsgerichte Begeleiding",
+            "hero-title1": "Rust in je lichaam.",
+            "hero-title2": "Richting in je leven.",
+            "hero-p": "Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen. Spanning, blokkades en terugkerende patronen worden zichtbaar — zodat jij weer rust en richting ervaart.",
+            "hero-cta": "Maak een afspraak",
+            "who-sub": "Voor wie",
+            "who-title": "Is dit herkenbaar?",
+            "who-p": "Soms fluistert je lichaam wat je hoofd nog niet kan horen. Mijn begeleiding is er voor vrouwen die verlangen naar echte diepgang.",
+            "li1": "Je staat 'altijd aan' en verlangt naar een diepere staat van fysieke en mentale rust.",
+            "li2": "Je ervaart vage fysieke klachten die voortkomen uit opgeslagen stress of emoties.",
+            "li3": "Je zet jezelf vaak op de tweede plek en wilt weer leren voelen wat jij nodig hebt.",
+            "li4": "Je bent klaar om belemmerende patronen los te laten en je eigen pad te volgen.",
+            "aanbod-sub": "Aanbod",
+            "aanbod-title": "Begin met luisteren naar je lichaam",
+            "teaser-online": "Online sessies",
+            "teaser-verdieping": "Verdiepingstraject",
+            "about-sub": "Ontmoet Michaela",
+            "about-title": "Het gezicht achter Colibrí",
+            "about-p1": "Met bijna 10 jaar ervaring in massagetherapie en energiewerk, help ik je te landen in je lijf wanneer je vastloopt in spanning. Ik werk rustig, nuchter en met beide benen op de grond. Geen snelle oplossingen — wel echte aandacht.",
+            "about-p2": "In mijn praktijk in San Fulgencio creëer ik een veilige haven waar je even niets 'moet'. Samen kijken we naar wat je lichaam te vertellen heeft, zodat je weer met helderheid en bezieling verder kunt.",
+            "testi-sub": "Ervaringen",
+            "testi-title": "Wat vrouwen over mij zeggen",
+            "testi1": "“Ik voelde direct rust in mijn lichaam. Michaela werkt zacht maar diep.”",
+            "testi2": "“Ik kwam voor ontspanning en ging weg met inzicht.”",
+            "blog-sub": "Inspiratie",
+            "blog-title": "Artikelen & inzichten"
+        },
+        en: {
+            // Vul zelf de Engelse versie aan of kopieer uit je oude code
+            "nav-home": "Home",
+            "nav-who": "For whom",
+            "nav-aanbod": "Offerings",
+            "nav-about": "About me",
+            "nav-contact": "Contact",
+            "hero-sub": "Body-oriented Guidance",
+            "hero-title1": "Peace in your body.",
+            "hero-title2": "Direction in your life.",
+            "hero-p": "I guide you to listen to what your body has been trying to tell you for a long time. Tension, blockages and recurring patterns become visible — so you experience peace and direction again.",
+            "hero-cta": "Book an appointment",
+            "who-sub": "For whom",
+            "who-title": "Does this sound familiar?",
+            "who-p": "Sometimes your body whispers what your mind cannot yet hear. My guidance is for women who long for real depth.",
+            "li1": "You are always 'on' and long for a deeper state of physical and mental rest.",
+            "li2": "You experience vague physical complaints arising from stored stress or emotions.",
+            "li3": "You often put yourself second and want to learn to feel what you need again.",
+            "li4": "You are ready to release limiting patterns and follow your own path.",
+            "aanbod-sub": "Offerings",
+            "aanbod-title": "Start by listening to your body",
+            "teaser-online": "Online sessions",
+            "teaser-verdieping": "Deepening trajectory",
+            "about-sub": "Meet Michaela",
+            "about-title": "The face behind Colibrí",
+            "about-p1": "With nearly 10 years of experience in massage therapy and energy work, I help you land in your body when you get stuck in tension. I work calmly, down-to-earth and with both feet on the ground. No quick fixes — just real attention.",
+            "about-p2": "In my practice in San Fulgencio I create a safe haven where you don't have to 'do' anything for a while. Together we look at what your body has to tell, so you can move forward with clarity and inspiration again.",
+            "testi-sub": "Experiences",
+            "testi-title": "What women say about me",
+            "testi1": "“I immediately felt peace in my body. Michaela works gently but deeply.”",
+            "testi2": "“I came for relaxation and left with insight.”",
+            "blog-sub": "Inspiration",
+            "blog-title": "Articles & insights"
+        }
+    };
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];  // textContent is betrouwbaarder
             }
-        };
-
-        function setLanguage(lang) {
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) el.innerText = translations[lang][key];
-            });
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.innerText.toLowerCase() === lang));
-            document.documentElement.lang = lang;
-        }
-
-        // HAMBURGER
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        hamburger.addEventListener('click', () => {
-            if (mobileMenu.style.display === 'flex') closeMobileMenu();
-            else { mobileMenu.style.display = 'flex'; hamburger.textContent = '✕'; }
         });
-        function closeMobileMenu() {
-            mobileMenu.style.display = 'none';
-            hamburger.textContent = '☰';
-        }
-        mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMobileMenu(); });
-    </script>
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+        });
+        document.documentElement.lang = lang;
+    }
+
+    // Start standaard op Nederlands
+    window.addEventListener('load', () => setLanguage('nl'));
+</script>
 </body>
 </html>
