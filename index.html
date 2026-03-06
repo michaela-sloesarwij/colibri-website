@@ -557,17 +557,41 @@ nav {
     </section>
     -->
 
-   <footer>
-        <div style="margin-bottom:25px;">
-            <a href="https://www.instagram.com/jouwgebruikersnaam" target="_blank" style="margin:0 12px; text-decoration:none; color:var(--text-primary); font-size:13px;">Instagram</a>
-            <a href="https://www.facebook.com/jouwpagina" target="_blank" style="margin:0 12px; text-decoration:none; color:var(--text-primary); font-size:13px;">Facebook</a>
+<footer style="padding: 80px 0 40px; text-align: center; background: white; border-top: 1px solid var(--section-bg);">
+    <div class="container" style="max-width: 800px;">
+        <div style="margin-bottom: 30px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+            <a href="https://www.instagram.com/colibrisoulcompass" target="_blank" style="text-decoration: none; color: var(--text-primary); font-size: 14px; font-weight: 500; transition: color 0.3s;">
+                Instagram
+            </a>
+            <a href="https://www.facebook.com/colibrisoulcompass" target="_blank" style="text-decoration: none; color: var(--text-primary); font-size: 14px; font-weight: 500; transition: color 0.3s;">
+                Facebook
+            </a>
         </div>
-        <p style="font-size:11px; opacity:0.5;">© 2026 COLIBRÍ SOUL COMPASS • San Fulgencio, Alicante</p>
-    </footer>
+        <p style="font-size: 13px; opacity: 0.7; margin: 0;">
+            © 2026 Colibrí Soul Compass • San Fulgencio, Alicante
+        </p>
+    </div>
+</footer>
 
-    <a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank">
-        <svg style="fill:white; width:32px; height:32px;" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.476 2.017 7.788l-2.017 7.212 7.378-1.935c2.197 1.151 4.704 1.808 7.371 1.808 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.273c-2.355 0-4.562-0.613-6.48-1.685l-0.465-0.259-4.341 1.139 1.159-4.144-0.285-0.453c-1.185-1.89-1.807-4.085-1.807-6.38 0-6.767 5.505-12.273 12.273-12.273s12.273 5.505 12.273 12.273c0 6.767-5.505 12.273-12.273 12.273z"></path></svg>
-    </a>
+<!-- WhatsApp knop (iets groter en beter gepositioneerd op mobiel) -->
+<a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank" style="position: fixed; bottom: 24px; right: 24px; background: #25D366; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.15); z-index: 2000; transition: transform 0.2s;">
+    <svg style="fill: white; width: 36px; height: 36px;" viewBox="0 0 32 32">
+        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.733 5.476 2.017 7.788L0 31.212l7.378-1.935C9.575 30.428 12.082 31.085 14.749 31.085c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.273c-2.355 0-4.562-.613-6.48-1.685l-.465-.259-4.341 1.139 1.159-4.144-.285-.453c-1.185-1.89-1.807-4.085-1.807-6.38 0-6.767 5.505-12.273 12.273-12.273s12.273 5.505 12.273 12.273c0 6.767-5.505 12.273-12.273 12.273z"/>
+    </svg>
+</a>
+
+<!-- Extra mobiele aanpassing voor WhatsApp-knop -->
+<style>
+    @media (max-width: 480px) {
+        .whatsapp-btn {
+            bottom: 16px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+        }
+        .whatsapp-btn svg { width: 32px; height: 32px; }
+    }
+</style>
 
     <script>
         
@@ -683,4 +707,5 @@ nav {
 </body>
 
 </html>
+
 
