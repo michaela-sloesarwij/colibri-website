@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Colibrí Soul Compass – Binnenkort online. Lichaamsgerichte begeleiding & bodywork in San Fulgencio.">
+    <title>Coming Soon | Colibrí Soul Compass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #F6F3ED;
+            --accent-color: #8F9779;
+            --text-dark: #1C1C1C;
+            --text-light: #2E2A26;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .content {
+            max-width: 720px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            line-height: 1.1;
+        }
+        p {
+            font-size: clamp(18px, 3vw, 22px);
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        .cta {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(143,151,121,0.25);
+        }
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(143,151,121,0.35);
+        }
+        footer {
+            padding: 60px 20px 40px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        .socials {
+            margin-top: 20px;
+        }
+        .socials a {
+            color: var(--text-dark);
+            margin: 0 16px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .socials a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: clamp(36px, 10vw, 54px); }
+            p { font-size: 18px; }
+            .cta { padding: 14px 32px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <div class="content">
+            <h1>Colibrí Soul Compass</h1>
+            <p>
+                Binnenkort open.<br>
+                Een rustige plek voor <span class="highlight">lichaamsgerichte begeleiding</span>,<br>
+                <span class="highlight">bodywork</span> en <span class="highlight">terugkeren naar jezelf</span>.
+            </p>
+            <p style="font-size:17px; opacity:0.8; margin-bottom:48px;">
+                Ik werk aan een fijne, heldere website.<br>
+                Wil je op de hoogte blijven? Stuur me gerust een berichtje.
+            </p>
+
+            <a href="https://wa.me/34722675011?text=Hoi%20Michaela,%20ik%20wil%20graag%20op%20de%20hoogte%20blijven%20van%20Colibrí%20Soul%20Compass" class="cta">
+                Houd me op de hoogte →
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="socials">
+            <a href="https://www.instagram.com/colibri_soulcompass_miwellness" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/ColibriSoulCompassMiWellness" target="_blank">Facebook</a>
+            <a href="https://www.linkedin.com/in/michaela-sloesarwij" target="_blank">LinkedIn</a>
+        </div>
+        <p style="margin-top:24px;">© 2026 Colibrí Soul Compass – Binnenkort online</p>
+    </footer>
+
+</body>
+</html>
