@@ -6,6 +6,7 @@
     <meta name="description" content="Colibrí Soul Compass: Lichaamsgerichte begeleiding & deep tissue bodywork in San Fulgencio voor vrouwen.">
     <title>Colibrí Soul Compass | Lichaamsgerichte Begeleiding</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
     
     <style>
         :root {
@@ -21,93 +22,95 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { background: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.6; overflow-x: hidden; }
-        
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-black); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--text-black); }
         .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
         /* Navigatie */
         nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--nav-bg); padding: 12px 30px; border-radius: 50px;
-            display: flex; align-items: center; justify-content: space-between;
-            width: 90%; z-index: 1000; border: 1px solid rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
+            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); backdrop-filter: blur(12px); padding: 12px 30px;
+            border-radius: 50px; display: flex; align-items: center; justify-content: space-between;
+            width: 90%; max-width: var(--max-width); z-index: 1000; border: 1px solid rgba(46,42,38,0.1);
         }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-family: 'Playfair Display', serif; font-size: 16px; text-transform: uppercase; color: var(--text-black); text-decoration: none; letter-spacing: 0.15em; }
+        .nav-links { display: flex; align-items: center; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        .hamburger { display: none; font-size: 28px; cursor: pointer; color: var(--text-black); z-index: 1100; }
 
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
-        .hamburger { display: none; font-size: 24px; cursor: pointer; }
+        /* Hero */
+        .top-banner { width: 100%; height: 35vh; overflow: hidden; position: relative; }
+        .top-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .top-banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(transparent, var(--bg-color)); }
+        .hero { min-height: 85vh; display: flex; align-items: center; padding-bottom: 80px; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+        .subtitle-top { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 30px; color: var(--accent-color); }
+        .hero-image-wrapper { width: 100%; height: 70vh; overflow: hidden; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .cta-link { display: inline-block; text-decoration: none; color: var(--text-black); font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; padding-bottom: 6px; border-bottom: 1px solid var(--accent-color); margin-top: 20px; transition: 0.3s; }
+        .cta-link:hover { opacity: 0.7; }
 
-        /* Hero Sectie */
-        .hero { padding: 100px 0; min-height: 85vh; display: flex; align-items: center; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero-image-wrapper img { width: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-
-        /* Voor Wie Kaarten */
+        /* Kaarten */
         .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .who-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; }
-
-        /* Traject Kaarten */
-        .traject-card { background: white; padding: 40px; border-radius: 8px; transition: transform 0.3s; }
-        .traject-card:hover { transform: translateY(-10px); }
-
-        .cta-link { 
-            display: inline-block; text-decoration: none; color: var(--text-black); 
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; 
-            border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; margin-top: 20px;
-        }
+        .who-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .traject-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
 
         /* Mobiel Menu */
-        .mobile-menu {
-            position: fixed; inset: 0; background: var(--bg-color);
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            gap: 30px; z-index: 2000;
-        }
+        .mobile-menu { position: fixed; inset: 0; background: var(--bg-color); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 35px; z-index: 999; }
+        .mobile-menu a { color: var(--text-black); text-decoration: none; font-size: 18px; text-transform: uppercase; }
 
-        /* WhatsApp */
-        .whatsapp-btn {
-            position: fixed; bottom: 24px; right: 24px; background: #25D366;
-            width: 60px; height: 60px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; z-index: 3000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+        /* Taalswitch Styles */
+        .lang-btn { cursor: pointer; padding: 4px 8px; font-size: 12px; opacity: 0.6; }
+        .lang-btn.active { opacity: 1; font-weight: 600; color: var(--accent-color); }
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .hamburger { display: block; }
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-image-wrapper { height: 45vh; }
             .container { padding: 0 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="top-banner">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1500" alt="Zee">
+    </div>
+
     <nav>
-        <a href="#" class="nav-logo">Colibrí Soul Compass</a>
+        <a href="#home" class="nav-logo">Colibrí Soul Compass</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">☰</div>
         <div class="nav-links">
             <a href="#home" data-key="nav-home">Home</a>
             <a href="#voor-wie" data-key="nav-who">Voor wie</a>
-            <a href="#aanbod" data-key="nav-aanbod">Aanbod</a>
+            <a href="aanbod.html" data-key="nav-aanbod">Aanbod</a>
+            <a href="over-mij.html" data-key="nav-about">Over mij</a>
+            <a href="contact.html" data-key="nav-contact">Contact</a>
         </div>
         <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLanguage('nl')">NL</button> |
-            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <span class="lang-btn active" id="btn-nl" onclick="setLanguage('nl')">NL</span> |
+            <span class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</span>
         </div>
-        <div class="hamburger" id="hamburger">☰</div>
     </nav>
 
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#home" onclick="closeMenu()">Home</a>
-        <a href="#voor-wie" onclick="closeMenu()">Voor wie</a>
-        <a href="#aanbod" onclick="closeMenu()">Aanbod</a>
+        <a href="#home" onclick="toggleMenu()" data-key="nav-home">Home</a>
+        <a href="#voor-wie" onclick="toggleMenu()" data-key="nav-who">Voor wie</a>
+        <a href="aanbod.html" data-key="nav-aanbod">Aanbod</a>
+        <div class="lang-toggle">
+            <span onclick="setLanguage('nl');toggleMenu()">NL</span> | <span onclick="setLanguage('en');toggleMenu()">EN</span>
+        </div>
     </div>
 
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-text">
+                    <span class="subtitle-top" data-key="hero-sub">Lichaamsgerichte Begeleiding</span>
                     <h1 data-key="hero-title1">Rust in je lichaam.</h1>
-                    <p data-key="hero-p">Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen.</p>
+                    <h1 data-key="hero-title2">Richting in je leven.</h1>
+                    <p style="margin:30px 0; font-weight:300;" data-key="hero-p">Ik begeleid je om te luisteren naar wat je lichaam vertelt.</p>
                     <a href="https://wa.me/34722675011" class="cta-link" data-key="hero-cta">Maak een afspraak</a>
                 </div>
                 <div class="hero-image-wrapper">
@@ -117,9 +120,12 @@
         </div>
     </section>
 
-    <section id="voor-wie" style="background: var(--section-bg); padding: 100px 0;">
+    <section id="voor-wie" style="background: var(--section-bg); padding: 120px 0;">
         <div class="container">
-            <h2 style="text-align:center; margin-bottom:50px;" data-key="who-title">Voor wie</h2>
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 data-key="who-title">Luister naar je lichaam</h2>
+                <p data-key="who-p">Soms fluistert je lichaam wat je hoofd nog niet kan horen.</p>
+            </div>
             <div class="who-grid">
                 <div class="who-card">
                     <h3 data-key="li1-t">Fysieke spanning</h3>
@@ -129,11 +135,15 @@
                     <h3 data-key="li2-t">Mentale onrust</h3>
                     <p data-key="li2-d">Een vol hoofd en constant piekeren?</p>
                 </div>
+                <div class="who-card">
+                    <h3 data-key="li3-t">Energieverlies</h3>
+                    <p data-key="li3-d">Een diepe vermoeidheid door langdurige stress?</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/34722675011" target="_blank" style="position:fixed; bottom:24px; right:24px; background:#25D366; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:2000; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
         <svg style="fill:white; width:30px;" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.476 2.017 7.788l-2.017 7.212 7.378-1.935c2.197 1.151 4.704 1.808 7.371 1.808 8.837 0 16-7.163 16-16s-7.163-16-16-16z"/></svg>
     </a>
 
@@ -143,23 +153,41 @@
                 "nav-home": "Home",
                 "nav-who": "Voor wie",
                 "nav-aanbod": "Aanbod",
+                "nav-about": "Over mij",
+                "nav-contact": "Contact",
+                "hero-sub": "Lichaamsgerichte Begeleiding",
                 "hero-title1": "Rust in je lichaam.",
-                "hero-p": "Ik begeleid je om te luisteren naar wat je lichaam vertelt.",
+                "hero-title2": "Richting in je leven.",
+                "hero-p": "Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen.",
                 "hero-cta": "Maak een afspraak",
-                "who-title": "Luister naar je lichaam",
+                "who-title": "Luister naar de signalen van je lichaam",
+                "who-p": "Soms fluistert je lichaam wat je hoofd nog niet kan horen.",
                 "li1-t": "Fysieke spanning",
-                "li1-d": "Vastzittende schouders of een gespannen nek?"
+                "li1-d": "Vastzittende schouders of een gespannen nek?",
+                "li2-t": "Mentale onrust",
+                "li2-d": "Een vol hoofd en constant piekeren?",
+                "li3-t": "Energieverlies",
+                "li3-d": "Een diepe vermoeidheid door langdurige stress?"
             },
             en: {
                 "nav-home": "Home",
                 "nav-who": "For whom",
                 "nav-aanbod": "Offerings",
+                "nav-about": "About me",
+                "nav-contact": "Contact",
+                "hero-sub": "Body-oriented Guidance",
                 "hero-title1": "Peace in your body.",
-                "hero-p": "I guide you to listen to what your body is telling you.",
+                "hero-title2": "Direction in your life.",
+                "hero-p": "I guide you to listen to what your body has been trying to tell you.",
                 "hero-cta": "Book an appointment",
-                "who-title": "Listen to your body",
+                "who-title": "Listen to your body's signals",
+                "who-p": "Sometimes your body whispers what your mind cannot yet hear.",
                 "li1-t": "Physical tension",
-                "li1-d": "Tight shoulders or a tense neck?"
+                "li1-d": "Tight shoulders or a tense neck?",
+                "li2-t": "Mental unrest",
+                "li2-d": "A full head and constant worrying?",
+                "li3-t": "Energy loss",
+                "li3-d": "Deep fatigue caused by long-term stress?"
             }
         };
 
@@ -170,20 +198,22 @@
                     el.textContent = translations[lang][key];
                 }
             });
+            document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.documentElement.lang = lang;
-            
-            // Actieve knop styling
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
-            });
         }
 
-        // Menu functionaliteit
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        hamburger.onclick = () => mobileMenu.style.display = 'flex';
-        function closeMenu() { mobileMenu.style.display = 'none'; }
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+                hamburger.textContent = '☰';
+            } else {
+                menu.style.display = 'flex';
+                hamburger.textContent = '✕';
+            }
+        }
     </script>
 </body>
 </html>
