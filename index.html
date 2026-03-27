@@ -3,786 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Colibrí Soul Compass: Lichaamsgerichte begeleiding & deep tissue bodywork in San Fulgencio voor vrouwen. Release spanning, vind rust en richting. Online & live.">
-    <title>Colibrí Soul Compass | Lichaamsgerichte Begeleiding San Fulgencio</title>
+    <meta name="description" content="Colibrí Soul Compass: Lichaamsgerichte begeleiding & deep tissue bodywork in San Fulgencio voor vrouwen.">
+    <title>Colibrí Soul Compass | Lichaamsgerichte Begeleiding</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="icon" href="/branding/favicon.ico" type="image/x-icon">
-    <!-- css -->
-<style>
-    :root {
-  --bg-color: #F6F3ED;
-  --section-bg: #D8D2C8;
-  --accent-color: #8F9779;
-  --text-primary: #2E2A26;
-  --text-black: #1C1C1C;
-  --nav-bg: rgba(246, 243, 237, 0.95);
-  --max-width: 1200px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg-color);
-  color: var(--text-primary);
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-h1, h2, h3, h4 {
-  font-family: 'Playfair Display', serif;
-  color: var(--text-black);
-}
-
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-/* Nav & hamburger */
-nav {
-  position: fixed;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  padding: 12px 30px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 90%;
-  max-width: var(--max-width);
-  z-index: 1000;
-  border: 1px solid rgba(46,42,38,0.1);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'Playfair Display', serif;
-  font-size: 16px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-black);
-  text-decoration: none;
-}
-
-.hamburger {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--text-black);
-  z-index: 1100;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-primary);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: color .3s;
-}
-
-.nav-links a:hover { color: var(--accent-color); }
-
-.lang-toggle {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  border-left: 1px solid rgba(46,42,38,0.1);
-  padding-left: 15px;
-}
-
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: rgba(246,243,237,0.98);
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  z-index: 9999;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.mobile-menu a { color: var(--text-black); text-decoration: none; }
-
-.mobile-menu .lang-toggle { margin-top: 60px; font-size: 12px; }
-
-/* Hero & algemene secties */
-.top-banner {
-  width: 100%;
-  height: 35vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.top-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.top-banner::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;
-  background: linear-gradient(transparent, var(--bg-color));
-}
-
-.hero {
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  padding-bottom: 80px;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.hero-text h1 {
-  font-size: clamp(26px, 3.5vw, 46px);
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 12px;
-}
-
-.subtitle-top {
-  display: block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  margin-bottom: 30px;
-  color: var(--accent-color);
-  font-weight: 400;
-}
-
-.cta-link {
-  display: inline-block;
-  text-decoration: none;
-  color: var(--text-black);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--accent-color);
-  margin-top: 20px;
-}
-
-.cta-link:hover { opacity: 0.7; }
-
-.hero-image-wrapper {
-  width: 100%;
-  height: 70vh;
-  overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 20px 40px rgba(46,42,38,0.08);
-  background: var(--section-bg);
-}
-
-.hero-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Media queries (mobiel) */
-@media (max-width: 900px) {
-  .hamburger { display: block !important; }
-  .nav-links { display: none !important; }
-  nav { padding: 10px 15px; width: 95%; top: 10px; border-radius: 30px; }
-  .hero {
-    min-height: 60vh;
-    padding: 100px 0 40px;
-    text-align: center;
-  }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-image-wrapper { height: 45vh; max-width: 90%; margin: 0 auto; }
-  .container { padding: 0 20px; }
-  .cta-link {
-    padding: 14px 28px !important;
-    min-width: 220px;
-    text-align: center;
-    margin: 20px auto !important;
-    display: block !important;
-    font-size: 13px !important;
-    border-radius: 6px !important;
-    border: 1px solid var(--accent-color);
-  }
-  .mobile-menu { font-size: 16px; gap: 35px; }
-  .mobile-menu a { font-size: 17px; }
-  html, body { overflow-x: hidden; }
-  p, li { word-break: break-word; hyphens: auto; }
-}
-
-@media (max-width: 480px) {
-  h1 { font-size: 32px !important; }
-  h2 { font-size: 28px !important; }
-  .hero-image-wrapper { height: 40vh; }
-}
-
-/* Language toggle verbeteringen */
-.lang-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-}
-
-.lang-btn {
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 4px;
-  transition: all 0.2s;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  opacity: 0.7;
-}
-
-.lang-btn:hover { opacity: 1; background: rgba(143,151,121,0.1); }
-.lang-btn.active {
-  background: var(--accent-color);
-  color: white;
-  opacity: 1;
-  font-weight: 600;
-}
-
-.lang-btn:active,
-.lang-btn:focus-visible {
-  transform: scale(0.97);
-  box-shadow: 0 0 0 3px rgba(143,151,121,0.3);
+    
+    <style>
+        :root {
+            --bg-color: #F6F3ED;
+            --section-bg: #D8D2C8;
+            --accent-color: #8F9779;
+            --text-primary: #2E2A26;
+            --text-black: #1C1C1C;
+            --nav-bg: rgba(246, 243, 237, 0.95);
+            --max-width: 1200px;
         }
-.for-whom {
-  padding: 120px 0;
-  background: var(--section-bg);
-}
 
-.for-whom-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-color); color: var(--text-primary); font-family: 'Montserrat', sans-serif; line-height: 1.6; overflow-x: hidden; }
+        
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--text-black); }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
 
-.for-whom ul {
-  list-style: none;
-}
+        /* Navigatie */
+        nav {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--nav-bg); padding: 12px 30px; border-radius: 50px;
+            display: flex; align-items: center; justify-content: space-between;
+            width: 90%; z-index: 1000; border: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
 
-.for-whom li {
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(46,42,38,0.1);
-  font-weight: 300;
-  display: flex;
-  align-items: flex-start;
-}
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+        .hamburger { display: none; font-size: 24px; cursor: pointer; }
 
-.for-whom li::before {
-  content: "—";
-  margin-right: 15px;
-  color: var(--accent-color);
-}
+        /* Hero Sectie */
+        .hero { padding: 100px 0; min-height: 85vh; display: flex; align-items: center; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-image-wrapper img { width: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-/* Mobiel: stapel netjes, foto/tekst onder elkaar, gecentreerd */
-@media (max-width: 900px) {
-  .for-whom-grid {
-    grid-template-columns: 1fr !important;
-    gap: 50px !important;
-    text-align: center !important;
-  }
+        /* Voor Wie Kaarten */
+        .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .who-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; }
 
-  .for-whom-grid > div:first-child {
-    order: 1; /* Tekst eerst op mobiel */
-  }
+        /* Traject Kaarten */
+        .traject-card { background: white; padding: 40px; border-radius: 8px; transition: transform 0.3s; }
+        .traject-card:hover { transform: translateY(-10px); }
 
-  .for-whom-grid > div:last-child {
-    order: 2; /* Lijst daarna */
-  }
+        .cta-link { 
+            display: inline-block; text-decoration: none; color: var(--text-black); 
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; 
+            border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; margin-top: 20px;
+        }
 
-  .for-whom ul {
-    max-width: 90%;
-    margin: 0 auto;
-  }
+        /* Mobiel Menu */
+        .mobile-menu {
+            position: fixed; inset: 0; background: var(--bg-color);
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            gap: 30px; z-index: 2000;
+        }
 
-  .for-whom li {
-    text-align: left;
-    padding: 16px 0;
-  }
-}
-    }
-</style>
+        /* WhatsApp */
+        .whatsapp-btn {
+            position: fixed; bottom: 24px; right: 24px; background: #25D366;
+            width: 60px; height: 60px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; z-index: 3000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .container { padding: 0 20px; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="top-banner">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1500" alt="Horizont van de zee bij Alicante">
-    </div>
-
     <nav>
-        <a href="#home" class="nav-logo">
-            <img src="branding/logo-colibri.jpg" alt="Colibrí Logo" style="height:32px;" onerror="this.style.display='none'">
-            Colibrí Soul Compass
-        </a>
-        <div class="hamburger" id="hamburger">☰</div>
+        <a href="#" class="nav-logo">Colibrí Soul Compass</a>
         <div class="nav-links">
             <a href="#home" data-key="nav-home">Home</a>
             <a href="#voor-wie" data-key="nav-who">Voor wie</a>
-            <a href="aanbod.html" data-key="nav-aanbod">Aanbod</a>
-            <a href="over-mij.html" data-key="nav-about">Over mij</a>
-            <a href="contact.html" data-key="nav-contact">Contact</a>
+            <a href="#aanbod" data-key="nav-aanbod">Aanbod</a>
         </div>
         <div class="lang-toggle">
-            <span class="lang-btn active" onclick="setLanguage('nl')">NL</span> |
-            <span class="lang-btn" onclick="setLanguage('en')">EN</span>
+            <button class="lang-btn active" onclick="setLanguage('nl')">NL</button> |
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
         </div>
+        <div class="hamburger" id="hamburger">☰</div>
     </nav>
 
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#home" onclick="closeMobileMenu()" data-key="nav-home">Home</a>
-        <a href="#voor-wie" onclick="closeMobileMenu()" data-key="nav-who">Voor wie</a>
-        <a href="aanbod.html" onclick="closeMobileMenu()" data-key="nav-aanbod">Aanbod</a>
-        <a href="over-mij.html" onclick="closeMobileMenu()" data-key="nav-about">Over mij</a>
-        <a href="contact.html" onclick="closeMobileMenu()" data-key="nav-contact">Contact</a>
-        <div class="lang-toggle" style="margin-top:80px;">
-            <span class="lang-btn active" onclick="setLanguage('nl');closeMobileMenu()">NL</span> |
-            <span class="lang-btn" onclick="setLanguage('en');closeMobileMenu()">EN</span>
-        </div>
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#voor-wie" onclick="closeMenu()">Voor wie</a>
+        <a href="#aanbod" onclick="closeMenu()">Aanbod</a>
     </div>
 
-    <!-- HERO -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-text">
-                    <span class="subtitle-top" data-key="hero-sub">Lichaamsgerichte Begeleiding</span>
                     <h1 data-key="hero-title1">Rust in je lichaam.</h1>
-                    <h1 data-key="hero-title2">Richting in je leven.</h1>
-                    <p style="margin:30px 0 30px; font-weight:300; max-width:500px;" data-key="hero-p">
-                        Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen. 
-                        Spanning, blokkades en terugkerende patronen worden zichtbaar — zodat jij weer rust en richting ervaart.
-                    </p>
-                    <a href="aanbod.html" class="cta-link">Ontdek het aanbod</a>
-                    <a href="https://wa.me/34722675011" class="cta-link" data-key="hero-cta" style="margin-left:20px;">Maak een afspraak</a>
+                    <p data-key="hero-p">Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen.</p>
+                    <a href="https://wa.me/34722675011" class="cta-link" data-key="hero-cta">Maak een afspraak</a>
                 </div>
                 <div class="hero-image-wrapper">
-                    <img src="branding/micha-in-het-bos.jpg" alt="Portret van Michaela in de natuur">
+                    <img src="branding/micha-in-het-bos.jpg" alt="Michaela" onerror="this.src='https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800'">
                 </div>
             </div>
         </div>
     </section>
 
-<!-- VOOR WIE SECTIE MET EXTRA RUIMTE -->
-<section id="voor-wie" style="background: var(--section-bg); padding: 120px 0 100px;">
-    <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-            <span class="subtitle-top" data-key="who-sub">Voor wie</span>
-            <h2 style="margin-bottom: 25px; font-size: clamp(32px, 4vw, 42px);" data-key="who-title">Luister naar de signalen van je lichaam</h2>
-            <p style="font-weight: 300; line-height: 1.8;" data-key="who-p">
-                Soms fluistert je lichaam wat je hoofd nog niet kan horen. Mijn begeleiding is er voor iedereen die verlangt naar diepere aarding en het herstellen van de natuurlijke balans.
-            </p>
-        </div>
-
-        <div class="who-grid">
-            <div class="who-card">
-                <h3 style="font-size: 22px; margin-bottom: 15px;" data-key="li1-t">Fysieke spanning</h3>
-                <p style="font-size: 15px; font-weight: 300;" data-key="li1-d">Vastzittende schouders, een gespannen nek of die zeurende pijn in je rug die maar niet lijkt te wijken?</p>
-            </div>
-            <div class="who-card">
-                <h3 style="font-size: 22px; margin-bottom: 15px;" data-key="li2-t">Mentale onrust</h3>
-                <p style="font-size: 15px; font-weight: 300;" data-key="li2-d">Een vol hoofd, constant piekeren of die terugkerende hoofdpijn die je belemmert in je dagelijkse rust?</p>
-            </div>
-            <div class="who-card">
-                <h3 style="font-size: 22px; margin-bottom: 15px;" data-key="li3-t">Energieverlies</h3>
-                <p style="font-size: 15px; font-weight: 300;" data-key="li3-d">Een diepe vermoeidheid waarbij je merkt dat de rek eruit is, vaak door langdurige stress of patronen.</p>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 80px;">
-            <p style="font-family: 'Playfair Display'; font-style: italic; font-size: 22px; color: var(--text-black); margin-bottom: 30px;" data-key="who-footer">
-                Voel je een ja?
-            </p>
-            <!-- WhatsApp fix: target="_blank" -->
-            <a href="https://wa.me/34722675011" target="_blank" rel="noopener" class="cta-link" data-key="hero-cta">Plan een kennismaking</a>
-        </div>
-    </div>
-</section>
-    
-    <!-- NIEUWE AANBOD TEASER -->
-    <section id="aanbod" style="padding:140px 0 120px; background:#EAE7E0;">
-        <div class="container" style="text-align:center;">
-            <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.3em; color:var(--accent-color); font-weight:400;" data-key="aanbod-sub">Aanbod</span>
-            <h2 style="font-size:42px; margin:15px 0 40px;" data-key="aanbod-title">Begin met luisteren naar je lichaam</h2>
-            
-            <p style="max-width:720px; margin:0 auto 50px; font-weight:300; font-size:17px; line-height:1.7;">
-                Of je nu online wilt starten (wereldwijd mogelijk) of liever live in de praktijk komt in San Fulgencio — 
-                we beginnen altijd met een zachte kennismaking en bouwen verder als het resoneert.
-            </p>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:40px; max-width:1100px; margin:0 auto 60px;">
-                
-                <!-- Online focus (eerste kaart) -->
-                <div class="traject-card">
-                    <h3 data-key="teaser-online">Online sessies</h3>
-                    <p style="font-size:15px; font-weight:300; margin:20px 0 25px;">
-                        Veilige videoverbinding – overal ter wereld. 
-                        Gesprek, lichaamsbewustzijn en praktische oefeningen voor thuis.
-                    </p>
-                    <div style="font-family:'Playfair Display'; font-size:28px; color:var(--accent-color); margin:20px 0;">
-                        Vanaf €65
-                    </div>
-                    <a href="aanbod.html" class="cta-link" style="display:block;">
-                        Bekijk online opties →
-                    </a>
-                </div>
-
-                <!-- Verdiepingstraject teaser -->
-                <div class="traject-card">
-                    <h3 data-key="teaser-verdieping">Verdiepingstraject</h3>
-                    <p style="font-size:15px; font-weight:300; margin:20px 0 25px;">
-                        5 sessies van 75 min – laag voor laag patronen doorbreken en duurzame rust vinden.
-                    </p>
-                    <div style="font-family:'Playfair Display'; font-size:28px; color:var(--accent-color); margin:20px 0;">
-                        €350
-                    </div>
-                    <a href="aanbod.html" class="cta-link" style="display:block;">
-                        Ontdek het volledige traject →
-                    </a>
-                </div>
-
-            </div>
-
-            <!-- Hoofd CTA -->
-            <a href="aanbod.html" class="cta-link" style="font-size:13px; padding:12px 35px; border:1px solid var(--accent-color); border-radius:4px; text-transform:uppercase; letter-spacing:0.15em; background:white; display:inline-block;">
-                Bekijk het volledige aanbod →
-            </a>
-        </div>
-    </section>
-
-    <!-- OVER MIJ -->
-    <section id="over-mij" style="padding:120px 0; background:var(--bg-color); border-top:1px solid var(--section-bg);">
+    <section id="voor-wie" style="background: var(--section-bg); padding: 100px 0;">
         <div class="container">
-            <div style="display:grid; grid-template-columns:0.8fr 1.2fr; gap:80px; align-items:center;">
-                <div style="height:65vh; overflow:hidden; border-radius:4px; box-shadow:0 15px 30px rgba(46,42,38,0.05);">
-                    <img src="branding/Brandingportrait-michaela-profielfoto.jpeg" alt="Portret Michaela" style="width:100%; height:100%; object-fit:cover;">
+            <h2 style="text-align:center; margin-bottom:50px;" data-key="who-title">Voor wie</h2>
+            <div class="who-grid">
+                <div class="who-card">
+                    <h3 data-key="li1-t">Fysieke spanning</h3>
+                    <p data-key="li1-d">Vastzittende schouders of een gespannen nek?</p>
                 </div>
-                <div>
-                    <span style="font-size:12px; text-transform:uppercase; letter-spacing:0.3em; color:var(--accent-color); font-weight:bold;" data-key="about-sub">Ontmoet Michaela</span>
-                    <h2 style="font-size:42px; margin:20px 0;" data-key="about-title">Het gezicht achter Colibrí</h2>
-                    <p style="font-weight:300; margin-bottom:25px; font-size:17px;" data-key="about-p1">Met bijna 10 jaar ervaring in massagetherapie en energiewerk, help ik je te landen in je lijf wanneer je vastloopt in spanning. Ik werk rustig, nuchter en met beide benen op de grond. Geen snelle oplossingen — wel echte aandacht.</p>
-                    <p style="font-weight:300;" data-key="about-p2">In mijn praktijk in San Fulgencio creëer ik een veilige haven waar je even niets 'moet'. Samen kijken we naar wat je lichaam te vertellen heeft, zodat je weer met helderheid en bezieling verder kunt.</p>
-                    <a href="over-mij.html" class="cta-link">Lees mijn volledige verhaal →</a>
+                <div class="who-card">
+                    <h3 data-key="li2-t">Mentale onrust</h3>
+                    <p data-key="li2-d">Een vol hoofd en constant piekeren?</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ERVARINGEN / TESTIMONIALS -->
-<section id="ervaringen" style="padding:160px 0 140px; background:var(--section-bg);">
-    <div class="container" style="text-align:center;">
-        <!-- Optioneel: kleine subtitel als accent -->
-        <span style="font-size:13px; text-transform:uppercase; letter-spacing:0.4em; color:var(--accent-color); font-weight:500; display:block; margin-bottom:20px;" data-key="testi-pre">
-            Ervaringen
-        </span>
-
-        <!-- Hoofdtitel groter, warmer, persoonlijker -->
-        <h2 style="font-size:clamp(32px, 5vw, 48px); margin:0 0 60px; line-height:1.2; font-weight:400;" data-key="testi-title">
-            Wat mensen ervaren bij mij
-        </h2>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:50px; max-width:1100px; margin:0 auto;">
-            <!-- Testimonial 1 -->
-            <div style="background:var(--bg-color); padding:50px 40px; border-radius:8px; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.04);">
-                <span style="font-size:100px; line-height:1; color:var(--accent-color); opacity:0.12; position:absolute; top:-30px; left:30px;">“</span>
-                <p style="font-size:17.5px; font-weight:300; line-height:1.7; margin-bottom:30px;" data-key="testi1">
-                    “Heerlijke stevige massage gehad van een lieve vrouw die duidelijk met haar hart masseert! .<br>
-                    Mijn dank is groot🙏🏼.”
-                </p>
-                <p style="font-size:14px; opacity:0.75; font-style:italic;">— Shirley, Dolores, ES</p>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div style="background:var(--bg-color); padding:50px 40px; border-radius:8px; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.04);">
-                <span style="font-size:100px; line-height:1; color:var(--accent-color); opacity:0.12; position:absolute; top:-30px; left:30px;">“</span>
-                <p style="font-size:17.5px; font-weight:300; line-height:1.7; margin-bottom:30px;" data-key="testi2">
-                    “Ik kwam voor ontspanning en ging weg met inzicht.”
-                </p>
-                <p style="font-size:14px; opacity:0.75; font-style:italic;">— Anoniem, 47 jaar</p>
-            </div>
-
-            <!-- Optioneel: derde testimonial als placeholder -->
-            <!-- <div style="..."> ... </div> -->
-        </div>
-
-        <!-- CTA onderaan – iets sterker -->
-        <p style="margin-top:80px; font-size:15px; opacity:0.9;">
-            Herken je jezelf hierin?
-            <a href="https://wa.me/34722675011?text=Ik%20wil%20graag%20een%20kennismakingssessie%20boeken" target="_blank" class="cta-link" style="font-size:15px; margin-left:12px; padding-bottom:8px;">
-                Plan een kennismaking →
-            </a>
-        </p>
-    </div>
-</section>
-
-    <!-- BLOG TEASER 
-    <section id="blog" style="padding:140px 0; background:var(--bg-color);">
-        <div class="container" style="text-align:center;">
-            <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.3em; color:var(--accent-color); font-weight:400;" data-key="blog-sub">Inspiratie</span>
-            <h2 style="font-size:42px; margin:15px 0 30px;" data-key="blog-title">Artikelen & inzichten</h2>
-            <p style="max-width:680px; margin:0 auto 50px; font-weight:300; font-size:17px; line-height:1.7;">
-                Artikelen over lichaamsbewustzijn, het ontladen van spanning, vertragen met intentie en het vinden van je innerlijke richting.
-            </p>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:40px; max-width:1100px; margin:0 auto 60px;">
-                <div class="traject-card" style="padding:0; overflow:hidden; text-align:left;">
-                    <div style="height:180px; background:var(--section-bg);">
-                        <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&q=80&w=800" alt="Waarom praten alleen niet genoeg is" style="width:100%; height:100%; object-fit:cover;">
-                    </div>
-                    <div style="padding:30px 30px 40px;">
-                        <span style="font-size:11px; opacity:0.7;">12 februari 2026</span>
-                        <h3 style="margin:12px 0 16px; font-size:22px;">Waarom praten alleen niet genoeg is</h3>
-                        <p style="font-size:15px; font-weight:300; margin-bottom:25px;">
-                            Hoe ons lichaam emoties en trauma opslaat en waarom echte verandering vaak via het lichaam verloopt.
-                        </p>
-                        <a href="blog.html" class="cta-link">Lees verder →</a>
-                    </div>
-                </div>
-                <div class="traject-card" style="padding:0; overflow:hidden; text-align:left;">
-                    <div style="height:180px; background:var(--section-bg);">
-                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800" alt="De wijsheid van vertragen" style="width:100%; height:100%; object-fit:cover;">
-                    </div>
-                    <div style="padding:30px 30px 40px;">
-                        <span style="font-size:11px; opacity:0.7;">5 januari 2026</span>
-                        <h3 style="margin:12px 0 16px; font-size:22px;">De wijsheid van vertragen</h3>
-                        <p style="font-size:15px; font-weight:300; margin-bottom:25px;">
-                            In een wereld die altijd ‘aan’ staat, is vertragen een daad van zelfzorg en verzet.
-                        </p>
-                        <a href="blog.html" class="cta-link">Lees verder →</a>
-                    </div>
-                </div>
-            </div>
-            <a href="blog.html" class="cta-link" style="font-size:13px; padding:12px 30px; border:1px solid var(--accent-color); border-radius:4px; text-transform:uppercase; letter-spacing:0.15em; margin-top:60px; display:inline-block;">
-                Alle artikelen bekijken →
-            </a>
-        </div>
-    </section>
-    -->
-
-<footer style="padding: 100px 0 60px; text-align: center; background: white; border-top: 1px solid var(--section-bg);">
-    <div class="container" style="max-width: 800px;">
-        <!-- Social links met icons – groter en klikbaarder -->
-        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
-            <a href="https://www.instagram.com/colibri_soulcompass_miwellness" target="_blank" style="text-decoration:none; color:var(--text-primary); transition: all 0.3s; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:500;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 3.148.225.225 3.148.072 7.053.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.153 3.905 3.076 6.828 6.981 6.981C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 3.905-.153 6.828-3.076 6.981-6.981.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.948C23.986 8.333 24 7.925 24 12c0-3.259-.014-3.668-.072-4.948zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-                Instagram
-            </a>
-            <a href="https://www.facebook.com/ColibriSoulCompassMiWellness" target="_blank" style="text-decoration:none; color:var(--text-primary); transition: all 0.3s; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:500;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.294h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-                Facebook
-            </a>
-            <a href="https://www.linkedin.com/in/michaela-sloesarwij" target="_blank" style="text-decoration:none; color:var(--text-primary); transition: all 0.3s; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:500;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.029-3.058-1.867-3.058-1.867 0-2.152 1.459-2.152 2.966v5.696h-3v-11h2.882v1.509h.039c.401-.757 1.381-1.557 2.837-1.557 3.033 0 3.597 1.997 3.597 4.597v6.451z"/></svg>
-                LinkedIn
-            </a>
-        </div>
-
-        <!-- Copyright + subtiele tagline -->
-        <p style="font-size: 14px; opacity: 0.7; margin: 0 0 12px;">
-            © 2026 Colibrí Soul Compass • San Fulgencio, La Marina Oasis, Alicante, España
-        </p>
-        <p style="font-size: 13px; opacity: 0.6; margin: 0;">
-            Lichaamsgerichte begeleiding & bodywork Costa Blanca
-        </p>
-    </div>
-</footer>
-
-<!-- WhatsApp knop (blijft hetzelfde, maar iets groter voor betere tikbaarheid) -->
-<a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank" style="position:fixed; bottom:24px; right:24px; background:#25D366; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.15); z-index:2000; transition:transform .2s;">
-    <svg style="fill:white; width:36px; height:36px;" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.476 2.017 7.788l-2.017 7.212 7.378-1.935c2.197 1.151 4.704 1.808 7.371 1.808 8.837 0 16-7.163 16-16s-7.163-16-16-16zm0 29.273c-2.355 0-4.562-.613-6.48-1.685l-.465-.259-4.341 1.139 1.159-4.144-.285-.453c-1.185-1.89-1.807-4.085-1.807-6.38 0-6.767 5.505-12.273 12.273-12.273s12.273 5.505 12.273 12.273c0 6.767-5.505 12.273-12.273 12.273z"/></svg>
-</a>
-
-<!-- Mobiel aanpassing WhatsApp -->
-<style>
-    @media (max-width: 480px) {
-        .whatsapp-btn {
-            bottom: 16px;
-            right: 16px;
-            width: 56px;
-            height: 56px;
-        }
-        .whatsapp-btn svg { width: 32px; height: 32px; }
-    }
-</style>
-
-<!-- WhatsApp knop (iets groter en beter gepositioneerd op mobiel) -->
-<a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank" style="position: fixed; bottom: 24px; right: 24px; background: #25D366; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.15); z-index: 2000; transition: transform 0.2s;">
-    <svg style="fill: white; width: 36px; height: 36px;" viewBox="0 0 32 32">
-        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.733 5.476 2.017 7.788L0 31.212l7.378-1.935C9.575 30.428 12.082 31.085 14.749 31.085c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.273c-2.355 0-4.562-.613-6.48-1.685l-.465-.259-4.341 1.139 1.159-4.144-.285-.453c-1.185-1.89-1.807-4.085-1.807-6.38 0-6.767 5.505-12.273 12.273-12.273s12.273 5.505 12.273 12.273c0 6.767-5.505 12.273-12.273 12.273z"/>
-    </svg>
-</a>
-
-<!-- Extra mobiele aanpassing voor WhatsApp-knop -->
-<style>
-    @media (max-width: 480px) {
-        .whatsapp-btn {
-            bottom: 16px;
-            right: 16px;
-            width: 56px;
-            height: 56px;
-        }
-        .whatsapp-btn svg { width: 32px; height: 32px; }
-    }
-</style>
+    <a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank">
+        <svg style="fill:white; width:30px;" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.476 2.017 7.788l-2.017 7.212 7.378-1.935c2.197 1.151 4.704 1.808 7.371 1.808 8.837 0 16-7.163 16-16s-7.163-16-16-16z"/></svg>
+    </a>
 
     <script>
-        
-    // HAMBURGER MENU
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    hamburger.addEventListener('click', () => {
-        if (mobileMenu.style.display === 'flex') {
-            closeMobileMenu();
-        } else {
-            mobileMenu.style.display = 'flex';
-            hamburger.textContent = '✕';
-        }
-    });
-
-    function closeMobileMenu() {
-        mobileMenu.style.display = 'none';
-        hamburger.textContent = '☰';
-    }
-
-    mobileMenu.addEventListener('click', e => {
-        if (e.target === mobileMenu) closeMobileMenu();
-    });
-
-    // TAAL-SWITCH – volledige object, geen duplicaat!
-    const translations = {
-        nl: {
-            "nav-home": "Home",
-            "nav-who": "Voor wie",
-            "nav-aanbod": "Aanbod",
-            "nav-about": "Over mij",
-            "nav-contact": "Contact",
-            "hero-sub": "Lichaamsgerichte Begeleiding",
-            "hero-title1": "Rust in je lichaam.",
-            "hero-title2": "Richting in je leven.",
-            "hero-p": "Bij Colibrí Soul Compass richt ik me op het herstellen van jouw natuurlijke balans. Hoewel mijn begeleiding van nature afgestemd is op de kracht van de vrouw, is ieder mens die resonantie voelt met mijn zachte doch diepgaande werkwijze van harte welkom.",
-            "hero-cta": "Maak een afspraak",
-            "who-sub": "Voor wie",
-            "who-subtitle": "Soms geeft je lichaam krachtige signalen dat de rek eruit is. Herken jij je in:",
-            "who-title": "Luister naar de signalen van je lichaam",
-            "who-p": "Soms fluistert je lichaam wat je hoofd nog niet kan horen. Mijn begeleiding is er voor vrouwen die verlangen naar echte diepgang.",
-            "li1": "<strong>Fysieke spanning:</strong> Vastzittende schouders en nek, of een zeurende pijn in de rug?",
-            "li2": "<strong>Mentale onrust:</strong> Een vol hoofd, constant piekeren of terugkerende hoofdpijn?",
-            "li3": "<strong>Energieverlies:</strong> Een diepe vermoeidheid, vaak veroorzaakt door langdurige stress?",
-            "li4": "<strong>Behoefte aan regie:</strong> Je zet jezelf op de tweede plek en wilt weer voelen wat jij nodig hebt.",
-            "who-footer": "Voel jij een klik? Dan bied ik je graag een veilige haven om weer te landen in jezelf."
-    },
-            "aanbod-sub": "Aanbod",
-            "aanbod-title": "Begin met luisteren naar je lichaam",
-            "teaser-online": "Online sessies",
-            "teaser-verdieping": "Verdiepingstraject",
-            "about-sub": "Ontmoet Michaela",
-            "about-title": "Het gezicht achter Colibrí",
-            "about-p1": "Met bijna 10 jaar ervaring in massagetherapie en energiewerk, help ik je te landen in je lijf wanneer je vastloopt in spanning. Ik werk rustig, nuchter en met beide benen op de grond. Geen snelle oplossingen — wel echte aandacht.",
-            "about-p2": "In mijn praktijk in San Fulgencio creëer ik een veilige haven waar je even niets 'moet'. Samen kijken we naar wat je lichaam te vertellen heeft, zodat je weer met helderheid en bezieling verder kunt.",
-            "testi-sub": "Ervaringen",
-            "testi-title": "Wat mensen ervaren bij mij",
-            "testi1": "“Heerlijke stevige massage gehad van een lieve vrouw die duidelijk met haar hart masseert!”",
-            "testi2": "“Ik kwam voor ontspanning en ging weg met inzicht.”",
-            "blog-sub": "Inspiratie",
-            "blog-title": "Artikelen & inzichten"
-        },
-        en: {
-            // Vul zelf de Engelse versie aan of kopieer uit je oude code
-            "nav-home": "Home",
-            "nav-who": "For whom",
-            "nav-aanbod": "Offerings",
-            "nav-about": "About me",
-            "nav-contact": "Contact",
-            "hero-sub": "Body-oriented Guidance",
-            "hero-title1": "Peace in your body.",
-            "hero-title2": "Direction in your life.",
-            "hero-p": "I guide you to listen to what your body has been trying to tell you for a long time. Tension, blockages and recurring patterns become visible — so you experience peace and direction again.",
-            "hero-cta": "Book an appointment",
-            "who-sub": "For whom",
-            "who-title": "Listen to your body's signals",
-            "who-p": "Sometimes your body whispers what your mind cannot yet hear...",
-            "li1-t": "Physical tension",
-            "li1-d": "Tight shoulders, a tense neck, or that nagging back pain?",
-            "li2-t": "Mental unrest",
-            "li2-d": "A full head, constant worrying, or recurring headaches?",
-            "li3-t": "Loss of energy",
-            "li3-d": "A deep fatigue where you feel the stretch is gone...",
-            "who-footer": "Do you feel a yes?"
-            "aanbod-sub": "Offerings",
-            "aanbod-title": "Start by listening to your body",
-            "teaser-online": "Online sessions",
-            "teaser-verdieping": "Deepening trajectory",
-            "about-sub": "Meet Michaela",
-            "about-title": "The face behind Colibrí",
-            "about-p1": "With nearly 10 years of experience in massage therapy and energy work, I help you land in your body when you get stuck in tension. I work calmly, down-to-earth and with both feet on the ground. No quick fixes — just real attention.",
-            "about-p2": "In my practice in San Fulgencio I create a safe haven where you don't have to 'do' anything for a while. Together we look at what your body has to tell, so you can move forward with clarity and inspiration again.",
-            "testi-sub": "Experiences",
-            "testi-title": "What they say about me",
-            "testi1": "“Had a lovely firm massage from a kind woman who clearly massages with her heart.!”",
-            "testi2": "“I came for relaxation and left with insight.”",
-            "blog-sub": "Inspiration",
-            "blog-title": "Articles & insights"
-        }
-    };
-
-    function setLanguage(lang) {
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key];  // textContent is betrouwbaarder
+        const translations = {
+            nl: {
+                "nav-home": "Home",
+                "nav-who": "Voor wie",
+                "nav-aanbod": "Aanbod",
+                "hero-title1": "Rust in je lichaam.",
+                "hero-p": "Ik begeleid je om te luisteren naar wat je lichaam vertelt.",
+                "hero-cta": "Maak een afspraak",
+                "who-title": "Luister naar je lichaam",
+                "li1-t": "Fysieke spanning",
+                "li1-d": "Vastzittende schouders of een gespannen nek?"
+            },
+            en: {
+                "nav-home": "Home",
+                "nav-who": "For whom",
+                "nav-aanbod": "Offerings",
+                "hero-title1": "Peace in your body.",
+                "hero-p": "I guide you to listen to what your body is telling you.",
+                "hero-cta": "Book an appointment",
+                "who-title": "Listen to your body",
+                "li1-t": "Physical tension",
+                "li1-d": "Tight shoulders or a tense neck?"
             }
-        });
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
-        });
-        document.documentElement.lang = lang;
-    }
+        };
 
-    // Start standaard op Nederlands
-    window.addEventListener('load', () => setLanguage('nl'));
-</script>
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+            
+            // Actieve knop styling
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+            });
+        }
+
+        // Menu functionaliteit
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        hamburger.onclick = () => mobileMenu.style.display = 'flex';
+        function closeMenu() { mobileMenu.style.display = 'none'; }
+    </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
