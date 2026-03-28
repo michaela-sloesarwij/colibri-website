@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colibrí Soul Compass | Praktijk App</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream2: #F2EDE3;
+    --sage: #5C7A6E;
+    --sage-light: #8AAF9F;
+    --sage-dark: #3D5C52;
+    --terra: #C4845A;
+    --terra-light: #E0A882;
+    --gold: #B8963E;
+    --dark: #2A2520;
+    --mid: #6B5E52;
+    --light: #A89880;
+    --white: #FFFFFF;
+    --shadow: rgba(42,37,32,0.10);
+    --border: rgba(42,37,32,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+    font-size: 14px;
+  }
+  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+  /* ====== LOGIN ====== */
+  #login-screen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; background: var(--cream);
+  }
+  .login-box {
+    text-align: center; padding: 60px 48px;
+    background: var(--white); border-radius: 20px;
+    box-shadow: 0 8px 40px var(--shadow); max-width: 380px; width: 90%;
+  }
+  .login-logo { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--light); margin-bottom: 8px; }
+  .login-title { font-size: 38px; color: var(--sage-dark); margin-bottom: 6px; }
+  .login-sub { font-size: 13px; color: var(--light); margin-bottom: 36px; }
+  .pin-dots { display: flex; gap: 12px; justify-content: center; margin-bottom: 28px; }
+  .pin-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cream2); border: 2px solid var(--sage-light); transition: all 0.2s; }
+  .pin-dot.filled { background: var(--sage); border-color: var(--sage); }
+  .pin-pad { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .pin-btn {
+    padding: 14px; border: 1.5px solid var(--border); border-radius: 12px;
+    background: var(--cream); font-size: 20px; font-family: 'Cormorant Garamond', serif;
+    cursor: pointer; color: var(--dark); transition: all 0.15s; font-weight: 500;
+  }
+  .pin-btn:hover { background: var(--sage-light); color: var(--white); border-color: var(--sage-light); }
+  .pin-btn.del { font-size: 16px; color: var(--terra); }
+  .pin-error { color: var(--terra); font-size: 12px; margin-top: 10px; min-height: 18px; }
+
+  /* ====== MAIN LAYOUT ====== */
+  #app { display: none; min-height: 100vh; }
+  .sidebar {
+    position: fixed; top: 0; left: 0; width: 220px; height: 100vh;
+    background: var(--sage-dark); display: flex; flex-direction: column;
+    padding: 28px 0; z-index: 100;
+  }
+  .sidebar-logo { padding: 0 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px; }
+  .sidebar-logo .brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--white); line-height: 1.2; }
+  .sidebar-logo .sub { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 2px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px; padding: 11px 24px;
+    color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.2s;
+    font-size: 13.5px; border-left: 3px solid transparent;
+  }
+  .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+  .nav-item.active { color: var(--white); background: rgba(255,255,255,0.12); border-left-color: var(--terra-light); }
+  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+  .sidebar-bottom { margin-top: auto; padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .logout-btn { font-size: 12px; color: rgba(255,255,255,0.4); cursor: pointer; }
+  .logout-btn:hover { color: rgba(255,255,255,0.7); }
+  .main { margin-left: 220px; min-height: 100vh; padding: 36px 40px; }
+
+  /* ====== PAGES ====== */
+  .page { display: none; }
+  .page.active { display: block; }
+  .page-header { margin-bottom: 32px; }
+  .page-header h2 { font-size: 36px; color: var(--sage-dark); }
+  .page-header p { color: var(--light); margin-top: 4px; font-size: 13px; }
+
+  /* ====== CARDS / GRID ====== */
+  .card {
+    background: var(--white); border-radius: 16px;
+    box-shadow: 0 2px 16px var(--shadow); padding: 24px;
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+  .stat-card {
+    background: var(--white); border-radius: 16px; padding: 22px 24px;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  .stat-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); margin-bottom: 8px; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: var(--sage-dark); line-height: 1; }
+  .stat-sub { font-size: 11px; color: var(--light); margin-top: 4px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* ====== BUTTONS ====== */
+  .btn {
+    padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; transition: all 0.2s;
+  }
+  .btn-primary { background: var(--sage); color: var(--white); }
+  .btn-primary:hover { background: var(--sage-dark); }
+  .btn-terra { background: var(--terra); color: var(--white); }
+  .btn-terra:hover { background: #b07348; }
+  .btn-outline { background: transparent; border: 1.5px solid var(--sage); color: var(--sage); }
+  .btn-outline:hover { background: var(--sage); color: var(--white); }
+  .btn-ghost { background: var(--cream2); color: var(--mid); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--cream); }
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+  .btn-danger { background: #c0392b; color: white; }
+
+  /* ====== FORMS ====== */
+  .form-group { margin-bottom: 18px; }
+  .form-label { display: block; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--mid); margin-bottom: 7px; font-weight: 500; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+    border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--dark); background: var(--cream); transition: border 0.2s;
+    outline: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--sage-light); background: var(--white);
+  }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-section {
+    margin-bottom: 28px; padding: 22px; background: var(--cream2);
+    border-radius: 14px; border-left: 4px solid var(--sage-light);
+  }
+  .form-section-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    color: var(--sage-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .form-section-title .icon { font-size: 22px; }
+
+  /* ====== TAGS / PILLS ====== */
+  .tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 12px; border-radius: 20px; font-size: 12px;
+    background: var(--cream2); color: var(--mid); border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.15s; margin: 3px;
+  }
+  .tag.selected { background: var(--sage); color: var(--white); border-color: var(--sage); }
+  .tag.terra { background: var(--terra); color: var(--white); border-color: var(--terra); }
+  .tag.gold { background: var(--gold); color: var(--white); }
+  .tags-container { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  /* ====== LISTS ====== */
+  .client-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-radius: 12px; background: var(--white);
+    margin-bottom: 10px; box-shadow: 0 1px 8px var(--shadow); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .client-item:hover { box-shadow: 0 4px 16px var(--shadow); transform: translateY(-1px); }
+  .client-avatar {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--sage-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--white); margin-right: 14px;
+  }
+  .client-info { flex: 1; }
+  .client-name { font-weight: 500; font-size: 15px; color: var(--dark); }
+  .client-meta { font-size: 12px; color: var(--light); margin-top: 2px; }
+  .client-actions { display: flex; gap: 8px; }
+
+  /* ====== SESSION ITEM ====== */
+  .session-item {
+    padding: 16px 20px; border-radius: 12px; background: var(--white);
+    margin-bottom: 10px; box-shadow: 0 1px 8px var(--shadow);
+    border-left: 4px solid var(--sage-light);
+  }
+  .session-date { font-size: 12px; color: var(--light); margin-bottom: 4px; }
+  .session-client { font-weight: 500; font-size: 15px; color: var(--dark); }
+  .session-preview { font-size: 13px; color: var(--mid); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ====== TABS ====== */
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--cream2); padding: 4px; border-radius: 12px; }
+  .tab-btn {
+    flex: 1; padding: 9px 16px; border: none; border-radius: 9px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; background: transparent;
+    color: var(--mid); transition: all 0.2s; font-weight: 400;
+  }
+  .tab-btn.active { background: var(--white); color: var(--sage-dark); font-weight: 500; box-shadow: 0 1px 6px var(--shadow); }
+
+  /* ====== MODAL ====== */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    z-index: 200; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 20px; padding: 36px;
+    max-width: 560px; width: 90%; max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .modal-title { font-size: 28px; color: var(--sage-dark); }
+  .modal-close { font-size: 22px; cursor: pointer; color: var(--light); line-height: 1; }
+
+  /* ====== REPORT ====== */
+  .report-card {
+    background: var(--white); border-radius: 16px; padding: 32px;
+    box-shadow: 0 2px 16px var(--shadow); margin-bottom: 20px;
+  }
+  .report-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .report-logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--sage-dark); }
+  .report-section { margin-bottom: 20px; }
+  .report-section-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; font-weight: 500; }
+  .report-text { font-size: 14px; color: var(--dark); line-height: 1.7; }
+  .report-tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; background: var(--cream2); color: var(--mid); margin: 2px; }
+
+  /* ====== BIBLIOTHEEK ====== */
+  .lib-item {
+    padding: 14px 16px; border-radius: 10px; background: var(--cream2);
+    margin-bottom: 8px; cursor: pointer; transition: all 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .lib-item:hover { background: var(--white); border-left-color: var(--sage); }
+  .lib-item-title { font-weight: 500; font-size: 14px; color: var(--dark); }
+  .lib-item-desc { font-size: 12px; color: var(--mid); margin-top: 3px; line-height: 1.5; }
+
+  /* ====== PENDULUM ====== */
+  .pendel-options { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+  .pendel-opt {
+    padding: 14px 10px; border-radius: 12px; text-align: center;
+    border: 2px solid var(--border); cursor: pointer; transition: all 0.2s;
+    background: var(--white); font-size: 24px;
+  }
+  .pendel-opt span { display: block; font-size: 11px; color: var(--mid); margin-top: 4px; }
+  .pendel-opt.selected { border-color: var(--sage); background: var(--sage); }
+  .pendel-opt.selected span { color: var(--white); }
+
+  /* ====== TAROT ====== */
+  .tarot-card-slot {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .tarot-card-visual {
+    width: 70px; height: 110px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--sage-dark) 0%, var(--sage) 100%);
+    border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center;
+    font-size: 28px; cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+  }
+  .tarot-card-visual.drawn { background: linear-gradient(135deg, var(--gold) 0%, var(--terra) 100%); }
+  .tarot-slot-label { font-size: 11px; color: var(--mid); text-align: center; }
+
+  /* ====== SEARCH ====== */
+  .search-bar {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 10px 16px; margin-bottom: 20px;
+  }
+  .search-bar input { border: none; outline: none; flex: 1; font-family: 'DM Sans', sans-serif; font-size: 14px; background: transparent; color: var(--dark); }
+  .search-icon { color: var(--light); font-size: 16px; }
+
+  /* ====== TOAST ====== */
+  .toast {
+    position: fixed; bottom: 28px; right: 28px; background: var(--sage-dark);
+    color: var(--white); padding: 14px 22px; border-radius: 12px; font-size: 13px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); display: none; z-index: 999;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  /* ====== BODY MAP ====== */
+  .body-zones { display: flex; flex-wrap: wrap; gap: 8px; }
+  .body-zone {
+    padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--border);
+    font-size: 12px; cursor: pointer; transition: all 0.15s; background: var(--white);
+    color: var(--mid);
+  }
+  .body-zone.active { background: var(--terra); color: var(--white); border-color: var(--terra); }
+
+  /* ====== EMPTY STATE ====== */
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--light); }
+  .empty-state .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+  .empty-state h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--mid); margin-bottom: 8px; }
+  .empty-state p { font-size: 13px; }
+
+  /* PRINT */
+  @media print {
+    .sidebar, .main > *:not(#page-rapporten) { display: none !important; }
+    .main { margin-left: 0; padding: 0; }
+    #page-rapporten { display: block !important; }
+    .btn { display: none; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--sage-light); border-radius: 10px; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== LOGIN ====== -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Colibrí Soul Compass</div>
+    <h1 class="login-title">Praktijk App</h1>
+    <p class="login-sub">Voer je PIN in om verder te gaan</p>
+    <div class="pin-dots">
+      <div class="pin-dot" id="d0"></div>
+      <div class="pin-dot" id="d1"></div>
+      <div class="pin-dot" id="d2"></div>
+      <div class="pin-dot" id="d3"></div>
+    </div>
+    <div class="pin-pad">
+      <button class="pin-btn" onclick="pinInput('1')">1</button>
+      <button class="pin-btn" onclick="pinInput('2')">2</button>
+      <button class="pin-btn" onclick="pinInput('3')">3</button>
+      <button class="pin-btn" onclick="pinInput('4')">4</button>
+      <button class="pin-btn" onclick="pinInput('5')">5</button>
+      <button class="pin-btn" onclick="pinInput('6')">6</button>
+      <button class="pin-btn" onclick="pinInput('7')">7</button>
+      <button class="pin-btn" onclick="pinInput('8')">8</button>
+      <button class="pin-btn" onclick="pinInput('9')">9</button>
+      <button class="pin-btn del" onclick="pinDel()">⌫</button>
+      <button class="pin-btn" onclick="pinInput('0')">0</button>
+      <button class="pin-btn" onclick="pinInput('')">↵</button>
+    </div>
+    <div class="pin-error" id="pin-error"></div>
+    <p style="font-size:11px;color:var(--light);margin-top:16px;">Standaard PIN: <strong>1234</strong></p>
+  </div>
+</div>
+
+<!-- ====== MAIN APP ====== -->
+<div id="app">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="brand">🌿 Colibrí</div>
+      <div class="sub">Soul Compass</div>
+    </div>
+    <div class="nav-item active" onclick="showPage('dashboard')">
+      <span class="nav-icon">🏠</span> Dashboard
+    </div>
+    <div class="nav-item" onclick="showPage('klanten')">
+      <span class="nav-icon">👥</span> Klanten
+    </div>
+    <div class="nav-item" onclick="showPage('sessies')">
+      <span class="nav-icon">📋</span> Sessies
+    </div>
+    <div class="nav-item" onclick="showPage('nieuw')">
+      <span class="nav-icon">✨</span> Nieuwe Sessie
+    </div>
+    <div class="nav-item" onclick="showPage('bibliotheek')">
+      <span class="nav-icon">📚</span> Bibliotheek
+    </div>
+    <div class="nav-item" onclick="showPage('rapporten')">
+      <span class="nav-icon">📄</span> Rapporten
+    </div>
+    <div class="sidebar-bottom">
+      <div class="logout-btn" onclick="logout()">↩ Uitloggen</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <h2>Goedemorgen, Michaela 🌿</h2>
+        <p id="dash-date"></p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Klanten</div>
+          <div class="stat-num" id="stat-klanten">0</div>
+          <div class="stat-sub">in jouw praktijk</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Sessies totaal</div>
+          <div class="stat-num" id="stat-sessies">0</div>
+          <div class="stat-sub">behandelingen</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Deze maand</div>
+          <div class="stat-num" id="stat-maand">0</div>
+          <div class="stat-sub">sessies</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Laatste sessie</div>
+          <div class="stat-num" style="font-size:20px;padding-top:8px" id="stat-laatste">—</div>
+          <div class="stat-sub" id="stat-laatste-client"></div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size:22px;color:var(--sage-dark);margin-bottom:16px;">Recente sessies</h3>
+          <div id="dash-sessies"></div>
+          <button class="btn btn-outline btn-sm" style="margin-top:12px" onclick="showPage('nieuw')">+ Nieuwe sessie</button>
+        </div>
+        <div class="card">
+          <h3 style="font-size:22px;color:var(--sage-dark);margin-bottom:16px;">Snelle acties</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <button class="btn btn-primary" onclick="showPage('nieuw')" style="text-align:left;display:flex;align-items:center;gap:10px;"><span>✨</span> Nieuwe sessie starten</button>
+            <button class="btn btn-ghost" onclick="showPage('klanten')" style="text-align:left;display:flex;align-items:center;gap:10px;"><span>👤</span> Klant toevoegen</button>
+            <button class="btn btn-ghost" onclick="showPage('bibliotheek')" style="text-align:left;display:flex;align-items:center;gap:10px;"><span>🌸</span> Bibliotheek raadplegen</button>
+            <button class="btn btn-ghost" onclick="showPage('rapporten')" style="text-align:left;display:flex;align-items:center;gap:10px;"><span>📄</span> Rapport bekijken</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KLANTEN -->
+    <div class="page" id="page-klanten">
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <h2>Klanten</h2>
+          <p>Beheer je cliënten en hun geschiedenis</p>
+        </div>
+        <button class="btn btn-primary" onclick="openKlantModal()">+ Klant toevoegen</button>
+      </div>
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="klant-search" placeholder="Zoek op naam of email…" oninput="renderKlanten()">
+      </div>
+      <div id="klant-list"></div>
+    </div>
+
+    <!-- SESSIES -->
+    <div class="page" id="page-sessies">
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <h2>Sessies</h2>
+          <p>Overzicht van alle behandelingen</p>
+        </div>
+        <button class="btn btn-primary" onclick="showPage('nieuw')">+ Nieuwe sessie</button>
+      </div>
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="sessie-search" placeholder="Zoek op klant of datum…" oninput="renderSessies()">
+      </div>
+      <div id="sessie-list"></div>
+    </div>
+
+    <!-- NIEUWE SESSIE -->
+    <div class="page" id="page-nieuw">
+      <div class="page-header">
+        <h2>Nieuwe Sessie</h2>
+        <p>Vul in tijdens of na de behandeling</p>
+      </div>
+
+      <!-- Client & datum -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Klant</label>
+            <select class="form-select" id="sess-klant">
+              <option value="">— Selecteer klant —</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Datum & tijd</label>
+            <input type="datetime-local" class="form-input" id="sess-datum">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reden van komst / hoofdvraag</label>
+          <input type="text" class="form-input" id="sess-vraag" placeholder="Wat brengt de klant vandaag…">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sessie type</label>
+          <select class="form-select" id="sess-type">
+            <option>Online sessie</option>
+            <option>Praktijk sessie - San Fulgencio</option>
+            <option>Verdiepingstraject</option>
+            <option>Kennismaking</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Lichaamsscan -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">🫁</span> Lichaamsscan & klachten</div>
+        <div class="form-group">
+          <label class="form-label">Aangedane lichaamsgebieden</label>
+          <div class="body-zones" id="body-zones">
+            <div class="body-zone" onclick="toggleZone(this)">Hoofd</div>
+            <div class="body-zone" onclick="toggleZone(this)">Keel/Nek</div>
+            <div class="body-zone" onclick="toggleZone(this)">Schouders</div>
+            <div class="body-zone" onclick="toggleZone(this)">Borst/Hart</div>
+            <div class="body-zone" onclick="toggleZone(this)">Longen</div>
+            <div class="body-zone" onclick="toggleZone(this)">Buik/Maag</div>
+            <div class="body-zone" onclick="toggleZone(this)">Onderbuik</div>
+            <div class="body-zone" onclick="toggleZone(this)">Onderrug</div>
+            <div class="body-zone" onclick="toggleZone(this)">Bovenrug</div>
+            <div class="body-zone" onclick="toggleZone(this)">Heupen</div>
+            <div class="body-zone" onclick="toggleZone(this)">Knieën</div>
+            <div class="body-zone" onclick="toggleZone(this)">Voeten</div>
+            <div class="body-zone" onclick="toggleZone(this)">Handen/Armen</div>
+            <div class="body-zone" onclick="toggleZone(this)">Kaak/TMJ</div>
+            <div class="body-zone" onclick="toggleZone(this)">Hele lichaam</div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:12px">
+          <label class="form-label">Observaties lichaamsscan</label>
+          <textarea class="form-textarea" id="sess-scan" placeholder="Spanning, houding, ademhaling, energieveld, aanraking…"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Psychosomatische verbindingen</label>
+          <textarea class="form-textarea" id="sess-psycho" placeholder="Zielsoorzaken, emotionele patronen, levensthema's die zichtbaar worden…" style="min-height:70px"></textarea>
+        </div>
+      </div>
+
+      <!-- Tarot -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">🃏</span> Tarot</div>
+        <div class="form-row" style="margin-bottom:14px">
+          <div class="form-group">
+            <label class="form-label">Spread type</label>
+            <select class="form-select" id="tarot-spread" onchange="updateTarotSpread()">
+              <option value="0">Geen tarot deze sessie</option>
+              <option value="1">1 kaart (focus)</option>
+              <option value="3">3 kaarten (verleden/heden/toekomst)</option>
+              <option value="5">5 kaarten (situatiespread)</option>
+              <option value="custom">Vrij (eigen notities)</option>
+            </select>
+          </div>
+        </div>
+        <div id="tarot-slots" style="display:none">
+          <div id="tarot-cards-row" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px"></div>
+          <div class="form-group">
+            <label class="form-label">Interpretatie & inzichten</label>
+            <textarea class="form-textarea" id="tarot-notes" placeholder="Wat vertellen de kaarten? Welke thema's komen naar voren?"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pendel -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">⚫</span> Pendel</div>
+        <div class="form-group">
+          <label class="form-label">Vraag aan de pendel</label>
+          <input type="text" class="form-input" id="pendel-vraag" placeholder="Stel je vraag…">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Uitkomst</label>
+          <div class="pendel-options">
+            <div class="pendel-opt" onclick="selectPendel(this,'Ja')">
+              ✅<span>Ja</span>
+            </div>
+            <div class="pendel-opt" onclick="selectPendel(this,'Nee')">
+              ❌<span>Nee</span>
+            </div>
+            <div class="pendel-opt" onclick="selectPendel(this,'Neutraal')">
+              ⭕<span>Neutraal</span>
+            </div>
+            <div class="pendel-opt" onclick="selectPendel(this,'Blokkade')">
+              🔴<span>Blokkade</span>
+            </div>
+          </div>
+          <input type="hidden" id="pendel-uitkomst">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Aanvullende notities pendel</label>
+          <textarea class="form-textarea" id="pendel-notities" placeholder="Beweging, energie, gevoel…" style="min-height:60px"></textarea>
+        </div>
+      </div>
+
+      <!-- Etherische Oliën -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">🌸</span> Etherische Oliën</div>
+        <div class="form-group">
+          <label class="form-label">Gebruikte oliën (klik om te selecteren)</label>
+          <div class="tags-container" id="olie-tags"></div>
+        </div>
+        <div class="form-group" style="margin-top:10px">
+          <label class="form-label">Toepassing & reden</label>
+          <textarea class="form-textarea" id="olie-notities" placeholder="Hoe gebruikt, welke reactie, intuïtieve keuze…" style="min-height:60px"></textarea>
+        </div>
+      </div>
+
+      <!-- Kruiden -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">🌿</span> Kruiden</div>
+        <div class="form-group">
+          <label class="form-label">Geadviseerde kruiden</label>
+          <div class="tags-container" id="kruid-tags"></div>
+        </div>
+        <div class="form-group" style="margin-top:10px">
+          <label class="form-label">Advies & dosering</label>
+          <textarea class="form-textarea" id="kruid-notities" placeholder="Bereidingswijze, dosering, hoe en wanneer innemen…" style="min-height:60px"></textarea>
+        </div>
+      </div>
+
+      <!-- Sessie notities -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">📝</span> Sessie notities</div>
+        <div class="form-group">
+          <label class="form-label">Verloop van de sessie</label>
+          <textarea class="form-textarea" id="sess-notities" placeholder="Wat is er besproken, welke technieken gebruikt, hoe reageerde de klant…" style="min-height:110px"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Doorbraken & inzichten</label>
+          <textarea class="form-textarea" id="sess-inzichten" placeholder="Wat kwam er naar de oppervlakte? Verschuivingen, emoties, realisaties…" style="min-height:80px"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Energetische observaties</label>
+          <textarea class="form-textarea" id="sess-energie" placeholder="Chakra's, aura, energiestromen, blokkades…" style="min-height:70px"></textarea>
+        </div>
+      </div>
+
+      <!-- Huiswerk -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="icon">🏡</span> Huiswerk & oefeningen</div>
+        <div class="form-group">
+          <label class="form-label">Mee te geven oefeningen</label>
+          <textarea class="form-textarea" id="sess-huiswerk" placeholder="Meditaties, ademhalingsoefeningen, lichaamswerk, journaling opdrachten…" style="min-height:80px"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Aanbevelingen</label>
+          <textarea class="form-textarea" id="sess-aanbevel" placeholder="Boeken, podcasts, verdere begeleiding, levensstijl…" style="min-height:60px"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Volgende sessie / intentie</label>
+          <input type="text" class="form-input" id="sess-volgende" placeholder="Wat staat er centraal in de volgende sessie…">
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;justify-content:flex-end;padding-bottom:40px">
+        <button class="btn btn-ghost" onclick="clearSessie()">Wissen</button>
+        <button class="btn btn-outline" onclick="saveSessieAndView()">Opslaan & rapport</button>
+        <button class="btn btn-primary" onclick="saveSessie()">💾 Sessie opslaan</button>
+      </div>
+    </div>
+
+    <!-- BIBLIOTHEEK -->
+    <div class="page" id="page-bibliotheek">
+      <div class="page-header">
+        <h2>Bibliotheek</h2>
+        <p>Naslagwerk voor jouw holistische toolbox</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showLibTab('olieen')">🌸 Oliën</button>
+        <button class="tab-btn" onclick="showLibTab('kruiden')">🌿 Kruiden</button>
+        <button class="tab-btn" onclick="showLibTab('tarot')">🃏 Tarot</button>
+        <button class="tab-btn" onclick="showLibTab('psycho')">🧠 Psychosomatiek</button>
+      </div>
+      <div id="lib-olieen" class="lib-content"></div>
+      <div id="lib-kruiden" class="lib-content" style="display:none"></div>
+      <div id="lib-tarot" class="lib-content" style="display:none"></div>
+      <div id="lib-psycho" class="lib-content" style="display:none"></div>
+    </div>
+
+    <!-- RAPPORTEN -->
+    <div class="page" id="page-rapporten">
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <h2>Rapporten</h2>
+          <p>Bekijk en print sessieverslagen</p>
+        </div>
+        <button class="btn btn-ghost" onclick="window.print()">🖨️ Afdrukken</button>
+      </div>
+      <div class="form-group" style="max-width:340px;margin-bottom:24px">
+        <label class="form-label">Selecteer sessie</label>
+        <select class="form-select" id="rapport-select" onchange="renderRapport()">
+          <option value="">— Kies een sessie —</option>
+        </select>
+      </div>
+      <div id="rapport-output"></div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- MODALS -->
+<div class="modal-overlay" id="klant-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="klant-modal-title">Klant toevoegen</h3>
+      <span class="modal-close" onclick="closeKlantModal()">×</span>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Naam</label>
+      <input type="text" class="form-input" id="km-naam" placeholder="Voor- en achternaam">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-input" id="km-email" placeholder="email@voorbeeld.nl">
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp nummer</label>
+        <input type="tel" class="form-input" id="km-wa" placeholder="+31 6 12345678">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Geboortedatum</label>
+        <input type="date" class="form-input" id="km-gbd">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Woonplaats</label>
+        <input type="text" class="form-input" id="km-woon" placeholder="Stad, land">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Intake notities</label>
+      <textarea class="form-textarea" id="km-intake" placeholder="Achtergrond, klachten, doelen, bijzonderheden…"></textarea>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
+      <button class="btn btn-ghost" onclick="closeKlantModal()">Annuleren</button>
+      <button class="btn btn-primary" onclick="saveKlant()">Klant opslaan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="klant-detail-modal">
+  <div class="modal" style="max-width:680px">
+    <div class="modal-header">
+      <h3 class="modal-title" id="kd-naam">Klantprofiel</h3>
+      <span class="modal-close" onclick="document.getElementById('klant-detail-modal').classList.remove('open')">×</span>
+    </div>
+    <div id="kd-content"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="tarot-picker-modal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header">
+      <h3 class="modal-title">Kaart kiezen</h3>
+      <span class="modal-close" onclick="document.getElementById('tarot-picker-modal').classList.remove('open')">×</span>
+    </div>
+    <div class="search-bar" style="margin-bottom:12px">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="tarot-search" placeholder="Zoek kaart…" oninput="filterTarotPicker()">
+    </div>
+    <div id="tarot-picker-list" style="max-height:340px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ======= DATA =======
+const PIN = '1234';
+let currentPin = '';
+let editingKlantId = null;
+let currentTarotSlot = null;
+
+// Essential oils library
+const OLIEEN = [
+  { naam: 'Lavendel', werking: 'Ontspanning, slaap, angstreductie, wondgenezing', chakra: 'Kroon', emotie: 'Stress, onrust' },
+  { naam: 'Frankincense', werking: 'Meditatie, spirituele verbinding, celvernieuwing', chakra: 'Kroon / Derde oog', emotie: 'Loslaatpatronen, angst' },
+  { naam: 'Roos', werking: 'Hartopening, liefde, trauma, huid', chakra: 'Hart', emotie: 'Rouwverwerking, zelfliefde' },
+  { naam: 'Bergamot', werking: 'Stemmingsverbetering, angst, depressie, spijsvertering', chakra: 'Zonnevlecht', emotie: 'Verdriet, onzekerheid' },
+  { naam: 'Ylang Ylang', werking: 'Hartritme, sensueel, bloeddruk, zelfvertrouwen', chakra: 'Hart / Sacrale', emotie: 'Controledrang, woede' },
+  { naam: 'Eucalyptus', werking: 'Luchtwegen, helderheid, grenzen, bescherming', chakra: 'Keel', emotie: 'Opgekropte emoties, grenzen' },
+  { naam: 'Pepermunt', werking: 'Concentratie, hoofdpijn, spijsvertering, verkoeling', chakra: 'Derde oog', emotie: 'Overdenken, mentale mist' },
+  { naam: 'Sandelhout', werking: 'Aarding, rust, meditatie, mannelijke energie', chakra: 'Wortel', emotie: 'Losgeslagenheid, angst' },
+  { naam: 'Citroen', werking: 'Reinigend, energie, optimisme, ontgifting', chakra: 'Zonnevlecht', emotie: 'Negativiteit, vermoeidheid' },
+  { naam: 'Roos-Geranium', werking: 'Hormoonbalans, huid, emotioneel evenwicht', chakra: 'Hart / Sacrale', emotie: 'PMS, stemmingswisselingen' },
+  { naam: 'Vetiver', werking: 'Diepe aarding, trauma, PTSS, rustgevend', chakra: 'Wortel', emotie: 'Trauma, disconnectie' },
+  { naam: 'Kamille (Roomse)', werking: 'Kalmering, slaap, pijn, ontstekingsremmend', chakra: 'Hart', emotie: 'Innerlijk kind, weerstand' },
+  { naam: 'Mirre', werking: 'Spiritueel, wonden, schildklier, oud leed', chakra: 'Wortel / Sacrale', emotie: 'Stilstand, emotioneel vastzitten' },
+  { naam: 'Tijm', werking: 'Keel, ademhaling, kracht, moed', chakra: 'Keel', emotie: 'Angst voor spreken, onderdrukking' },
+  { naam: 'Cipres', werking: 'Overgang, loslaten, circulatie, droefheid', chakra: 'Hart', emotie: 'Verlies, verandering' },
+  { naam: 'Patchouli', werking: 'Aarding, zinnelijkheid, huid, financiën', chakra: 'Wortel / Sacrale', emotie: 'Niet in het lichaam zitten' },
+  { naam: 'Nerolie', werking: 'Angst, paniekaanvallen, huid, vreugde', chakra: 'Hart', emotie: 'Angst, perfectionisme' },
+  { naam: 'Ceder', werking: 'Kracht, aarding, focus, luchtwegen', chakra: 'Wortel / Keel', emotie: 'Zelftwijfel, zwakke grenzen' },
+];
+
+// Herbs library
+const KRUIDEN = [
+  { naam: 'Valeriaan', werking: 'Slaap, angst, zenuwstelsel kalmeren', gebruik: 'Tinctuur of capsule voor het slapen' },
+  { naam: 'Kamille', werking: 'Spijsvertering, ontspanning, ontstekingsremmend', gebruik: 'Thee 2-3x daags' },
+  { naam: 'Sint-Janskruid', werking: 'Milde depressie, stemming, zenuwen', gebruik: 'Capsule, let op medicijninteracties' },
+  { naam: 'Ashwagandha', werking: 'Adaptogeen, stress, bijnier, energie', gebruik: 'Poeder in warme drank of capsule' },
+  { naam: 'Passiebloem', werking: 'Angst, slaap, overdenken stoppen', gebruik: 'Thee of tinctuur voor bed' },
+  { naam: 'Citroenmelisse', werking: 'Zenuwen, slaap, spijsvertering, hartkloppingen', gebruik: 'Thee of tinctuur' },
+  { naam: 'Rhodiola', werking: 'Energie, uithoudingsvermogen, mentale helderheid', gebruik: 'Capsule in de ochtend' },
+  { naam: 'Tulsi (Heilig Basilicum)', werking: 'Adaptogeen, immuun, spirituele helderheid', gebruik: 'Thee of tinctuur' },
+  { naam: 'Gember', werking: 'Spijsvertering, circulatie, warmte, misselijkheid', gebruik: 'Verse thee of capsule' },
+  { naam: 'Lavendel', werking: 'Angst, slaap, hoofdpijn, huid', gebruik: 'Thee, tinctuur of bad' },
+  { naam: 'Brandnetel', werking: 'IJzertekort, detox, gewrichten, energie', gebruik: 'Thee 2-3x daags' },
+  { naam: 'Maretak', werking: 'Bloeddruk, immuun, anti-kanker, aarding', gebruik: 'Tinctuur – voorzichtig doseren' },
+  { naam: 'Wilde haverplant', werking: 'Uitputting zenuwen, herstelfase, slaap', gebruik: 'Thee of tinctuur langdurig' },
+  { naam: 'Schisandra', werking: 'Lever, adaptogeen, energie, stressbescherming', gebruik: 'Poeder of capsule' },
+  { naam: 'Moederkruid', werking: 'Migraine, menstruatie, ontsteking', gebruik: 'Capsule dagelijks' },
+  { naam: 'Rozenwortel', werking: 'Mentale vermoeidheid, focus, adaptogeen', gebruik: 'Tinctuur of capsule ochtend' },
+];
+
+// Tarot Major Arcana
+const TAROT_MAJOR = [
+  { naam: '0 - De Dwaas', thema: 'Nieuw begin, onschuld, spontaniteit, sprong in het onbekende', element: 'Lucht' },
+  { naam: 'I - De Magiër', thema: 'Wilskracht, manifestatie, vaardigheid, focus', element: 'Vuur/Lucht' },
+  { naam: 'II - De Hogepriesteres', thema: 'Intuïtie, het onderbewuste, innerlijke kennis, mysterie', element: 'Water' },
+  { naam: 'III - De Keizerin', thema: 'Vruchtbaarheid, moederliefde, natuur, overvloed', element: 'Aarde' },
+  { naam: 'IV - De Keizer', thema: 'Autoriteit, structuur, stabiliteit, vaderlijke energie', element: 'Vuur' },
+  { naam: 'V - De Hiërofant', thema: 'Traditie, geloof, spirituele begeleiding, systemen', element: 'Aarde' },
+  { naam: 'VI - De Geliefden', thema: 'Liefde, keuze, waarden, relaties, verbinding', element: 'Lucht' },
+  { naam: 'VII - De Wagen', thema: 'Overwinning, controle, doorzettingsvermogen, beweging', element: 'Water' },
+  { naam: 'VIII - Kracht', thema: 'Innerlijke kracht, moed, geduld, het temmen van angst', element: 'Vuur' },
+  { naam: 'IX - De Kluizenaar', thema: 'Terugtrekking, reflectie, innerlijke zoektocht, wijsheid', element: 'Aarde' },
+  { naam: 'X - Het Wiel', thema: 'Lot, cycli, verandering, bestemming, karma', element: 'Vuur' },
+  { naam: 'XI - De Gerechtigheid', thema: 'Eerlijkheid, waarheid, oorzaak en gevolg, karma', element: 'Lucht' },
+  { naam: 'XII - De Gehangene', thema: 'Overgave, ander perspectief, loslaten, wachten', element: 'Water' },
+  { naam: 'XIII - De Dood', thema: 'Transformatie, einde, overgang, vernieuwing', element: 'Water' },
+  { naam: 'XIV - Matigheid', thema: 'Balans, geduld, integratie, goddelijke timing', element: 'Vuur' },
+  { naam: 'XV - De Duivel', thema: 'Schaduw, verslaving, materieel, vastgeketend zijn', element: 'Aarde' },
+  { naam: 'XVI - De Toren', thema: 'Plotselinge verandering, onthulling, ontwrichting, bevrijding', element: 'Vuur' },
+  { naam: 'XVII - De Ster', thema: 'Hoop, inspiratie, herstel, vertrouwen, genezing', element: 'Lucht' },
+  { naam: 'XVIII - De Maan', thema: 'Illusie, angst, onderbewuste, verborgen zaken, dromen', element: 'Water' },
+  { naam: 'XIX - De Zon', thema: 'Vreugde, succes, helderheid, vitaliteit, onschuld', element: 'Vuur' },
+  { naam: 'XX - Het Oordeel', thema: 'Wedergeboorte, innerlijke roeping, vergeving, opstanding', element: 'Vuur' },
+  { naam: 'XXI - De Wereld', thema: 'Voltooiing, integratie, heelheid, prestatie, dans van het leven', element: 'Aarde' },
+];
+
+const TAROT_MINOR_SUITS = ['Staven (Vuur)', 'Kelken (Water)', 'Zwaarden (Lucht)', 'Pentakels (Aarde)'];
+const TAROT_RANKS = ['Aas','2','3','4','5','6','7','8','9','10','Page','Ridder','Koningin','Koning'];
+
+let allTarot = [...TAROT_MAJOR];
+TAROT_MINOR_SUITS.forEach(suit => {
+  TAROT_RANKS.forEach(rank => {
+    allTarot.push({ naam: `${rank} van ${suit}`, thema: `${suit} energie — ${rank}`, element: suit.split(' ')[1]?.replace('(','').replace(')','') || '' });
+  });
+});
+
+// Psychosomatics library
+const PSYCHO = [
+  { gebied: 'Hoofd / Hoofdpijn', thema: 'Overdenken, perfectionisme, controle willen houden, zichzelf te hard aanpakken' },
+  { gebied: 'Keel / Stem', thema: 'Niet durven spreken, iets inslikken, creatieve expressie geblokkeerd, eigen waarheid onderdrukken' },
+  { gebied: 'Nek / Schouders', thema: 'Zware verantwoordelijkheid, starheid, "ik sta alleen voor alles", angst voor kwetsbaarheid' },
+  { gebied: 'Hart / Borst', thema: 'Rouwverwerking, opgekropte liefde of verdriet, beschermingspantser, afwijzingsangst' },
+  { gebied: 'Longen', thema: 'Verdriet, gebrek aan levensruimte, adem niet vol kunnen nemen, grenzen voelen' },
+  { gebied: 'Buik / Maag', thema: 'Angst, spanning, "niet kunnen verteren", moeite met verandering of onzekerheid' },
+  { gebied: 'Lever / Gal', thema: 'Woede, frustratie, bitterheid, oordeel, opgekropte emoties die niet worden geuit' },
+  { gebied: 'Nieren', thema: 'Levensangst, oertrauma, chronische stress, vermoeidheid op zielsniveau' },
+  { gebied: 'Onderrug', thema: 'Financiële angst, gebrek aan steun, "ik moet het alleen doen", levensondersteuning' },
+  { gebied: 'Heup / Bekken', thema: 'Stagnatie in leven, angst om vooruit te gaan, seksueel trauma, creativiteit geblokkeerd' },
+  { gebied: 'Knieën', thema: 'Gebrek aan flexibiliteit, koppigheid, ego, trots, angst voor verandering van richting' },
+  { gebied: 'Voeten / Enkels', thema: 'Aarding, richting, angst om te staan voor zichzelf, basale veiligheid' },
+  { gebied: 'Huid', thema: 'Grenzen, contact met de buitenwereld, schaamte, afscherming, gevoeligheid' },
+  { gebied: 'Ogen', thema: 'Niet willen zien (pijn, situatie, waarheid), toekomstvisie, angst voor helderheid' },
+  { gebied: 'Oren', thema: 'Niet willen horen (ouders, binnenste stem), luisteren naar anderen vs zichzelf' },
+  { gebied: 'Gewrichten', thema: 'Starheid, rigiditeit in denken, ontbreken van flow en aanpassingsvermogen' },
+  { gebied: 'Schildklier', thema: 'Eigen wil vs andermans wil, niet mogen zijn wie je bent, ritme van het leven' },
+  { gebied: 'Immuunsysteem', thema: 'Grenzen naar de buitenwereld, innerlijke strijd, wie ben ik, zelfbescherming' },
+];
+
+// ======= DATA STORAGE =======
+function getData(key) {
+  try { return JSON.parse(localStorage.getItem(key)) || []; } catch { return []; }
+}
+function setData(key, val) {
+  localStorage.setItem(key, JSON.stringify(val));
+}
+function getKlanten() { return getData('colibri_klanten'); }
+function getSessies() { return getData('colibri_sessies'); }
+function saveKlanten(k) { setData('colibri_klanten', k); }
+function saveSessies(s) { setData('colibri_sessies', s); }
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+// ======= PIN LOGIN =======
+function pinInput(d) {
+  if (currentPin.length >= 4) return;
+  currentPin += d;
+  updateDots();
+  if (currentPin.length === 4) checkPin();
+}
+function pinDel() {
+  currentPin = currentPin.slice(0,-1);
+  updateDots();
+  document.getElementById('pin-error').textContent = '';
+}
+function updateDots() {
+  for (let i=0;i<4;i++) {
+    document.getElementById('d'+i).classList.toggle('filled', i < currentPin.length);
+  }
+}
+function checkPin() {
+  if (currentPin === PIN) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    initApp();
+  } else {
+    document.getElementById('pin-error').textContent = 'Onjuiste PIN. Probeer opnieuw.';
+    currentPin = '';
+    updateDots();
+  }
+}
+function logout() {
+  currentPin = '';
+  updateDots();
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+// ======= NAVIGATION =======
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  // find nav item
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(item => {
+    if (item.getAttribute('onclick')?.includes("'"+page+"'")) item.classList.add('active');
+  });
+  if (page==='dashboard') renderDashboard();
+  if (page==='klanten') renderKlanten();
+  if (page==='sessies') renderSessies();
+  if (page==='nieuw') initNieuweSessie();
+  if (page==='bibliotheek') renderBibliotheek();
+  if (page==='rapporten') renderRapportSelect();
+}
+
+// ======= INIT =======
+function initApp() {
+  const now = new Date();
+  document.getElementById('dash-date').textContent = now.toLocaleDateString('nl-NL', {weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  renderDashboard();
+  renderOlieTags();
+  renderKruidTags();
+  initBibliotheek();
+}
+
+// ======= DASHBOARD =======
+function renderDashboard() {
+  const klanten = getKlanten();
+  const sessies = getSessies();
+  document.getElementById('stat-klanten').textContent = klanten.length;
+  document.getElementById('stat-sessies').textContent = sessies.length;
+  const now = new Date();
+  const maand = sessies.filter(s => {
+    const d = new Date(s.datum);
+    return d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
+  }).length;
+  document.getElementById('stat-maand').textContent = maand;
+  const sorted = [...sessies].sort((a,b)=>new Date(b.datum)-new Date(a.datum));
+  if (sorted.length > 0) {
+    const last = sorted[0];
+    document.getElementById('stat-laatste').textContent = new Date(last.datum).toLocaleDateString('nl-NL',{day:'numeric',month:'short'});
+    const kl = klanten.find(k=>k.id===last.klantId);
+    document.getElementById('stat-laatste-client').textContent = kl ? kl.naam : '';
+  }
+  const dashSessies = document.getElementById('dash-sessies');
+  if (sorted.length === 0) {
+    dashSessies.innerHTML = '<div class="empty-state" style="padding:30px 0"><div class="empty-icon">📋</div><p>Nog geen sessies</p></div>';
+    return;
+  }
+  dashSessies.innerHTML = sorted.slice(0,4).map(s => {
+    const kl = klanten.find(k=>k.id===s.klantId);
+    return `<div class="session-item">
+      <div class="session-date">${new Date(s.datum).toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long'})}</div>
+      <div class="session-client">${kl ? kl.naam : 'Onbekende klant'}</div>
+      <div class="session-preview">${s.vraag || s.notities || '—'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ======= KLANTEN =======
+function renderKlanten() {
+  const q = (document.getElementById('klant-search')?.value||'').toLowerCase();
+  const klanten = getKlanten().filter(k=>!q || k.naam.toLowerCase().includes(q) || k.email?.toLowerCase().includes(q));
+  const el = document.getElementById('klant-list');
+  if (klanten.length === 0) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">👥</div><h3>Nog geen klanten</h3><p>Voeg je eerste cliënt toe</p></div>';
+    return;
+  }
+  el.innerHTML = klanten.map(k => `
+    <div class="client-item" onclick="openKlantDetail('${k.id}')">
+      <div class="client-avatar">${k.naam.charAt(0).toUpperCase()}</div>
+      <div class="client-info">
+        <div class="client-name">${k.naam}</div>
+        <div class="client-meta">${k.email||''} ${k.woon ? '· '+k.woon : ''}</div>
+      </div>
+      <div class="client-actions" onclick="event.stopPropagation()">
+        <button class="btn btn-ghost btn-sm" onclick="openKlantModal('${k.id}')">✏️</button>
+        <button class="btn btn-ghost btn-sm" onclick="deleteKlant('${k.id}')">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openKlantModal(id) {
+  editingKlantId = id || null;
+  const modal = document.getElementById('klant-modal');
+  modal.classList.add('open');
+  document.getElementById('klant-modal-title').textContent = id ? 'Klant bewerken' : 'Klant toevoegen';
+  if (id) {
+    const k = getKlanten().find(x=>x.id===id);
+    if (k) {
+      document.getElementById('km-naam').value = k.naam||'';
+      document.getElementById('km-email').value = k.email||'';
+      document.getElementById('km-wa').value = k.wa||'';
+      document.getElementById('km-gbd').value = k.gbd||'';
+      document.getElementById('km-woon').value = k.woon||'';
+      document.getElementById('km-intake').value = k.intake||'';
+    }
+  } else {
+    ['km-naam','km-email','km-wa','km-gbd','km-woon','km-intake'].forEach(id=>document.getElementById(id).value='');
+  }
+}
+function closeKlantModal() { document.getElementById('klant-modal').classList.remove('open'); }
+
+function saveKlant() {
+  const naam = document.getElementById('km-naam').value.trim();
+  if (!naam) { alert('Naam is verplicht'); return; }
+  const klanten = getKlanten();
+  const obj = {
+    id: editingKlantId || genId(),
+    naam,
+    email: document.getElementById('km-email').value,
+    wa: document.getElementById('km-wa').value,
+    gbd: document.getElementById('km-gbd').value,
+    woon: document.getElementById('km-woon').value,
+    intake: document.getElementById('km-intake').value,
+    aangemaakt: editingKlantId ? (klanten.find(k=>k.id===editingKlantId)?.aangemaakt || new Date().toISOString()) : new Date().toISOString(),
+  };
+  if (editingKlantId) {
+    const idx = klanten.findIndex(k=>k.id===editingKlantId);
+    klanten[idx] = obj;
+  } else {
+    klanten.push(obj);
+  }
+  saveKlanten(klanten);
+  closeKlantModal();
+  renderKlanten();
+  showToast('Klant opgeslagen ✓');
+}
+
+function deleteKlant(id) {
+  if (!confirm('Klant verwijderen?')) return;
+  saveKlanten(getKlanten().filter(k=>k.id!==id));
+  renderKlanten();
+  showToast('Klant verwijderd');
+}
+
+function openKlantDetail(id) {
+  const k = getKlanten().find(x=>x.id===id);
+  if (!k) return;
+  const sessies = getSessies().filter(s=>s.klantId===id).sort((a,b)=>new Date(b.datum)-new Date(a.datum));
+  document.getElementById('kd-naam').textContent = k.naam;
+  document.getElementById('kd-content').innerHTML = `
+    <div class="grid-2" style="margin-bottom:20px">
+      <div><div class="report-section-title">Contactgegevens</div>
+        <div class="report-text">${k.email ? '✉️ '+k.email+'<br>' : ''}${k.wa ? '📱 '+k.wa+'<br>' : ''}${k.gbd ? '🎂 '+k.gbd+'<br>' : ''}${k.woon ? '📍 '+k.woon : ''}</div>
+      </div>
+      <div><div class="report-section-title">Intake</div>
+        <div class="report-text">${k.intake||'—'}</div>
+      </div>
+    </div>
+    <div class="report-section-title" style="margin-bottom:10px">Sessies (${sessies.length})</div>
+    ${sessies.length === 0 ? '<p style="color:var(--light);font-size:13px">Nog geen sessies</p>' :
+    sessies.map(s=>`<div class="session-item" style="cursor:default">
+      <div class="session-date">${new Date(s.datum).toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div>
+      <div class="session-client">${s.type||''}</div>
+      <div class="session-preview">${s.vraag||s.notities||'—'}</div>
+    </div>`).join('')}
+    <div style="margin-top:16px;display:flex;gap:10px">
+      <button class="btn btn-primary btn-sm" onclick="startSessieVoor('${id}')">+ Nieuwe sessie</button>
+    </div>
+  `;
+  document.getElementById('klant-detail-modal').classList.add('open');
+}
+
+function startSessieVoor(klantId) {
+  document.getElementById('klant-detail-modal').classList.remove('open');
+  showPage('nieuw');
+  setTimeout(()=>{ document.getElementById('sess-klant').value = klantId; }, 100);
+}
+
+// ======= SESSIES LIST =======
+function renderSessies() {
+  const q = (document.getElementById('sessie-search')?.value||'').toLowerCase();
+  const klanten = getKlanten();
+  const sessies = getSessies()
+    .sort((a,b)=>new Date(b.datum)-new Date(a.datum))
+    .filter(s=>{
+      if (!q) return true;
+      const kl = klanten.find(k=>k.id===s.klantId);
+      return kl?.naam.toLowerCase().includes(q) || s.datum?.includes(q);
+    });
+  const el = document.getElementById('sessie-list');
+  if (sessies.length===0) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><h3>Geen sessies gevonden</h3></div>';
+    return;
+  }
+  el.innerHTML = sessies.map(s=>{
+    const kl = klanten.find(k=>k.id===s.klantId);
+    return `<div class="session-item" style="cursor:pointer" onclick="viewSessie('${s.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:start">
+        <div>
+          <div class="session-date">${new Date(s.datum).toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div>
+          <div class="session-client">${kl ? kl.naam : 'Onbekend'} <span style="font-weight:300;color:var(--light)">· ${s.type||''}</span></div>
+          <div class="session-preview">${s.vraag||s.notities||'—'}</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();viewSessie('${s.id}')">📄 Rapport</button>
+          <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();deleteSessie('${s.id}')">🗑️</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteSessie(id) {
+  if (!confirm('Sessie verwijderen?')) return;
+  saveSessies(getSessies().filter(s=>s.id!==id));
+  renderSessies();
+  showToast('Sessie verwijderd');
+}
+
+function viewSessie(id) {
+  showPage('rapporten');
+  setTimeout(()=>{
+    document.getElementById('rapport-select').value = id;
+    renderRapport();
+  },100);
+}
+
+// ======= NIEUWE SESSIE =======
+function initNieuweSessie() {
+  // Fill client dropdown
+  const sel = document.getElementById('sess-klant');
+  const klanten = getKlanten();
+  sel.innerHTML = '<option value="">— Selecteer klant —</option>' + klanten.map(k=>`<option value="${k.id}">${k.naam}</option>`).join('');
+  // Set now as default date
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset()*60000).toISOString().slice(0,16);
+  document.getElementById('sess-datum').value = local;
+  // Reset tarot
+  document.getElementById('tarot-spread').value = '0';
+  document.getElementById('tarot-slots').style.display = 'none';
+  document.getElementById('tarot-cards-row').innerHTML = '';
+}
+
+function renderOlieTags() {
+  const el = document.getElementById('olie-tags');
+  if (!el) return;
+  el.innerHTML = OLIEEN.map(o=>`<div class="tag" onclick="this.classList.toggle('selected')" data-naam="${o.naam}">${o.naam}</div>`).join('');
+}
+
+function renderKruidTags() {
+  const el = document.getElementById('kruid-tags');
+  if (!el) return;
+  el.innerHTML = KRUIDEN.map(k=>`<div class="tag" onclick="this.classList.toggle('selected')" data-naam="${k.naam}">${k.naam}</div>`).join('');
+}
+
+function getSelectedTags(containerId) {
+  return [...document.querySelectorAll(`#${containerId} .tag.selected`)].map(t=>t.dataset.naam);
+}
+
+function toggleZone(el) { el.classList.toggle('active'); }
+
+function getActiveZones() {
+  return [...document.querySelectorAll('#body-zones .body-zone.active')].map(z=>z.textContent);
+}
+
+function selectPendel(el, val) {
+  document.querySelectorAll('.pendel-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('pendel-uitkomst').value = val;
+}
+
+// Tarot spread
+const SPREAD_POSITIONS = {
+  '1': ['Focus kaart'],
+  '3': ['Verleden','Heden','Toekomst'],
+  '5': ['Situatie','Uitdaging','Onderbewuste','Advies','Uitkomst'],
+};
+let drawnCards = {};
+
+function updateTarotSpread() {
+  const val = document.getElementById('tarot-spread').value;
+  const slots = document.getElementById('tarot-slots');
+  if (val === '0') { slots.style.display='none'; return; }
+  slots.style.display = 'block';
+  drawnCards = {};
+  const row = document.getElementById('tarot-cards-row');
+  if (val === 'custom') {
+    row.innerHTML = '';
+    return;
+  }
+  const positions = SPREAD_POSITIONS[val] || [];
+  row.innerHTML = positions.map((pos,i)=>`
+    <div class="tarot-card-slot" id="tarot-slot-${i}">
+      <div class="tarot-card-visual" id="tarot-visual-${i}" onclick="openTarotPicker(${i})">🃏</div>
+      <div class="tarot-slot-label" style="font-size:10px;color:var(--light);margin-bottom:3px">${pos}</div>
+      <div class="tarot-slot-label" id="tarot-name-${i}" style="max-width:80px;text-align:center;font-size:11px;color:var(--mid)">Klik om te trekken</div>
+    </div>
+  `).join('');
+}
+
+function openTarotPicker(slotIndex) {
+  currentTarotSlot = slotIndex;
+  document.getElementById('tarot-picker-modal').classList.add('open');
+  document.getElementById('tarot-search').value = '';
+  renderTarotPickerList();
+}
+
+function renderTarotPickerList() {
+  const q = document.getElementById('tarot-search').value.toLowerCase();
+  const filtered = allTarot.filter(t=>!q||t.naam.toLowerCase().includes(q));
+  document.getElementById('tarot-picker-list').innerHTML = filtered.map((t,i)=>`
+    <div class="lib-item" onclick="selectTarotCard('${t.naam.replace(/'/g,"\\'")}')">
+      <div class="lib-item-title">${t.naam}</div>
+      <div class="lib-item-desc">${t.thema}</div>
+    </div>
+  `).join('');
+}
+
+function filterTarotPicker() { renderTarotPickerList(); }
+
+function selectTarotCard(naam) {
+  drawnCards[currentTarotSlot] = naam;
+  const visual = document.getElementById('tarot-visual-'+currentTarotSlot);
+  const nameEl = document.getElementById('tarot-name-'+currentTarotSlot);
+  if (visual) { visual.classList.add('drawn'); visual.textContent = '✨'; }
+  if (nameEl) nameEl.textContent = naam;
+  document.getElementById('tarot-picker-modal').classList.remove('open');
+}
+
+function getSessieData() {
+  return {
+    id: genId(),
+    klantId: document.getElementById('sess-klant').value,
+    datum: document.getElementById('sess-datum').value,
+    vraag: document.getElementById('sess-vraag').value,
+    type: document.getElementById('sess-type').value,
+    lichaamsZones: getActiveZones(),
+    scan: document.getElementById('sess-scan').value,
+    psycho: document.getElementById('sess-psycho').value,
+    tarotSpread: document.getElementById('tarot-spread').value,
+    tarotKaarten: drawnCards,
+    tarotNotes: document.getElementById('tarot-notes')?.value||'',
+    pendelVraag: document.getElementById('pendel-vraag').value,
+    pendelUitkomst: document.getElementById('pendel-uitkomst').value,
+    pendelNotities: document.getElementById('pendel-notities').value,
+    olieen: getSelectedTags('olie-tags'),
+    olieNotities: document.getElementById('olie-notities').value,
+    kruiden: getSelectedTags('kruid-tags'),
+    kruidNotities: document.getElementById('kruid-notities').value,
+    notities: document.getElementById('sess-notities').value,
+    inzichten: document.getElementById('sess-inzichten').value,
+    energie: document.getElementById('sess-energie').value,
+    huiswerk: document.getElementById('sess-huiswerk').value,
+    aanbevel: document.getElementById('sess-aanbevel').value,
+    volgende: document.getElementById('sess-volgende').value,
+    opgeslagenOp: new Date().toISOString(),
+  };
+}
+
+function saveSessie() {
+  const data = getSessieData();
+  if (!data.klantId) { alert('Selecteer een klant'); return; }
+  const sessies = getSessies();
+  sessies.push(data);
+  saveSessies(sessies);
+  showToast('Sessie opgeslagen ✓');
+  showPage('sessies');
+}
+
+function saveSessieAndView() {
+  const data = getSessieData();
+  if (!data.klantId) { alert('Selecteer een klant'); return; }
+  const sessies = getSessies();
+  sessies.push(data);
+  saveSessies(sessies);
+  viewSessie(data.id);
+}
+
+function clearSessie() {
+  if (!confirm('Alles wissen?')) return;
+  initNieuweSessie();
+  ['sess-vraag','sess-scan','sess-psycho','tarot-notes','pendel-vraag','pendel-notities','olie-notities','kruid-notities','sess-notities','sess-inzichten','sess-energie','sess-huiswerk','sess-aanbevel','sess-volgende']
+    .forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.querySelectorAll('.body-zone').forEach(z=>z.classList.remove('active'));
+  document.querySelectorAll('.tag').forEach(t=>t.classList.remove('selected'));
+  document.querySelectorAll('.pendel-opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('pendel-uitkomst').value='';
+}
+
+// ======= BIBLIOTHEEK =======
+function initBibliotheek() { renderBibliotheek(); }
+function renderBibliotheek() { renderLibOlieen(); renderLibKruiden(); renderLibTarot(); renderLibPsycho(); }
+
+function showLibTab(tab) {
+  document.querySelectorAll('.lib-content').forEach(l=>l.style.display='none');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('lib-'+tab).style.display='block';
+  event.target.classList.add('active');
+}
+
+function renderLibOlieen() {
+  document.getElementById('lib-olieen').innerHTML = OLIEEN.map(o=>`
+    <div class="lib-item">
+      <div class="lib-item-title">🌸 ${o.naam}</div>
+      <div class="lib-item-desc"><strong>Werking:</strong> ${o.werking}</div>
+      <div class="lib-item-desc"><strong>Chakra:</strong> ${o.chakra} &nbsp;·&nbsp; <strong>Emotie:</strong> ${o.emotie}</div>
+    </div>
+  `).join('');
+}
+function renderLibKruiden() {
+  document.getElementById('lib-kruiden').innerHTML = KRUIDEN.map(k=>`
+    <div class="lib-item">
+      <div class="lib-item-title">🌿 ${k.naam}</div>
+      <div class="lib-item-desc"><strong>Werking:</strong> ${k.werking}</div>
+      <div class="lib-item-desc"><strong>Gebruik:</strong> ${k.gebruik}</div>
+    </div>
+  `).join('');
+}
+function renderLibTarot() {
+  document.getElementById('lib-tarot').innerHTML = `
+    <h3 style="font-size:20px;color:var(--sage-dark);margin-bottom:16px">Grote Arcana</h3>
+    ${TAROT_MAJOR.map(t=>`<div class="lib-item"><div class="lib-item-title">🃏 ${t.naam}</div><div class="lib-item-desc">${t.thema}</div><div class="lib-item-desc" style="color:var(--terra)">Element: ${t.element}</div></div>`).join('')}
+    <h3 style="font-size:20px;color:var(--sage-dark);margin:24px 0 16px">Kleine Arcana</h3>
+    ${TAROT_MINOR_SUITS.map(suit=>`<div class="lib-item"><div class="lib-item-title">${suit}</div><div class="lib-item-desc">Aas t/m Koning — vitaliteit, groei, initiatief, voltooiing</div></div>`).join('')}
+  `;
+}
+function renderLibPsycho() {
+  document.getElementById('lib-psycho').innerHTML = `
+    <p style="font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.7">Psychosomatiek kijkt naar de verbinding tussen emoties, gedachtepatronen en lichamelijke klachten. Gebruik dit als inspiratie, niet als diagnose.</p>
+    ${PSYCHO.map(p=>`<div class="lib-item"><div class="lib-item-title">🧠 ${p.gebied}</div><div class="lib-item-desc">${p.thema}</div></div>`).join('')}
+  `;
+}
+
+// ======= RAPPORTEN =======
+function renderRapportSelect() {
+  const sessies = getSessies().sort((a,b)=>new Date(b.datum)-new Date(a.datum));
+  const klanten = getKlanten();
+  const sel = document.getElementById('rapport-select');
+  sel.innerHTML = '<option value="">— Kies een sessie —</option>' +
+    sessies.map(s=>{
+      const kl = klanten.find(k=>k.id===s.klantId);
+      const datum = new Date(s.datum).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'});
+      return `<option value="${s.id}">${datum} · ${kl ? kl.naam : 'Onbekend'}</option>`;
+    }).join('');
+}
+
+function renderRapport() {
+  const id = document.getElementById('rapport-select').value;
+  const el = document.getElementById('rapport-output');
+  if (!id) { el.innerHTML = ''; return; }
+  const s = getSessies().find(x=>x.id===id);
+  if (!s) return;
+  const kl = getKlanten().find(k=>k.id===s.klantId);
+  const datum = new Date(s.datum).toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const tijd = new Date(s.datum).toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+
+  const kaarten = Object.values(s.tarotKaarten||{});
+  const spread = document.getElementById('tarot-spread');
+
+  el.innerHTML = `
+    <div class="report-card">
+      <div class="report-header">
+        <div>
+          <div class="report-logo">🌿 Colibrí Soul Compass</div>
+          <div style="font-size:12px;color:var(--light);margin-top:4px">Lichaamsgerichte Begeleiding · San Fulgencio</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:13px;color:var(--dark);font-weight:500">${datum}</div>
+          <div style="font-size:12px;color:var(--light)">${tijd} · ${s.type||''}</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:24px">
+        <div class="report-section">
+          <div class="report-section-title">Cliënt</div>
+          <div class="report-text" style="font-size:18px;font-family:'Cormorant Garamond',serif">${kl ? kl.naam : '—'}</div>
+          ${kl?.email ? `<div style="font-size:12px;color:var(--light)">${kl.email}</div>` : ''}
+        </div>
+        <div class="report-section">
+          <div class="report-section-title">Hulpvraag</div>
+          <div class="report-text">${s.vraag||'—'}</div>
+        </div>
+      </div>
+
+      ${s.lichaamsZones?.length ? `
+      <div class="report-section">
+        <div class="report-section-title">Lichaamsscan — aangedane zones</div>
+        <div>${s.lichaamsZones.map(z=>`<span class="report-tag">${z}</span>`).join('')}</div>
+      </div>` : ''}
+
+      ${s.scan ? `<div class="report-section"><div class="report-section-title">Observaties lichaamsscan</div><div class="report-text">${s.scan}</div></div>` : ''}
+      ${s.psycho ? `<div class="report-section"><div class="report-section-title">Psychosomatische verbindingen & zielsoorzaken</div><div class="report-text">${s.psycho}</div></div>` : ''}
+
+      ${kaarten.length > 0 ? `
+      <div class="report-section">
+        <div class="report-section-title">Tarot — ${s.tarotSpread} kaart(en)</div>
+        <div>${kaarten.map(k=>`<span class="report-tag">🃏 ${k}</span>`).join('')}</div>
+        ${s.tarotNotes ? `<div class="report-text" style="margin-top:10px">${s.tarotNotes}</div>` : ''}
+      </div>` : ''}
+
+      ${s.pendelVraag || s.pendelUitkomst ? `
+      <div class="report-section">
+        <div class="report-section-title">Pendel</div>
+        ${s.pendelVraag ? `<div class="report-text"><em>Vraag:</em> ${s.pendelVraag}</div>` : ''}
+        ${s.pendelUitkomst ? `<div style="margin:8px 0"><span class="tag ${s.pendelUitkomst==='Ja'?'selected':s.pendelUitkomst==='Nee'?'terra':''}">${s.pendelUitkomst}</span></div>` : ''}
+        ${s.pendelNotities ? `<div class="report-text">${s.pendelNotities}</div>` : ''}
+      </div>` : ''}
+
+      ${s.olieen?.length ? `
+      <div class="report-section">
+        <div class="report-section-title">Etherische oliën</div>
+        <div>${s.olieen.map(o=>`<span class="report-tag">🌸 ${o}</span>`).join('')}</div>
+        ${s.olieNotities ? `<div class="report-text" style="margin-top:10px">${s.olieNotities}</div>` : ''}
+      </div>` : ''}
+
+      ${s.kruiden?.length ? `
+      <div class="report-section">
+        <div class="report-section-title">Kruiden</div>
+        <div>${s.kruiden.map(k=>`<span class="report-tag">🌿 ${k}</span>`).join('')}</div>
+        ${s.kruidNotities ? `<div class="report-text" style="margin-top:10px">${s.kruidNotities}</div>` : ''}
+      </div>` : ''}
+
+      ${s.notities ? `<div class="report-section"><div class="report-section-title">Verloop van de sessie</div><div class="report-text">${s.notities}</div></div>` : ''}
+      ${s.inzichten ? `<div class="report-section"><div class="report-section-title">Doorbraken & inzichten</div><div class="report-text">${s.inzichten}</div></div>` : ''}
+      ${s.energie ? `<div class="report-section"><div class="report-section-title">Energetische observaties</div><div class="report-text">${s.energie}</div></div>` : ''}
+
+      ${s.huiswerk || s.aanbevel ? `
+      <div class="report-section" style="background:var(--cream2);padding:16px;border-radius:10px">
+        <div class="report-section-title">🏡 Huiswerk & oefeningen</div>
+        ${s.huiswerk ? `<div class="report-text">${s.huiswerk}</div>` : ''}
+        ${s.aanbevel ? `<div class="report-text" style="margin-top:10px"><strong>Aanbevelingen:</strong> ${s.aanbevel}</div>` : ''}
+      </div>` : ''}
+
+      ${s.volgende ? `<div class="report-section"><div class="report-section-title">Volgende sessie</div><div class="report-text">${s.volgende}</div></div>` : ''}
+
+      <div style="margin-top:28px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:11px;color:var(--light)">Vertrouwelijk behandelverslag · Colibrí Soul Compass</div>
+        <div style="font-size:11px;color:var(--light)">Michaela Sloesarwij</div>
+      </div>
+    </div>
+  `;
+}
+
+// ======= TOAST =======
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(()=>t.style.display='none', 2500);
+}
+
+// ======= INIT =======
+document.addEventListener('DOMContentLoaded', () => {
+  // Auto-login for demo? No, keep pin.
+  const now = new Date();
+  document.getElementById('dash-date') && (document.getElementById('dash-date').textContent =
+    now.toLocaleDateString('nl-NL', {weekday:'long',day:'numeric',month:'long',year:'numeric'}));
+});
+</script>
+</body>
+</html>
