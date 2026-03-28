@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Verbeteringen — Colibrí Soul Compass</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{font-family:'DM Sans',sans-serif;background:#FAF7F2;color:#2A2520;padding:40px;max-width:900px;margin:0 auto;line-height:1.7;}
+h1{font-family:'Cormorant Garamond',serif;font-size:40px;color:#3D5C52;margin-bottom:8px;}
+h2{font-family:'Cormorant Garamond',serif;font-size:28px;color:#3D5C52;margin:40px 0 12px;display:flex;align-items:center;gap:10px;}
+h3{font-size:15px;font-weight:500;color:#5C7A6E;margin:20px 0 8px;}
+p{color:#6B5E52;margin-bottom:12px;font-size:14px;}
+pre{background:#2A2520;color:#e8f0eb;padding:20px;border-radius:12px;overflow-x:auto;font-size:12.5px;line-height:1.6;margin:10px 0 20px;}
+.note{background:#F2EDE3;border-left:4px solid #8AAF9F;padding:14px 18px;border-radius:0 10px 10px 0;font-size:13px;color:#6B5E52;margin:12px 0;}
+.warn{background:#FFF8F0;border-left:4px solid #C4845A;padding:14px 18px;border-radius:0 10px 10px 0;font-size:13px;color:#6B5E52;margin:12px 0;}
+code{background:#e8f0eb;padding:2px 7px;border-radius:5px;font-size:12px;color:#3D5C52;}
+.section{background:#fff;border-radius:16px;padding:28px 32px;margin-bottom:24px;box-shadow:0 2px 12px rgba(42,37,32,0.08);}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;}
+.step-num{background:#5C7A6E;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0;margin-top:1px;}
+</style>
+</head>
+<body>
+
+<h1>🌿 Website Verbeteringen</h1>
+<p>Colibrí Soul Compass — Kopieer & plak de codes in jouw HTML bestanden via GitHub</p>
+
+<!-- ══════════════════════════════════════════ -->
+<h2>🍪 1. Cookiebanner (EU-verplichting)</h2>
+<!-- ══════════════════════════════════════════ -->
+<div class="section">
+  <p>Plak deze code vlak vóór de sluit-tag <code>&lt;/body&gt;</code> in <strong>alle</strong> HTML-pagina's (index, aanbod, over-mij, contact).</p>
+
+  <h3>CSS + HTML + JS (alles in één blok)</h3>
+<pre>&lt;!-- ═══ COOKIEBANNER ═══ --&gt;
+&lt;style&gt;
+.cookie-bar{position:fixed;bottom:0;left:0;right:0;background:#2A2520;color:#FAF7F2;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-family:'DM Sans',sans-serif;font-size:13px;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease;}
+.cookie-bar.show{transform:translateY(0);}
+.cookie-bar p{margin:0;flex:1;min-width:200px;line-height:1.6;color:rgba(250,247,242,0.85);}
+.cookie-bar a{color:#8AAF9F;text-decoration:underline;}
+.cookie-btns{display:flex;gap:10px;flex-shrink:0;}
+.cookie-btn{padding:9px 18px;border-radius:9px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:all .2s;}
+.cookie-btn.accept{background:#5C7A6E;color:#fff;}
+.cookie-btn.accept:hover{background:#8AAF9F;}
+.cookie-btn.decline{background:transparent;color:rgba(250,247,242,0.6);border:1px solid rgba(250,247,242,0.2);}
+.cookie-btn.decline:hover{color:#fff;}
+&lt;/style&gt;
+
+&lt;div class="cookie-bar" id="cookieBar"&gt;
+  &lt;p&gt;🍪 Wij gebruiken functionele cookies om de website goed te laten werken. Wij plaatsen geen tracking- of advertentiecookies. &lt;a href="/privacy.html"&gt;Meer info&lt;/a&gt;&lt;/p&gt;
+  &lt;div class="cookie-btns"&gt;
+    &lt;button class="cookie-btn decline" onclick="cookieDecline()"&gt;Alleen noodzakelijk&lt;/button&gt;
+    &lt;button class="cookie-btn accept" onclick="cookieAccept()"&gt;Akkoord ✦&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(function(){
+  if(!localStorage.getItem('csc_cookie_consent')){
+    setTimeout(()=>document.getElementById('cookieBar').classList.add('show'),600);
+  }
+})();
+function cookieAccept(){localStorage.setItem('csc_cookie_consent','accepted');document.getElementById('cookieBar').classList.remove('show');}
+function cookieDecline(){localStorage.setItem('csc_cookie_consent','declined');document.getElementById('cookieBar').classList.remove('show');}
+&lt;/script&gt;
+&lt;!-- ═══ EINDE COOKIEBANNER ═══ --&gt;</pre>
+
+  <div class="note">💡 Je hoeft geen externe cookie-service te betalen — jouw website gebruikt geen tracking cookies, dus deze simpele melding is voldoende voor de EU wet.</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2>🔍 2. SEO Meta-tags per pagina</h2>
+<!-- ══════════════════════════════════════════ -->
+<div class="section">
+  <p>Vervang de huidige <code>&lt;head&gt;</code> sectie in elk bestand met de onderstaande code. Dit verbetert je Google-vindbaarheid enorm.</p>
+
+  <h3>index.html — Homepage</h3>
+<pre>&lt;!-- Plak dit in &lt;head&gt; van index.html --&gt;
+&lt;meta name="description" content="Colibrí Soul Compass — Lichaamsgerichte begeleiding door Michaela in San Fulgencio (Costa Blanca). Bodywork, zenuwstelselontlading en holistische sessies. Online wereldwijd of live bij Alicante."&gt;
+&lt;meta name="keywords" content="lichaamsgerichte begeleiding, bodywork Costa Blanca, holistische therapie Alicante, massage San Fulgencio, zenuwstelsel ontlading, somatic therapy Spanje"&gt;
+&lt;link rel="canonical" href="https://colibri-soul-compass.vercel.app/"&gt;
+&lt;meta property="og:title" content="Colibrí Soul Compass | Lichaamsgerichte Begeleiding San Fulgencio"&gt;
+&lt;meta property="og:description" content="Rust in je lichaam. Richting in je leven. Lichaamsgerichte begeleiding door Michaela — online of in San Fulgencio."&gt;
+&lt;meta property="og:image" content="https://colibri-soul-compass.vercel.app/branding/Brandingportrait-michaela-profielfoto.jpeg"&gt;
+&lt;meta property="og:url" content="https://colibri-soul-compass.vercel.app/"&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;script type="application/ld+json"&gt;
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Colibrí Soul Compass","description":"Lichaamsgerichte begeleiding, bodywork en holistische sessies","url":"https://colibri-soul-compass.vercel.app","telephone":"+34722675011","email":"colibrisoulcompass@gmail.com","address":{"@type":"PostalAddress","addressLocality":"San Fulgencio","addressRegion":"Alicante","addressCountry":"ES"},"openingHours":"Mo-Fr 09:00-18:00","priceRange":"€50-€350","founder":{"@type":"Person","name":"Michaela Sloesarwij"}}
+&lt;/script&gt;</pre>
+
+  <h3>aanbod.html</h3>
+<pre>&lt;meta name="description" content="Bekijk het aanbod van Colibrí Soul Compass: kennismakingssessie €50, online sessies €65, verdiepingstraject 5×75min €350. Lichaamsgerichte begeleiding in San Fulgencio of online."&gt;
+&lt;meta name="keywords" content="bodywork tarieven, lichaamsgerichte therapie kosten, online sessie holistische begeleiding, verdiepingstraject Costa Blanca"&gt;
+&lt;link rel="canonical" href="https://colibri-soul-compass.vercel.app/aanbod.html"&gt;
+&lt;meta property="og:title" content="Aanbod | Colibrí Soul Compass"&gt;
+&lt;meta property="og:description" content="Van kennismaking tot diepgaand traject — online of live in San Fulgencio. Ontdek wat bij jou past."&gt;</pre>
+
+  <h3>over-mij.html</h3>
+<pre>&lt;meta name="description" content="Leer Michaela Sloesarwij kennen — holistische therapeut, massagetherapeut en begeleider bij Colibrí Soul Compass in San Fulgencio. Bijna 10 jaar ervaring in bodywork en energiewerk."&gt;
+&lt;meta name="keywords" content="Michaela Sloesarwij, holistische therapeut Alicante, massagetherapeut Costa Blanca, Mi-Wellness, Curaçao, lichaamswerk"&gt;
+&lt;link rel="canonical" href="https://colibri-soul-compass.vercel.app/over-mij.html"&gt;
+&lt;meta property="og:title" content="Over Michaela | Colibrí Soul Compass"&gt;</pre>
+
+  <div class="note">💡 Na het toevoegen van deze meta-tags: ga naar <strong>Google Search Console</strong> (gratis), voeg je site toe en vraag indexering aan. Dit versnelt hoe snel Google je vindt.</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2>🌍 3. Taalswitch repareren (NL/EN)</h2>
+<!-- ══════════════════════════════════════════ -->
+<div class="section">
+  <p>Het probleem: de EN-link verwijst naar pagina's die nog niet bestaan. Twee opties:</p>
+
+  <h3>Optie A — Tijdelijk: taalswitch verbergen tot EN klaar is</h3>
+<pre>&lt;!-- Vervang je huidige taalswitch door dit --&gt;
+&lt;div class="nav-lang"&gt;
+  &lt;a href="/index.html" class="lang-active"&gt;NL&lt;/a&gt;
+  &lt;span style="opacity:.4" title="Engels komt binnenkort"&gt;| EN&lt;/span&gt;
+&lt;/div&gt;</pre>
+
+  <h3>Optie B — Correcte links naar /en/ map (aanbevolen)</h3>
+  <p>Maak een map <code>/en/</code> in je GitHub repo met: <code>index.html</code>, <code>offer.html</code>, <code>about.html</code>, <code>contact.html</code></p>
+<pre>&lt;!-- Nav op NL-pagina's --&gt;
+&lt;div class="nav-lang"&gt;
+  &lt;a href="/index.html" class="lang-active"&gt;NL&lt;/a&gt; |
+  &lt;a href="/en/index.html"&gt;EN&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- Nav op EN-pagina's (/en/ map) --&gt;
+&lt;div class="nav-lang"&gt;
+  &lt;a href="/index.html"&gt;NL&lt;/a&gt; |
+  &lt;a href="/en/index.html" class="lang-active"&gt;EN&lt;/a&gt;
+&lt;/div&gt;</pre>
+
+  <div class="warn">⚠️ Gebruik Optie A zolang de EN-pagina's nog niet klaar zijn. Gebroken links schaden je SEO.</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2>👩 4. Over mij — Toe te voegen secties</h2>
+<!-- ══════════════════════════════════════════ -->
+<div class="section">
+  <p>Plak dit blok in je <code>over-mij.html</code>, onder het gedeelte "Het hart achter de praktijk". Vul je eigen opleidingen in!</p>
+
+<pre>&lt;!-- ═══ OPLEIDING & ACHTERGROND ═══ --&gt;
+&lt;section style="padding:60px 5vw;background:#F2EDE3;"&gt;
+  &lt;div style="max-width:800px;margin:0 auto"&gt;
+    &lt;p style="font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#8AAF9F;margin-bottom:12px"&gt;Achtergrond & Opleiding&lt;/p&gt;
+    &lt;h2 style="font-family:'Cormorant Garamond',serif;font-size:38px;color:#3D5C52;margin-bottom:32px"&gt;Wat ik meebreng&lt;/h2&gt;
+
+    &lt;!-- Tijdlijn items — voeg zelf toe / pas aan --&gt;
+    &lt;div style="display:flex;flex-direction:column;gap:20px"&gt;
+
+      &lt;div style="display:flex;gap:20px;align-items:flex-start"&gt;
+        &lt;div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#8AAF9F;min-width:60px;padding-top:2px"&gt;2015&lt;/div&gt;
+        &lt;div style="background:#fff;border-radius:12px;padding:18px 22px;flex:1;box-shadow:0 2px 10px rgba(42,37,32,0.07)"&gt;
+          &lt;div style="font-weight:500;color:#2A2520;margin-bottom:4px"&gt;Opleiding Massagetherapie — Mi-Wellness&lt;/div&gt;
+          &lt;div style="font-size:13px;color:#A89880"&gt;[Naam school / instituut] · [Stad, Land]&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div style="display:flex;gap:20px;align-items:flex-start"&gt;
+        &lt;div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#8AAF9F;min-width:60px;padding-top:2px"&gt;202X&lt;/div&gt;
+        &lt;div style="background:#fff;border-radius:12px;padding:18px 22px;flex:1;box-shadow:0 2px 10px rgba(42,37,32,0.07)"&gt;
+          &lt;div style="font-weight:500;color:#2A2520;margin-bottom:4px"&gt;[Jouw opleiding hier]&lt;/div&gt;
+          &lt;div style="font-size:13px;color:#A89880"&gt;[School / instituut]&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Voeg meer toe met hetzelfde patroon --&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Certificeringen --&gt;
+    &lt;div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:10px"&gt;
+      &lt;!-- Vervang met jouw echte certificeringen --&gt;
+      &lt;span style="padding:6px 16px;background:#fff;border-radius:20px;font-size:12px;color:#6B5E52;border:1px solid rgba(42,37,32,0.1)"&gt;✓ Massagetherapie&lt;/span&gt;
+      &lt;span style="padding:6px 16px;background:#fff;border-radius:20px;font-size:12px;color:#6B5E52;border:1px solid rgba(42,37,32,0.1)"&gt;✓ Energiewerk&lt;/span&gt;
+      &lt;span style="padding:6px 16px;background:#fff;border-radius:20px;font-size:12px;color:#6B5E52;border:1px solid rgba(42,37,32,0.1)"&gt;✓ Lichaamsgerichte begeleiding&lt;/span&gt;
+      &lt;span style="padding:6px 16px;background:#fff;border-radius:20px;font-size:12px;color:#6B5E52;border:1px solid rgba(42,37,32,0.1)"&gt;✓ In opleiding: Natuurcoach&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+&lt;!-- ═══ EINDE OPLEIDING ═══ --&gt;</pre>
+
+  <div class="note">💡 Tip: Voeg ook een korte sectie toe over je <strong>werkwijze / aanpak</strong> en misschien een <strong>FAQ</strong> — "Wat kan ik verwachten bij een eerste sessie?" Dit vergroot het vertrouwen bij nieuwe bezoekers.</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2>📋 5. Stappenplan — volgorde van aanpakken</h2>
+<!-- ══════════════════════════════════════════ -->
+<div class="section">
+  <div class="step"><div class="step-num">1</div><div>Open je GitHub repo en ga naar <code>index.html</code></div></div>
+  <div class="step"><div class="step-num">2</div><div>Voeg de <strong>SEO meta-tags</strong> toe aan <code>&lt;head&gt;</code> van alle pagina's</div></div>
+  <div class="step"><div class="step-num">3</div><div>Plak de <strong>cookiebanner</strong> code vóór <code>&lt;/body&gt;</code> op alle pagina's</div></div>
+  <div class="step"><div class="step-num">4</div><div>Vervang <code>contact.html</code> met het nieuwe bestand (heeft formulier + kaart)</div></div>
+  <div class="step"><div class="step-num">5</div><div><strong>Formspree.io</strong> — maak gratis account, maak een form aan, kopieer het ID, plak het in contact.html bij <code>YOUR_FORMSPREE_ID</code></div></div>
+  <div class="step"><div class="step-num">6</div><div>Repareer de <strong>taalswitch</strong> (Optie A is snelst)</div></div>
+  <div class="step"><div class="step-num">7</div><div>Voeg de <strong>opleiding-sectie</strong> toe aan over-mij.html</div></div>
+  <div class="step"><div class="step-num">8</div><div>Meld je website aan bij <strong>Google Search Console</strong> voor betere vindbaarheid</div></div>
+
+  <div class="note" style="margin-top:20px">🌿 <strong>Alle bestanden</strong> die je van Claude hebt ontvangen kun je direct uploaden naar GitHub. Vercel publiceert automatisch na elke push.</div>
+</div>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -387,3 +388,427 @@
 
 </html>
 
+=======
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aanbod Colibrí Soul Compass: online & live lichaamsgerichte begeleiding, bodywork en verdiepingstrajecten in San Fulgencio. Van kennismaking tot diepgaande verandering.">
+    <title>Aanbod | Colibrí Soul Compass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #F6F3ED;
+            --section-bg: #D8D2C8;
+            --accent-color: #8F9779;
+            --text-primary: #2E2A26;
+            --text-black: #1C1C1C;
+            --nav-bg: rgba(246, 243, 237, 0.95);
+            --max-width: 1100px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { background:var(--bg-color); color:var(--text-primary); font-family:'Montserrat',sans-serif; line-height:1.7; overflow-x:hidden; }
+        h1,h2,h3 { font-family:'Playfair Display',serif; color:var(--text-black); font-weight:500; }
+        .container { max-width:var(--max-width); margin:0 auto; padding:0 30px; }
+
+        /* Nav */
+        nav {
+            position:fixed; top:30px; left:50%; transform:translateX(-50%);
+            background:var(--nav-bg); backdrop-filter:blur(12px);
+            padding:12px 30px; border-radius:50px;
+            display:flex; align-items:center; justify-content:space-between;
+            width:90%; max-width:var(--max-width); z-index:1000;
+            border:1px solid rgba(46,42,38,0.1);
+        }
+        .nav-logo { display:flex; align-items:center; gap:12px; font-family:'Playfair Display',serif; font-size:16px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-black); text-decoration:none; }
+        .hamburger { display:none; font-size:28px; cursor:pointer; color:var(--text-black); z-index:1100; }
+        .nav-links { display:flex; align-items:center; gap:25px; }
+        .nav-links a { text-decoration:none; color:var(--text-primary); font-size:11px; text-transform:uppercase; letter-spacing:0.1em; transition:color .3s; }
+        .nav-links a:hover, .nav-links a.active { color:var(--accent-color); }
+        .lang-toggle { font-size:13px; letter-spacing:0.1em; border-left:1px solid rgba(46,42,38,0.1); padding-left:15px; display:flex; align-items:center; gap:8px; }
+        .lang-btn { cursor:pointer; padding:6px 12px; border-radius:20px; transition:all .2s; opacity:0.7; }
+        .lang-btn:hover { opacity:1; background:rgba(143,151,121,0.1); }
+        .lang-btn.active { background:var(--accent-color); color:white; opacity:1; font-weight:600; }
+
+        .mobile-menu {
+            position:fixed; inset:0; background:rgba(246,243,237,0.98); display:none; flex-direction:column;
+            align-items:center; justify-content:center; gap:40px; z-index:9999; font-size:18px; text-transform:uppercase; letter-spacing:0.1em;
+        }
+        .mobile-menu a { color:var(--text-black); text-decoration:none; }
+        .mobile-menu .lang-toggle { margin-top:60px; font-size:14px; }
+
+        /* Header */
+        .page-header { padding:180px 0 100px; text-align:center; }
+        .page-header h1 { font-size:clamp(36px,5vw,48px); margin-bottom:20px; }
+        .page-header p { max-width:720px; margin:0 auto; font-weight:300; font-size:18px; }
+
+        /* Hoofdtraject */
+        .main-offer { background:white; padding:60px; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,0.04); margin-bottom:80px; text-align:center; }
+        .main-offer h2 { font-size:36px; margin-bottom:25px; }
+        .price-big { font-size:42px; color:var(--accent-color); margin:30px 0; }
+
+        /* Sessies grid */
+        .sessions-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:40px; margin:80px 0; }
+        .session-card { background:white; padding:45px 35px; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.03); transition:transform .3s; }
+        .session-card:hover { transform:translateY(-8px); }
+        .session-card h3 { font-size:26px; margin-bottom:18px; }
+        .session-card .price { font-size:28px; color:var(--accent-color); margin:25px 0; display:block; }
+
+        /* Pilot */
+        .pilot-box { background:rgba(143,151,121,0.05); padding:50px 30px; border-radius:8px; text-align:center; margin:80px 0; border:1px solid var(--section-bg); }
+
+        .btn {
+            display:inline-block; padding:14px 36px; background:var(--text-black); color:white;
+            text-decoration:none; text-transform:uppercase; font-size:11px; letter-spacing:1.5px;
+            border-radius:4px; margin-top:20px; transition:background .3s;
+        }
+        .btn:hover { background:var(--accent-color); }
+
+        footer {
+            padding:100px 0 60px; text-align:center; background:white; border-top:1px solid var(--section-bg);
+        }
+        footer a { text-decoration:none; color:var(--text-primary); font-size:15px; font-weight:500; transition:color .3s; }
+        footer a:hover { color:var(--accent-color); }
+
+        @media (max-width:900px) {
+            nav { padding:10px 15px; width:95%; top:10px; border-radius:30px; }
+            .hamburger { display:block !important; }
+            .nav-links { display:none !important; }
+            .page-header { padding:140px 0 80px; }
+            .main-offer { padding:40px 25px; }
+            .sessions-grid { gap:30px; }
+            .session-card { padding:35px 25px; }
+            .pilot-box { padding:40px 20px; margin:60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="branding/logo-colibri.jpg" alt="Colibrí Logo" style="height:32px;">
+            Colibrí Soul Compass
+        </a>
+        <div class="hamburger" id="hamburger">☰</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aanbod.html" class="active">Aanbod</a>
+            <a href="over-mij.html">Over mij</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="lang-toggle">
+            <span class="lang-btn active" onclick="setLanguage('nl')">NL</span> |
+            <span class="lang-btn" onclick="setLanguage('en')">EN</span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" onclick="closeMobileMenu()">Home</a>
+        <a href="aanbod.html" onclick="closeMobileMenu()">Aanbod</a>
+        <a href="over-mij.html" onclick="closeMobileMenu()">Over mij</a>
+        <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="lang-toggle" style="margin-top:80px;">
+            <span class="lang-btn active" onclick="setLanguage('nl');closeMobileMenu()">NL</span> |
+            <span class="lang-btn" onclick="setLanguage('en');closeMobileMenu()">EN</span>
+        </div>
+    </div>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Kom thuis in je lichaam,<br>vind richting in je leven</h1>
+            <p>Van een zachte eerste kennismaking tot diepgaande verandering – online wereldwijd of live in San Fulgencio. We beginnen altijd met luisteren naar wat je lichaam al langer probeert te vertellen.</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Hoofdtraject -->
+        <div class="main-offer">
+            <h2>Verdiepingstraject</h2>
+            <p style="max-width:720px; margin:0 auto 30px; font-weight:300; font-size:17px;">
+                Voor wie klaar is om niet alleen te ontspannen, maar echt te veranderen. In vijf sessies van 75 minuten werken we laag voor laag aan bewustwording, ontlading en integratie.
+            </p>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin:40px 0;">
+                <div>
+                    <strong>1. De Landingskaart</strong>
+                    <p>In kaart brengen van fysieke spanning en emotionele link.</p>
+                </div>
+                <div>
+                    <strong>2 & 3. Ontlading & Bewustwording</strong>
+                    <p>Gericht werken op zenuwstelsel en diepe blokkades.</p>
+                </div>
+                <div>
+                    <strong>4 & 5. Integratie & Richting</strong>
+                    <p>Inzichten vertalen naar rust en kracht in het dagelijks leven.</p>
+                </div>
+            </div>
+            <div class="price-big">5 × 75 min – €350</div>
+            <a href="https://wa.me/34722675011?text=Ik%20wil%20graag%20het%20Verdiepingstraject%20starten" class="btn">Start jouw traject</a>
+        </div>
+
+        <!-- Losse sessies -->
+        <h2 style="text-align:center; font-size:36px; margin:100px 0 60px;">Losse sessies</h2>
+        <div class="sessions-grid">
+            <div class="session-card">
+                <h3>Kennismakingssessie</h3>
+                <p style="margin:20px 0 25px;">Een zachte eerste ontmoeting (live of online) om te voelen of mijn manier van werken bij je past. Inclusief korte intake en lichaamsgerichte check-in.</p>
+                <div class="price">60 min – €50</div>
+                <a href="https://wa.me/34722675011?text=Ik%20wil%20een%20kennismakingssessie%20boeken" class="btn">Plan kennismaking</a>
+            </div>
+
+            <div class="session-card">
+                <h3>Online Soul Compass</h3>
+                <p style="margin:20px 0 25px;">Veilige videoverbinding – overal ter wereld. Gesprek, lichaamsbewustzijn en praktische oefeningen voor thuis.</p>
+                <div class="price">75 min – €65</div>
+                <a href="https://wa.me/34722675011?text=Ik%20wil%20graag%20een%20online%20sessie%20boeken" class="btn">Boek online sessie</a>
+            </div>
+
+            <div class="session-card">
+                <h3>Live lichaamssessie</h3>
+                <p style="margin:20px 0 25px;">Diepere fysieke sessie in San Fulgencio: bodywork, fascia-release en zenuwstelselontlading.</p>
+                <div class="price">75 min – €75</div>
+                <a href="https://wa.me/34722675011?text=Ik%20wil%20een%20live%20sessie%20in%20de%20praktijk%20boeken" class="btn">Boek live sessie</a>
+            </div>
+        </div>
+
+        <!-- Pilot -->
+        <div class="pilot-box">
+            <span style="background:var(--accent-color); color:white; padding:6px 16px; border-radius:4px; font-size:12px; font-weight:600;">Wachtlijst – vanaf mei 2026</span>
+            <h2 style="font-size:32px; margin:25px 0 20px;">Pilot Natuurcoaching</h2>
+            <p style="max-width:720px; margin:0 auto 30px; font-weight:300;">
+                Voor mijn opleiding tot natuurcoach zoek ik 4 vrouwen die een volledig traject van 5 sessies in de natuur rond La Marina / San Fulgencio willen doorlopen.<br><br>
+                Dit is een leertraject voor mij, vandaar de lage prijs (vrijwillige bijdrage mogelijk).
+            </p>
+            <div class="price" style="font-size:24px; margin:30px 0;">5 sessies – Vrijwillige bijdrage</div>
+            <a href="https://wa.me/34722675011?text=Ik%20wil%20op%20de%20wachtlijst%20voor%20de%20pilot%20natuurcoaching" class="btn" style="background:var(--accent-color);">Kom op de wachtlijst</a>
+        </div>
+
+        <!-- Afsluitende CTA -->
+        <div style="text-align:center; margin:120px 0 80px;">
+            <h2 style="font-size:32px; margin-bottom:25px;">Klaar om te beginnen?</h2>
+            <p style="max-width:600px; margin:0 auto 40px; font-weight:300;">
+                Of je nu online wilt starten of liever live in de praktijk komt – we vinden altijd een passende eerste stap.
+            </p>
+            <a href="https://wa.me/34722675011?text=Ik%20wil%20graag%20een%20eerste%20gesprek%20of%20kennismaking" class="btn">Stuur me een bericht</a>
+        </div>
+
+    </div>
+
+   <footer style="padding: 100px 0 60px; text-align: center; background: white; border-top: 1px solid var(--section-bg);">
+    <div class="container" style="max-width: 800px;">
+        <!-- Social links met icons – groter en klikbaarder -->
+        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
+            <a href="https://www.instagram.com/colibri_soulcompass_miwellness" target="_blank" style="text-decoration:none; color:var(--text-primary); transition: all 0.3s; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:500;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 3.148.225.225 3.148.072 7.053.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.153 3.905 3.076 6.828 6.981 6.981C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 3.905-.153 6.828-3.076 6.981-6.981.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.948C23.986 8.333 24 7.925 24 12c0-3.259-.014-3.668-.072-4.948zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+                Instagram
+            </a>
+            <a href="https://www.facebook.com/ColibriSoulCompassMiWellness" target="_blank" style="text-decoration:none; color:var(--text-primary); transition: all 0.3s; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:500;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.294h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                Facebook
+            </a>
+            <a href="https://www.linkedin.com/in/michaela-sloesarwij" target="_blank" style="text-decoration:none; color:var(--text-primary); transition: all 0.3s; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:500;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.029-3.058-1.867-3.058-1.867 0-2.152 1.459-2.152 2.966v5.696h-3v-11h2.882v1.509h.039c.401-.757 1.381-1.557 2.837-1.557 3.033 0 3.597 1.997 3.597 4.597v6.451z"/></svg>
+                LinkedIn
+            </a>
+        </div>
+
+        <!-- Copyright + subtiele tagline -->
+        <p style="font-size: 14px; opacity: 0.7; margin: 0 0 12px;">
+            © 2026 Colibrí Soul Compass • San Fulgencio, La Marina Oasis, Alicante, España
+        </p>
+        <p style="font-size: 13px; opacity: 0.6; margin: 0;">
+            Lichaamsgerichte begeleiding & bodywork Costa Blanca
+        </p>
+    </div>
+</footer>
+ 
+  <!-- WhatsApp knop (blijft hetzelfde, maar iets groter voor betere tikbaarheid) -->
+<a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank" style="position:fixed; bottom:24px; right:24px; background:#25D366; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.15); z-index:2000; transition:transform .2s;">
+    <svg style="fill:white; width:36px; height:36px;" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.476 2.017 7.788l-2.017 7.212 7.378-1.935c2.197 1.151 4.704 1.808 7.371 1.808 8.837 0 16-7.163 16-16s-7.163-16-16-16zm0 29.273c-2.355 0-4.562-.613-6.48-1.685l-.465-.259-4.341 1.139 1.159-4.144-.285-.453c-1.185-1.89-1.807-4.085-1.807-6.38 0-6.767 5.505-12.273 12.273-12.273s12.273 5.505 12.273 12.273c0 6.767-5.505 12.273-12.273 12.273z"/></svg>
+</a>
+
+<!-- Mobiel aanpassing WhatsApp -->
+<style>
+    @media (max-width: 480px) {
+        .whatsapp-btn {
+            bottom: 16px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+        }
+        .whatsapp-btn svg { width: 32px; height: 32px; }
+    }
+</style>
+
+<!-- WhatsApp knop (iets groter en beter gepositioneerd op mobiel) -->
+<a href="https://wa.me/34722675011" class="whatsapp-btn" target="_blank" style="position: fixed; bottom: 24px; right: 24px; background: #25D366; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,0.15); z-index: 2000; transition: transform 0.2s;">
+    <svg style="fill: white; width: 36px; height: 36px;" viewBox="0 0 32 32">
+        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.733 5.476 2.017 7.788L0 31.212l7.378-1.935C9.575 30.428 12.082 31.085 14.749 31.085c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.273c-2.355 0-4.562-.613-6.48-1.685l-.465-.259-4.341 1.139 1.159-4.144-.285-.453c-1.185-1.89-1.807-4.085-1.807-6.38 0-6.767 5.505-12.273 12.273-12.273s12.273 5.505 12.273 12.273c0 6.767-5.505 12.273-12.273 12.273z"/>
+    </svg>
+</a>
+
+<!-- Extra mobiele aanpassing voor WhatsApp-knop -->
+<style>
+    @media (max-width: 480px) {
+        .whatsapp-btn {
+            bottom: 16px;
+            right: 16px;
+            width: 56px;
+            height: 56px;
+        }
+        .whatsapp-btn svg { width: 32px; height: 32px; }
+    }
+</style>
+
+    <script>
+        
+    // HAMBURGER MENU
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+        if (mobileMenu.style.display === 'flex') {
+            closeMobileMenu();
+        } else {
+            mobileMenu.style.display = 'flex';
+            hamburger.textContent = '✕';
+        }
+    });
+
+    function closeMobileMenu() {
+        mobileMenu.style.display = 'none';
+        hamburger.textContent = '☰';
+    }
+
+    mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) closeMobileMenu();
+    });
+
+    // TAAL-SWITCH – volledige object, geen duplicaat!
+    const translations = {
+        nl: {
+            "nav-home": "Home",
+            "nav-who": "Voor wie",
+            "nav-aanbod": "Aanbod",
+            "nav-about": "Over mij",
+            "nav-contact": "Contact",
+            "hero-sub": "Lichaamsgerichte Begeleiding",
+            "hero-title1": "Rust in je lichaam.",
+            "hero-title2": "Richting in je leven.",
+            "hero-p": "Ik begeleid je om te luisteren naar wat je lichaam je al langer probeert te vertellen. Spanning, blokkades en terugkerende patronen worden zichtbaar — zodat jij weer rust en richting ervaart.",
+            "hero-cta": "Maak een afspraak",
+            "who-sub": "Voor wie",
+            "who-title": "Is dit herkenbaar?",
+            "who-p": "Soms fluistert je lichaam wat je hoofd nog niet kan horen. Mijn begeleiding is er voor vrouwen die verlangen naar echte diepgang.",
+            "li1": "Je staat 'altijd aan' en verlangt naar een diepere staat van fysieke en mentale rust.",
+            "li2": "Je ervaart vage fysieke klachten die voortkomen uit opgeslagen stress of emoties.",
+            "li3": "Je zet jezelf vaak op de tweede plek en wilt weer leren voelen wat jij nodig hebt.",
+            "li4": "Je bent klaar om belemmerende patronen los te laten en je eigen pad te volgen.",
+            "aanbod-sub": "Aanbod",
+            "aanbod-title": "Begin met luisteren naar je lichaam",
+            "teaser-online": "Online sessies",
+            "teaser-verdieping": "Verdiepingstraject",
+            "about-sub": "Ontmoet Michaela",
+            "about-title": "Het gezicht achter Colibrí",
+            "about-p1": "Met bijna 10 jaar ervaring in massagetherapie en energiewerk, help ik je te landen in je lijf wanneer je vastloopt in spanning. Ik werk rustig, nuchter en met beide benen op de grond. Geen snelle oplossingen — wel echte aandacht.",
+            "about-p2": "In mijn praktijk in San Fulgencio creëer ik een veilige haven waar je even niets 'moet'. Samen kijken we naar wat je lichaam te vertellen heeft, zodat je weer met helderheid en bezieling verder kunt.",
+            "testi-sub": "Ervaringen",
+            "testi-title": "Wat mensen ervaren bij mij",
+            "testi1": "“Heerlijke stevige massage gehad van een lieve vrouw die duidelijk met haar hart masseert!”",
+            "testi2": "“Ik kwam voor ontspanning en ging weg met inzicht.”",
+            "blog-sub": "Inspiratie",
+            "blog-title": "Artikelen & inzichten"
+        },
+        en: {
+            // Vul zelf de Engelse versie aan of kopieer uit je oude code
+            "nav-home": "Home",
+            "nav-who": "For whom",
+            "nav-aanbod": "Offerings",
+            "nav-about": "About me",
+            "nav-contact": "Contact",
+            "hero-sub": "Body-oriented Guidance",
+            "hero-title1": "Peace in your body.",
+            "hero-title2": "Direction in your life.",
+            "hero-p": "I guide you to listen to what your body has been trying to tell you for a long time. Tension, blockages and recurring patterns become visible — so you experience peace and direction again.",
+            "hero-cta": "Book an appointment",
+            "who-sub": "For whom",
+            "who-title": "Does this sound familiar?",
+            "who-p": "Sometimes your body whispers what your mind cannot yet hear. My guidance is for women who long for real depth.",
+            "li1": "You are always 'on' and long for a deeper state of physical and mental rest.",
+            "li2": "You experience vague physical complaints arising from stored stress or emotions.",
+            "li3": "You often put yourself second and want to learn to feel what you need again.",
+            "li4": "You are ready to release limiting patterns and follow your own path.",
+            "aanbod-sub": "Offerings",
+            "aanbod-title": "Start by listening to your body",
+            "teaser-online": "Online sessions",
+            "teaser-verdieping": "Deepening trajectory",
+            "about-sub": "Meet Michaela",
+            "about-title": "The face behind Colibrí",
+            "about-p1": "With nearly 10 years of experience in massage therapy and energy work, I help you land in your body when you get stuck in tension. I work calmly, down-to-earth and with both feet on the ground. No quick fixes — just real attention.",
+            "about-p2": "In my practice in San Fulgencio I create a safe haven where you don't have to 'do' anything for a while. Together we look at what your body has to tell, so you can move forward with clarity and inspiration again.",
+            "testi-sub": "Experiences",
+            "testi-title": "What women say about me",
+            "testi1": "“Had a lovely firm massage from a kind woman who clearly massages with her heart.!”",
+            "testi2": "“I came for relaxation and left with insight.”",
+            "blog-sub": "Inspiration",
+            "blog-title": "Articles & insights"
+        }
+    };
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];  // textContent is betrouwbaarder
+            }
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+        });
+        document.documentElement.lang = lang;
+    }
+
+    // Start standaard op Nederlands
+    window.addEventListener('load', () => setLanguage('nl'));
+</script>
+
+<!-- ═══ COOKIEBANNER ═══ -->
+<style>
+.cookie-bar{position:fixed;bottom:0;left:0;right:0;background:#2A2520;color:#FAF7F2;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-family:'DM Sans',sans-serif;font-size:13px;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease;}
+.cookie-bar.show{transform:translateY(0);}
+.cookie-bar p{margin:0;flex:1;min-width:200px;line-height:1.6;color:rgba(250,247,242,0.85);}
+.cookie-bar a{color:#8AAF9F;text-decoration:underline;}
+.cookie-btns{display:flex;gap:10px;flex-shrink:0;}
+.cookie-btn{padding:9px 18px;border-radius:9px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:all .2s;}
+.cookie-btn.accept{background:#5C7A6E;color:#fff;}
+.cookie-btn.accept:hover{background:#8AAF9F;}
+.cookie-btn.decline{background:transparent;color:rgba(250,247,242,0.6);border:1px solid rgba(250,247,242,0.2);}
+.cookie-btn.decline:hover{color:#fff;}
+</style>
+
+<div class="cookie-bar" id="cookieBar">
+  <p>🍪 Wij gebruiken functionele cookies om de website goed te laten werken. Wij plaatsen geen tracking- of advertentiecookies. <a href="/privacy.html">Meer info</a></p>
+  <div class="cookie-btns">
+    <button class="cookie-btn decline" onclick="cookieDecline()">Alleen noodzakelijk</button>
+    <button class="cookie-btn accept" onclick="cookieAccept()">Akkoord ✦</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  if(!localStorage.getItem('csc_cookie_consent')){
+    setTimeout(()=>document.getElementById('cookieBar').classList.add('show'),600);
+  }
+})();
+function cookieAccept(){localStorage.setItem('csc_cookie_consent','accepted');document.getElementById('cookieBar').classList.remove('show');}
+function cookieDecline(){localStorage.setItem('csc_cookie_consent','declined');document.getElementById('cookieBar').classList.remove('show');}
+</script>
+<!-- ═══ EINDE COOKIEBANNER ═══ -->
+</body>
+
+</html>
+
+>>>>>>> Stashed changes
